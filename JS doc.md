@@ -138,4 +138,36 @@ into the browser, without concern for DOM or other media.
   - This can create a problem because your code might be accessing DOM elements
 before they are fully downloaded from the server.
   - To remedy the situation, you may want to wait until the DOM tree is fully available.
+  - **The Document Object Model (DOM)** is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated.
+**DOMContentLoaded**
+  - To wait on the DOM event, add an event listener to the document object. The
+ name of the event is DOMContentLoaded.
+```javascript
+<html>
+    <head>
+        <title> DOM Loaded.</title>
+        <script type="text/javascript">
+            function load() {
+                console.log("DOM Loaded.");
+            }
+            document.addEventListener("DOMContentLoaded", load);
+        </script>
+    </head>
+    <body>
+      <h1>HEAD</h1>
+    </body>
+</html>
+```
+  - Here the entry point is your own custom function load(). This is a
+good place for initializing your application objects.
+   - You can rename the load function to start, ready or initialize – it doesn’t matter.
+What matters is that at this entry point we’re 100% guaranteed that all DOM
+elements have been successfully loaded into memory and trying to access them
+with JavaScript will not produce an error.
+**EVENT'S**
+```javascript
+document.addEventListener("mouseover", myFunction);
+document.addEventListener("click", someOtherFunction);
+document.addEventListener("mouseout", someOtherFunction);
+```
 
