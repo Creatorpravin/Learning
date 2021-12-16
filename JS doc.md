@@ -36,5 +36,22 @@ For example, here is exploration of an anonymous function when used in the conte
     setTimeout(function() {    
     console.log(“print  something  in  1 second”);
     }, 1000);
+
+
+# **Chapter 2**
+**Chrome Console**
+* 2.0.1 Beyond Console Log
+   - Many programmers only know Chrome’s console.log but the console API contains few other methods that have practical use, especially when time is of essence.
+* copy(obj) function
+Copying JSON representation of an existing object to your copy buffer:
+```javascript
+let x = {property: 1, prop1: 2, method: function(){}};
+copy(x);
+
 ```
+ - Now the JSON is in your copy-paste buffer, you can paste it into any text editor.
+ - In this example x is a simple self-created object. But imagine a situation where a
+much more complex object is returned from a database API.
+- **Note:** Only JSON is returned, this means that methods will not make it to the
+copy buffer. (JSON string format does not support methods, only properties.)
 
