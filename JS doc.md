@@ -55,3 +55,12 @@ much more complex object is returned from a database API.
 - **Note:** Only JSON is returned, this means that methods will not make it to the
 copy buffer. (JSON string format does not support methods, only properties.)
 
+
+**2.0.2 console.dir**
+ - If you want to take a look at all object’s properties and methods, you can print it
+out directly into the console using console.dir method:
+
+```javascript
+console.dir(x)
+VM129:1 Objectmethod: ƒ ()prop1: 2property: 1[[Prototype]]: Object
+```
