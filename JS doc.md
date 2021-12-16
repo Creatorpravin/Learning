@@ -64,3 +64,9 @@ out directly into the console using console.dir method:
 console.dir(x)
 VM129:1 Objectmethod: ƒ ()prop1: 2property: 1[[Prototype]]: Object
 ```
+ - Note: In simple words, the console.log() returns the object in its string representation and console.dir() recognizes the object just as an object and outputs its properties. Both log() and dir() returns the string just as a string.
+
+ - Get the output of **DOM Element**
+```javascript
+console.dir(document.body)
+```
