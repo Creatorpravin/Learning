@@ -70,3 +70,28 @@ VM129:1 Objectmethod: ƒ ()prop1: 2property: 1[[Prototype]]: Object
 ```javascript
 console.dir(document.body)
 ```
+
+* 2.0.3 console.error
+```javascript
+let fuel = 99;
+function launch_rocket(){
+    function warning_mgs(){
+        console.error("Not enough fuel.");  
+    }
+
+if(fuel >= 100)
+{
+    //looks everything is fine
+ }
+  else
+        warning_mgs(); 
+}
+launch_rocket();
+```
+The great thing about console.error is that it also provides the stack trace:
+```
+VM1971:4 Not enough fuel.
+warning_mgs	@	VM1971:4
+launch_rocket	@	VM1971:13
+(anonymous)	@	VM1971:16
+```
