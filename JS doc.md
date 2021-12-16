@@ -224,3 +224,26 @@ have been fully downloaded:
     <body></body>
 </html>
 ```
+
+**Including External Scripts**
+ - Let’s say we have the following definitions in
+  my-script.js file:
+```
+let variable = 1;
+function myfunction(){return 2;}
+```
+  - Then you can add them into your main application file as follows:
+```javascript
+<html>
+    <head>
+        <title>Include External Script</title>
+        <script src="external.js"></script>
+        <script type="text/javascript">
+            let result= myfunction(); 
+            console.log(variable);
+            console.log(result);
+        </script>
+    </head>
+    <body></body>
+</html>
+```
