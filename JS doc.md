@@ -38,4 +38,3 @@ For example, here is exploration of an anonymous function when used in the conte
     }, 1000);
 ```
 
-next
