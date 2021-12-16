@@ -200,5 +200,27 @@ attaching the DOMContentLoaded event:
     </body>
 </html>
 ```
+**DOM vs Media**
+  - We’ve just created a safe place for initializing our application. But because DOM
+is simply a tree-like structure of all HTML elements on the page, it usually becomes
+available before the rest of the media such as images and various embeds.
+  - Even though <image src = "http://url" /> is a DOM element, the URL content specified in image’s src attribute might take more time to load.
+  - To check if any non-DOM media content has finished downloading we can overload
+the native window.onload event as shown in the following example
 
+**window.onload**
+ - With window.onload method, you can wait until all images and similar media
+have been fully downloaded:
 
+```javascript
+<html>
+    <head>Window media loaded.
+    <script type = "text\javascript">
+        window.onload = function(){
+
+        }
+    </script>
+    </head>
+    <body></body>
+</html>
+```
