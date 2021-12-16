@@ -116,3 +116,14 @@ console.timeEnd();
   ```javascript
   console.clear();
   ```
+**Printing Objects**
+  - In JavaScript all objects have .toString() method.
+  -  When providing an object
+to **console.log(value)** it can print it either as an object, or as a string.
+```javascript
+let obj = {Name:'praveen',location:"coimbatore" };
+console.log(obj);
+console.log("object = "+ obj);
+console.log(`${obj}`);
+
+```
