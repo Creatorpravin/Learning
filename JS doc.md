@@ -164,10 +164,41 @@ good place for initializing your application objects.
 What matters is that at this entry point we’re 100% guaranteed that all DOM
 elements have been successfully loaded into memory and trying to access them
 with JavaScript will not produce an error.
-**EVENT'S**
+ - **EVENT'S**
 ```javascript
 document.addEventListener("mouseover", myFunction);
 document.addEventListener("click", someOtherFunction);
 document.addEventListener("mouseout", someOtherFunction);
 ```
+
+**3.1.1 Dos and Dont’s**
+ - Do not write your code just in <script> tags, without entry point function.
+ - Do use the entry point to initialize the default state of your data and objects.
+ - Do make your program entry point either DOMContentLoaded, readyState or
+the native window.onload method for waiting on media (see next,) depending on
+whether you need to wait for just the DOM or the rest of media.
+**.readyState**
+ - For added safety you might also check the value of readyState property before
+attaching the DOMContentLoaded event:
+```javascript
+<html>
+    <head>
+        <title> DOM Loaded.</title>
+        <script type="text/javascript">
+            function load() {
+                console.log("DOM Loaded.");
+            }
+            if(document.readyState == "loading"){
+            document.addEventListener("DOMContentLoaded", load);
+            } else {
+                load();
+            }
+        </script>
+    </head>
+    <body>
+      <h1>HEAD</h1>
+    </body>
+</html>
+```
+
 
