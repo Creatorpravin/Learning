@@ -37,3 +37,5 @@ For example, here is exploration of an anonymous function when used in the conte
     console.log(“print  something  in  1 second”);
     }, 1000);
 ```
+
+next
