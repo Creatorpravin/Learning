@@ -95,7 +95,7 @@ warning_mgs	@	VM1971:4
 launch_rocket	@	VM1971:13
 (anonymous)	@	VM1971:16
 ```
-* 2.0.4 console.time() and console.timeEnd()
+**2.0.4 console.time() and console.timeEnd()**
   - You can track the amount of time between function calls. 
    - This can be helpful
 when optimizing code:
@@ -111,3 +111,8 @@ console.timeEnd();
  ```
  default: 127.450927734375 ms
  ```
+**2.0.5 console.clear**
+   - It is used to clear the previous console ouputs.
+  ```javascript
+  console.clear();
+  ```
