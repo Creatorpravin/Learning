@@ -95,3 +95,19 @@ warning_mgs	@	VM1971:4
 launch_rocket	@	VM1971:13
 (anonymous)	@	VM1971:16
 ```
+* 2.0.4 console.time() and console.timeEnd()
+  - You can track the amount of time between function calls. 
+   - This can be helpful
+when optimizing code:
+```javascript
+console.time();
+let arr = new Array(1000);
+for (let i = 0; i < arr.length;i++){
+    arr[i]=new Object();
+}
+console.timeEnd();
+```
+ **Output:**
+ ```
+ default: 127.450927734375 ms
+ ```
