@@ -429,9 +429,29 @@ console.log(new Number(1)+new Number(2));
 //combination
 console.log(1+ Number(2)+new Number(4));
 ```
-3.4 Variables
-Value Placeholders
-Variables are placeholder names for different types of values.
+**3.4 Variables**
+**Value Placeholders**
+ - Variables are placeholder names for different types of values.
+ - Keywords for defining variables include: **var, let and const:** but they don’t
+determine variable’s type, only how they can be used. We’ll go over the rules in
+more detail at a later time. 
+ - When you assign 1 to a variable name the type of that variable automatically
+ **Dynamic Typing**
+  - JavaScript is a dynamically-typed language. It means that variables created using
+var or let keywords can be dynamically re-assigned to a value of another type at
+some point later in your JavaScript program.
+  - In statically-typed languages doing that would generate an error.
+Definition Or Declaration?
+  - In the previous diagram we looked at a JavaScript variable declaration.
+Some will argue that the definition is the declaration. But this type of logic
+comes from statically typed languages, of which JavaScript is not. In statically
+typed languages the declaration determines the type of the variable – it’s what
+the compiler needs to allocate memory for the variable type (left hand side). But
+JavaScript is a dynamically typed language – the variable type is determined by
+the the type of value itself (right hand side).
+  - Hence, the confusion. Is the left side the declaration, definition or both? These
+types of details are more relevant in statically typed languages, but in JavaScript
+(and other dynamically-typed languages) it might not make much sense.
 
 
 
