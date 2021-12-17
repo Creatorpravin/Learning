@@ -393,5 +393,47 @@ strict_function();
 can potentially prevent many bugs from happening and generally supports better
 software practice.
 
+**3.3 Literal Values**
+  - The literal representation of a number can be the digit 1, 25, 100 and so on. A
+string literal can be "some text";
+You can combine literals using operators (+,-,/,*, etc.) to produce a single result.
+  -  For example, to perform a 5 + 2 operation, you will simply use the literal number
+values 5 and 2: 
+```javascript
+console.log(5+7);
+console.log("Hello" + " there.");
+console.log("username"+123456);
+```
+  - There is an array literal [] and object literal {}.
+  - You can add {} + [] without breaking the program, but the results will not be
+meaningful. These types of cases are usually non-existent.
+  - Note: that a JavaScript function can be used as a value. You can even pass them
+into other functions as an argument. We don’t usually y refer to them as function
+literals, however, but rather function expressions.
+   - The typeof(value) function can be used to determine type of the literal value.
+You can also use typeof as stand-alone keyword without parenthesis: typeof x.
+  - For example typeof 1 will return string "number" and typeof {} will return string
+"object". But ”object” doesn’t mean its an object-literal – for example – typeof
+new Number also returns "object" as does typeof new Array.
+
+**Number(1) vs new Number(1)**
+  - You can instantiate a value using constructor function associated with the type of
+that value. But using literal values is more common:
+```javascript
+//literal values
+console.log(1+1);
+//using number function
+console.log(Number(1)+Number(2));
+//using number object constructor
+console.log(new Number(1)+new Number(2));
+//combination
+console.log(1+ Number(2)+new Number(4));
+```
+3.4 Variables
+Value Placeholders
+Variables are placeholder names for different types of values.
+
+
+
 
 
