@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>Dynamic imports</title>
+        <script type="type/javascript">
+            element.addEventListener('click',async()=>{
+                const module = await import('./script.js');
+                module.clickEvent();
+            });
+        </script>
+    </head>
+</html>

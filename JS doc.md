@@ -332,3 +332,20 @@ function div(a,b){
 }
 export{add, mul, sub, div}
 ```
+**3.1.2 Dynamic Import**
+ - Imports can be assigned to a variable since EcmaScript 10 (may not be available
+in your browser yet, at the time of this writing.)
+```javascript
+<html>
+    <head>
+        <title>Dynamic imports</title>
+        <script type="type/javascript">
+            element.addEventListener('click',async()=>{
+                const module = await import('./script.js');
+                module.clickEvent();
+            });
+        </script>
+    </head>
+</html>
+
+```
