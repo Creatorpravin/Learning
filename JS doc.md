@@ -485,6 +485,48 @@ let f=d;
 x.p=10;
 console.log(f.p);
 ```
+**3.6 Scope Quirks**
+JavaScript has two known quirks when it comes to scope rules, that you might
+want to know about to save debugging time later.
+**Quirk 1 – let and const inside function vs. global variable**
+A variable defined using let or const keywords inside a function cannot coexist
+with global variable of the same name.
+
+```javascript
+let a = "global a";
+let b = "global b";
+ function x(){
+     console.log("x();global b="+b);
+     console.log("x();global a="+a);
+     let a = 1;
+ }
+ x();
+
+```
+  - The let keyword doesn’t hoist definitions, and we have a global variable a, so
+logically, inside function x() variable a should be taken from global scope, before
+it is defined later with let a = 1 but that’s not what happens.
+  - If variable a already exists inside a function (and it’s defined using let or const
+keywords) then using a, prior its definition within the function will produce ReferenceError, even if global variable a exists!
+
+**Quirk 2 – var latches onto window/this object, let and const don’t**
+ - In global scope this reference points to instance of window object / global context.
+When variables are defined using var keyword they become attached to window
+object, but variables defined using let (and const) are not.
+
+```javascript
+console.log(this===window);
+var c="c";//latches on to window("this" is global scope)
+let d="d";//exists separately from "this"
+console.log(c);
+console.log(this.c);
+console.log(window.c);
+
+console.log(d);//c
+console.log(this.d);//undefined
+console.log(window.d);//undefined
+
+```
 
 
 
