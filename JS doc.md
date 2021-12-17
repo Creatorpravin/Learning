@@ -247,3 +247,41 @@ function myfunction(){return 2;}
     <body></body>
 </html>
 ```
+
+**Import**
+  - Starting from ES6 we should use import (and export) keyword to import variables,
+functions and classes from an external file.
+  - Let’s say we have a file script.js and it has following definition of a mouse class.
+```javascript
+export function mouse(){
+   console.log("Import successfully");
+}
+```
+
+ - In order to make a variable, object or a function available for export, the export
+keyword must be prepended to its definition.
+
+ - Not everything in a module will be exported. Some of the items will (and should)
+remain private to it. 
+ - Be sure to prepend export keyword to anything you want to
+export from the file. This can be any named definition.
+``` javascript
+script type = "module"
+```
+ - In order to export the Mouse class and start using it in the application, we must
+make sure the script tag’s type attribute is changed to ”module” (this is required.)
+
+```javascript
+<html>
+    <head>
+        <title>Import Module</title>
+        <script type="module">
+            import{mouse}from"./script.js";
+            mouse();
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
+```
+
