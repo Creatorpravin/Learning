@@ -284,4 +284,51 @@ make sure the script tag’s type attribute is changed to ”module” (this is 
     </body>
 </html>
 ```
+**Importing And Exporting Multiple Definitions**
+  - It’s uncommon for a complex program to import only one class, function or variable.
+  - Here is an example of how to import multiple items from two imaginary files
 
+  ```javascript
+  <html>
+    <head>
+        <title>Import Module</title>
+        <script type = "module">
+            import { mouse } from "./external.js";
+            import {add, sub, mul, div } from "./export.js";
+            mouse();
+            console.log(mouse);
+            add(5,10);
+            console.log(add);
+            sub(10,2);
+            console.log(sub);
+            mul(12,2);
+            console.log(mul);
+            div(15,6);
+            console.log(div);
+        </script>
+    </head>
+    <body></body>
+</html>
+
+  ```
+
+  - The Mouse class were imported 
+from script.js file. 
+  - We’ve also imported some math functions add, subtract, divide and multiply
+from export.js. 
+
+```javascript
+function add(a,b){
+    return(a+b);
+}
+function mul(a,b){
+    return(a*b);
+}
+function sub(a,b){
+    return(a-b);
+}
+function div(a,b){
+    return(a/b);
+}
+export{add, mul, sub, div}
+```
