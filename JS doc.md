@@ -453,6 +453,38 @@ the the type of value itself (right hand side).
 types of details are more relevant in statically typed languages, but in JavaScript
 (and other dynamically-typed languages) it might not make much sense.
 
+**3.5 Passing Values By Reference**
+  - Copying data from place to place is a common operation in computing. It is
+natural to think that when we assign a value to a variable from another variable,
+a copy is made.
+  - But JavaScript assigns values by reference without actually making a copy of the
+original value. Here is an example
+
+```javascript
+let x ={p:1};
+let y=x;
+x.p=2;
+console.log(y.p);
+
+```
+  - Here we created variable x and assigned object literal {p: 1} to it.
+  - This means that from now on the value of x.p will be equal 1.
+  - A new variable called y was created and assigned x to it.
+  - Now x has become a reference to y, not a copy.
+  - From now on, any changes made to x will be also reflected in y.
+  - This is why when we changed value of x.p to 2, y.p was also changed.
+  - You can say that now y ”points” to the original object assigned to x variable.
+  - Only one copy of {p: 1} existed in computer memory all along from start to finish
+of this code block. Multiple assignments are chained by reference:
+```javascript
+let a ={p:5};
+let b=a;
+let c=b;
+let d=c;
+let f=d;
+x.p=10;
+console.log(f.p);
+```
 
 
 
