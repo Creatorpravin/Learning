@@ -378,6 +378,20 @@ delete variable;
 
 X Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
 ```
+**Limiting ”strict mode” To A Scope**
+ - The strict mode doesn’t have to be enabled globally. It is possible to isolate a
+single block (or function) scope to strict mode:
+```javascript
+function strict_function(){
+    'use strict';
+    function inner(){console.log("me too");}
+    return 'I am in strict mode.'+inner();
+}
+strict_function();
+```
+  - In a professional environment, it is common to have strict mode on, because it
+can potentially prevent many bugs from happening and generally supports better
+software practice.
 
 
 
