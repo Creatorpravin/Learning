@@ -349,3 +349,35 @@ in your browser yet, at the time of this writing.)
 </html>
 
 ```
+
+**3.2 Strict Mode**
+  - The strict mode is a feature available since ECMAScript 5 that allows you to place
+your entire program, or an isolated scope, in a ”strict” operating context. This
+strict context prevents certain actions from being taken and throws an exception.
+For example, in strict mode you cannot use undeclared variables.
+  -  Without strict
+mode, using an undeclared variable will automatically create that variable.
+Without strict mode, certain statements might not generate an error at all – even
+if they are not allowed – but you wouldn’t know something was wrong
+```javascript
+var variable=1;
+delete variable;
+```
+  - Without strict mode on, code above will fail silently, variable will not be deleted,
+and delete variable will return false but your program will continue to run.
+
+**But what will happen in strict mode?**
+
+  - Eliminates some JavaScript silent errors by changing them to throw errors.
+  - Fixes mistakes that make it difficult for JavaScript engines to perform optimizations: strict mode code can sometimes be made to run faster than identical code that's not strict mode.
+
+```javascript
+"use strict";
+var variable=1;
+delete variable;
+
+X Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
+```
+
+
+
