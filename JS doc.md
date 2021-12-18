@@ -283,6 +283,11 @@ make sure the script tag’s type attribute is changed to ”module” (this is 
     <body>
     </body>
 </html>
+
+Access to script at 'file:///C:/Users/sys/Documents/github/javascript/chapter%203/including%20external/script.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, chrome-extension, edge, https, chrome-untrusted.
+script.js:1 
+        
+       Failed to load resource: net::ERR_FAILED
 ```
 **Importing And Exporting Multiple Definitions**
   - It’s uncommon for a complex program to import only one class, function or variable.
@@ -527,7 +532,58 @@ console.log(this.d);//undefined
 console.log(window.d);//undefined
 
 ```
+# **Chapter 4**
+## **Statements**
+**4.0.1 Evaluating Statements**
+  - A statement is the smallest building block of a computer program. In this chapter
+we will explore a few common cases.
+  - Definitions made with var, let or const keywords return undefined because they
+behave only as value assignments: the value is simply stored in the variable name:
+```javascript
+let a = 1;
+```
+If, however, the assigned variable a is used as a stand-alone statement afterwards,
+it will produce value of 1:
+```javascript
+a;
+```
+ - Statements usually produce a value. But when there isn’t anything to return, a
+statements will evaluate to undefined, which can be interpreted as ”no value
+```javascript
+; //undefined
+1; //undefined
+"text"; //undefined
+[]; //undefined
+{}; //undefined
+let a = 1; //undefined
+let b = []; //undefined
+let c = {}; //undefined
+let d = new String("text"); //undefined
+let e = new number(12345); //undefined
+new String("text"); //"text"
+new String(12345); //12345
+let f = function() {return 1}; //undefined
+f(); //1
+let o = (a,b)=>a+b; //undefined
+o(1,2); //3
+fuction name(){} //undefined
+```
+ - Some evaluation rules make sense, but special cases should probably be just memorized. For example, what would it mean to evaluate an empty object literal?
+ - According to JavaScript it should evaluate to undefined.
+ - Yet, empty array brackets [] (a close relative to empty object literal) evaluate to
+an empty array: [], and not undefined.
 
+**4.0.2 Expressions**
+ - Here is an expression: 1 + 1 that produces the value of 2:
 
-
-
+```javascript
+1+1; //2
+```
+ - Expressions don’t have to be variable definitions. You can create them
+by simply using some literal values in combination with operators.
+```javascript
+let f = function () {return 1};
+f();
+```
+  - Function f() evaluates to value 1, because it returns 1. This is why f() is often
+referred to as a function expression.
