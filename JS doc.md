@@ -626,3 +626,47 @@ doesn’t have a constructor. And they are probably right...
 when you named a variable but don’t assign a value to it. 
   - Your hoisted variables
 will also be automatically assigned a value of undefined.
+**5.0.4 number**
+  - The number primitive helps us work with values in the numeric domain.
+You can define negative and positive values, decimals (more commonly known as
+floating-point numbers.) 
+  - There is even a negative and positive Infinity value.
+  - This makes more sense if you have some background in math.
+NaN is technically a non-numeric value a statement can evaluate to. It’s available
+directly from the Number.NaN But literally, it is exactly what it says it is: neither
+"number" primitive nor Number() object. (It could be a "string", for example.)
+Using typeof operator on a numeric value will produce "number" (It helps to note
+that the return value is in string format.)
+```javascript
+typeof -1;
+typeof 5;
+typeof 7;
+
+let number = new number(7);//undefined
+typeof number;//object
+typeof number.valueOf();//number
+```
+  - This example shows distinction between primitive literal value (-1, 5, 7, etc.) and
+the Number object. Once instantiated, the value is no longer exactly a literal but
+an object of that type.
+To get ”number” type from the object use typeof on the valueOf method as
+seen in the previous example typeof number.```valueOf();```
+
+**5.0.5 bigint**
+  - BigInt was added in EcmaScript10 and wasn’t available until Summer 2019.
+  - In the past the maximum value of a number created using a number literal or the
+Number() constructor was stored in Number.MAX SAFE INTEGER and was equal
+to 9007199254740991.
+  - A bigint type allows you to specify numbers greater than Number.MAX SAFE INTEGER.
+```javascript
+const limit = Number.MAX_SAFE_INTEGER;
+limit+1;
+limit+2;
+const small = 1n;
+const large = 1752500000129229n;
+const integer = BigInt(1752500000129229);
+const big = BigInt('1752500000129229');
+big + 1;
+```
+
+
