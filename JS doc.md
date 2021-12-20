@@ -690,6 +690,7 @@ typeof text.valueOf();//string
 instantiated (this is different from the primitive’s literal value which is still just a
 "string" primitive). To get the value of the instantiated object use valueOf()
 method and use typeof string.valueOf() to determine the object’s type.
+
 **5.0.8 Template Strings**
   - Strings defined using the backtick quotes have special function.
   - You can use them to create Template Strings (also known as Template Literals)
@@ -705,6 +706,7 @@ console.log(text);
  ```
   - The back-tick cannot be used to define an object-literal property name (You still
 have to use either single or double quotes.)
+
 **Creative Use Case**
   - Template strings can be used to solve the problem of forming a message that has
 proper language form, based on a dynamic number. One of the classic cases is
