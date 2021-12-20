@@ -622,14 +622,14 @@ pass them to functions or assign them as values to object properties.
   - Running typeof operator on null will say it’s an ”object”.
   - Some believe this is a bug in JavaScript because null is not an object since it
 doesn’t have a constructor. And they are probably right...
-**5.0.3 undefined**
 
+**5.0.3 undefined**
   - Undefined is a type of its own. It’s not an object. Just a value JavaScript will use
 when you named a variable but don’t assign a value to it. 
   - Your hoisted variables
 will also be automatically assigned a value of undefined.
-**5.0.4 number** 
 
+**5.0.4 number** 
   - The number primitive helps us work with values in the numeric domain.
 You can define negative and positive values, decimals (more commonly known as
 floating-point numbers.) 
