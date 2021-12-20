@@ -671,5 +671,70 @@ const integer = BigInt(1752500000129229);
 const big = BigInt('1752500000129229');
 big + 1;
 ```
+**5.0.7 string**
+  - The string value is defined using any of the available quote characters: double
+quotes, single quotes, and back-tick quotes (Located on tilde key.) You can nest
+double quotes inside single quotes, and the other way around.
+  - Running typeof on a string value returns "string":
+  - You can also use String constructor function to build an object of string type:
+ ```javascript
+ typeof "text"; //string
+typeof "JavaScript book";//string
+typeof "price"+250;//string
 
+let text = new Text("hello.");//undefined
+typeof text;//object
+typeof text.valueOf();//string
+ ```
+  - Note that the first typeof returns "object", because at this point the object is
+instantiated (this is different from the primitive’s literal value which is still just a
+"string" primitive). To get the value of the instantiated object use valueOf()
+method and use typeof string.valueOf() to determine the object’s type.
+**5.0.8 Template Strings**
+  - Strings defined using the backtick quotes have special function.
+  - You can use them to create Template Strings (also known as Template Literals)
+to embed dynamic variable values inside the string:
+ ```javascript
+  let apple = 10;
+let name =  `There are ${apple}, apples in the basket`;
+console.log(name);
+let firstName = "John";
+let lastName = "Doe";
+let text = `Welcome ${firstName}, ${lastName}!`;
+console.log(text);
+ ```
+  - The back-tick cannot be used to define an object-literal property name (You still
+have to use either single or double quotes.)
+**Creative Use Case**
+  - Template strings can be used to solve the problem of forming a message that has
+proper language form, based on a dynamic number. One of the classic cases is
+forming an alert message sentence.
+```javascript
+for (let alerts =0;alerts<4;alerts++){
+    let one = (alerts==1);
+    let is = one ? "is" : "are";
+    let s = one == 1 ? "" : "s";
+    let message = `There ${is} ${alerts} alert${s}`;
+    console.log(message);
+}
+```
+  - Whenever there is only 1 alert, the trailing "s" in the word "alerts" must be
+removed. But we don’t want to create a second string just to cover one case.
+Instead, we can calculate it dynamically. We also need to decide which verb should
+be used ("is" or "are") based on the number of alerts.
 
+```console
+VM126:6 There are 0 alerts
+VM126:6 There is 1 alert
+VM126:6 There are 2 alerts
+VM126:6 There are 3 alerts
+```
+  - Here the **ternary operator** consisting of ? and : is used.
+You can think of ternary operator as an inline **if**-statement. 
+  - It doesn’t need {}
+brackets because it doesn’t support multiple statements:
+ ```javascript
+ let is = one ? "is" : "are";
+ ```
+ - Question mark can be interpreted as "if-then" or as "if the previous statement
+evaluates to true" and the colon : can be interpreted as "else".
