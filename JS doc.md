@@ -587,3 +587,42 @@ f();
 ```
   - Function f() evaluates to value 1, because it returns 1. This is why f() is often
 referred to as a function expression.
+
+# **Chapter 5**
+## **Primitive Types**
+
+**Primitive Types**
+ - JavaScript has 7 primitive types: null, undefined, number, bigint, string,
+boolean and symbol. Primitives helps us work with simple values such as strings,
+numbers and booleans.
+```javascript
+let a = undefined;
+let b = null;
+let c =12;
+let d = 40.3;
+let e = 100n;
+let f = "hello";
+let g = Symbol();
+console.log(typeof g);
+```
+  - Numbers, strings and booleans are basic value units. You can write them out
+in literal form: a number can be 123 or 3.14, a string can be "string", or
+a template string: ‘I have {$number} apples.‘ (note the back-tick quotes,
+which allow you to embed variables into the string dynamically.) A boolean can
+only be either true or false. You can combine primitive types using operators,
+pass them to functions or assign them as values to object properties.
+**Number(), BigInt(), String() and Boolean()** are primitive constructor functions. 
+**5.0.1 boolean**
+  - The boolean primitive can be assigned either true or false value. 
+ ```javascript
+ Boolean(10 > 9);
+ ```
+**5.0.2 null**
+  - Running typeof operator on null will say it’s an ”object”.
+  - Some believe this is a bug in JavaScript because null is not an object since it
+doesn’t have a constructor. And they are probably right...
+**5.0.3 undefined**
+  - Undefined is a type of its own. It’s not an object. Just a value JavaScript will use
+when you named a variable but don’t assign a value to it. 
+  - Your hoisted variables
+will also be automatically assigned a value of undefined.
