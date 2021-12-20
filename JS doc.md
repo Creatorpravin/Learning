@@ -612,6 +612,7 @@ which allow you to embed variables into the string dynamically.) A boolean can
 only be either true or false. You can combine primitive types using operators,
 pass them to functions or assign them as values to object properties.
 **Number(), BigInt(), String() and Boolean()** are primitive constructor functions. 
+
 **5.0.1 boolean**
   - The boolean primitive can be assigned either true or false value. 
  ```javascript
