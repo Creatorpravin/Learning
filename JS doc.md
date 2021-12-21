@@ -672,6 +672,20 @@ const integer = BigInt(1752500000129229);
 const big = BigInt('1752500000129229');
 big + 1;
 ```
+
+**5.0.6 typeof**
+ - Difference between numeric types:
+```javascript
+typeof 10;//number
+typeof 10n;//bigint
+```
+ - Equality operators can be used between the two types
+```javascript
+10n === BigInt(10);//true
+10n == 10;//true
+```
+- Math operators only work within their own type
+
 **5.0.7 string**
   - The string value is defined using any of the available quote characters: double
 quotes, single quotes, and back-tick quotes (Located on tilde key.) You can nest
