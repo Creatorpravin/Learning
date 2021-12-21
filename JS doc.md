@@ -943,3 +943,53 @@ including functions, it’s possible to chain multiple methods using the dot ope
 ```javascript
 "hello".toUpperCase().substr(1,4);//"ELLO"
 ```
+
+# **Chapter 6**
+**Type Coercion Madness**
+  - When learning JavaScript from scratch you may be puzzled by some decisions
+made by the language when it comes to evaluating statements.
+  - For example, what will happen if we sporadically add up different types of values
+and stitch them together using the + operator?
+
+```javascript
+console.log(null+{}+true+[5]);
+```
+```console
+null[object Object]true5
+```
+  - A string? This might seem confusing. After all, not a single value in this statement
+is a string! So how did that happen?
+  - *Answer:* When + operator encounters objects of incompatible type, it will attempt
+to coerce those objects to their values in string format. In this case, leaving us
+with a new statement: "null[object Object]" + true + [] + [5].
+  - Furthermore, when + operator encounters a string at least on one side of the
+operator, it will try to coerce the other side to string and perform string addition.
+  - Calling .toString on true results in "true". Calling .toString on empty array
+brackets [] when the other side of operator is also a string evaluates it to "" which
+is why it appears missing from the result. And finally adding [5] to a string calls
+[5].toString which results in "5".
+
+**6.0.1 Examples of Type Coercion**
+ - Here are some classic examples of type coercion
+
+```javascript
+let a = true + 1; //2
+let b = true + true ; //2
+let c = true + false; // 1+0 = 1
+let d = "Hello" + " " + "there"; //Hello there
+let e = "username" + 113215 ; //username113215
+let f = 1 / "string";// NaN (not a number)
+let g = Nan === Nan ; // false
+let h = [1]+[2]; // "12"
+let i = Infinity; // Infinity
+let j = [] + []; //""
+let k = [] + {}; // [object object]
+```
+  - JavaScript will try to come up with best value available if you supply meaningless
+combinations of types to some of its operators.
+After all, what would it mean to ”add” an object literal {} to an array []? Exactly
+  - it doesn’t make any sense. But by evaluating to object [] at least we don’t
+break the code in that one little odd case where it may happen.
+  - This safety mechanism will prevent the program from breaking. In reality, however,
+these types of cases will almost never happen. We can treat majority of these cases
+as examples – not something you should be actually trying to do in code.
