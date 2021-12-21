@@ -914,3 +914,32 @@ f();
   - This tells us that Function is the constructor for creating JavaScript functions.
 But when we created our own Pancake function, Pancake became the constructor
 of our custom class that we could also initialize using the new keyword.
+
+**5.0.10 Executing Methods On Primitive Types**
+**Parenthesis And Object Property Access**
+  - The parenthesis operator gives you control over which statement should evaluate
+first. That’s its primary purpose.
+  - For example statement 5 * 10 + 2 is not the same as 5 * (10 + 2).
+  - But sometimes it is used to access a member method or property. Which is
+demonstrated in the next source code listing.
+You can execute methods directly on the literal values of primitive types. Which
+automatically converts them to objects, so that the method can be executed.
+  - In some cases – like with the primitives of type "number" – we must first wrap
+the literal value in parenthesis, or you’ll freeze your program.
+```javascript
+//1.toString();//This will freeze
+(1).toString(); //"1"
+"hello".toUpperCase(); //"HELLO"
+("hello").toUpperCase(); 
+new Number(1).toString();//"1"
+```
+  - A literal is just a literal value. By accessing its properties, it turns into a reference
+to the object instance so you can execute object methods on that value.
+
+**Chaining Methods**
+  - Because in JavaScript functions can return this keyword, or any other value,
+including functions, it’s possible to chain multiple methods using the dot operator.
+
+```javascript
+"hello".toUpperCase().substr(1,4);//"ELLO"
+```
