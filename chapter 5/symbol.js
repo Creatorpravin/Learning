@@ -13,3 +13,13 @@ for (let prop in obj)
 console.log(prop+ ":" +obj[prop]);//property: regular property
 console.log(Object.entries(obj));//(2) ["property","regular property"]
 console.log(JSON.stringify(obj));//{"property":"regular property"}
+console.log(Object.getOwnPropertySymbols(obj));//0: Symbol(unique)
+//1: Symbol(dictinct)
+//2: Symbol(only-one)
+//length: 3
+const seasons={
+    Winter:Symbol('Winter'),
+    Spring:Symbol('Spring'),
+    Summer:Symbol('Summer'),
+    Autumn:Symbol('Autumn')
+};

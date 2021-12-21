@@ -755,3 +755,92 @@ brackets because it doesn’t support multiple statements:
  ```
  - Question mark can be interpreted as "if-then" or as "if the previous statement
 evaluates to true" and the colon : can be interpreted as "else".
+
+**5.0.9 Symbol**
+  - The Symbol primitive provides a way to define a completely unique key.
+Symbol doesn’t have a constructor and cannot be initialized using new keyword:
+Instead, just an assignment to Symbol will create a new symbol with a unique ID:
+  - The ID, however, is not the used-defined string "sym", it is created internally.
+  - This is demonstrated in the following example.
+  - At first it might be surprising that the following statement evaluates to false:
+Whenever you call Symbol(’sym’) a unique symbol is created. The comparison
+is made between two logically distinct IDs and therefore evaluates to false.
+Symbols can be used to define private object properties. This is not the same
+as regular (public) object properties. However, both public and private properties
+created with symbols can live on the same object:
+```javascript
+let sym = new Symbol('sym'); // type error
+let sym = Symbol('sym');//symbol created
+Symbol('sys') === Symbol('sys') //flase
+
+let sym1 = Symbol('unique');
+let bol = Symbol('dictinct');
+let one = Symbol('only-one');
+let obj = {property:"regular property",[sym1]:1,[bol]:2};
+obj[one]=3;//add the property
+console.log(obj);
+//hide properties
+```
+  - Here we created an object obj, using object literal syntax, and assigned one of
+its properties property to a string, while second property was defined using the
+[sym] symbol created on the first line. [sym] was assigned value of 1. Second
+symbol property [bol] was added in the same way and assigned value of 2.
+Third object symbol property [one] was added directly to the object via obj[one].
+Printing the object shows both private and public properties:
+- Private (symbol-based) properties are hidden from Object.entries, Object.keys
+and other iterators (for example for...in loop):
+
+```javascript
+for (let prop in obj)
+console.log(prop+ ":" +obj[prop]);//property: regular property
+console.log(Object.entries(obj));//(2) ["property","regular property"]
+console.log(JSON.stringify(obj));//{"property":"regular property"}
+console.log(Object.getOwnPropertySymbols(obj));//0: Symbol(unique)
+//1: Symbol(dictinct)
+//2: Symbol(only-one)
+//length: 3
+```
+  - In addition symbol properties are also hidden from JSON.
+
+  - Why would we want to hide symbol-based properties from JSON stringify?
+  - Actually it makes sense. What if our object needs to have private properties that
+are only relevant to how that object works, and not what data it represents? These
+private properties can be used for miscellaneous counters or temporary storage.
+  - The idea behind private methods or properties is to keep them hidden from the
+outside world. They are only needed for internal implementation. Private implementation is rarely important when it comes to marshalling objects.
+  - But symbols can be exposed via Object.getOwnPropertySymbols method:
+  - Note that you probably shouldn’t use Object.getOwnPropertySymbols to expose properties that are intended to be private. Debugging should be the only use
+case for this function.
+  - You can use symbols to separate your private and public properties. This is
+like separating ”goats from the sheep” because even though they provide similar functionality, symbols will not be taken into account when used in iterators or
+  - console.log function.
+Symbols can be used whenever you need unique IDs. Hence, they can also be used
+to create constants in enumerable lists of IDs:
+```javascript
+const seasons={
+    Winter:Symbol('Winter'),
+    Spring:Symbol('Spring'),
+    Summer:Symbol('Summer'),
+    Autumn:Symbol('Autumn')
+};
+```
+**Global Symbol Registry**
+  - As we saw earlier Symbol("string") === Symbol("string") is false because
+two completely unique symbols are created.
+  - But there is a way to create string keys that can overwrite symbols created using
+the same name. There is a global registry for symbols, that can be accessed using
+methods Symbol.for and Symbol.keyFor.
+
+```javascript
+let sym = Symbol.for('age');
+let bol = Symbol.for('age');
+let obj = {};
+obj[sym]= 20; 
+obj[bol]=25; //25
+console.log(obj[sym]); //25 tide eachother by key 'age'
+
+```
+  - The private symbolic object property obj[sym] outputs the value of 25 (which
+was originally assigned to obj[bol]) when it was defined, because both variables
+sym and bol are tied to the same key "age" in global symbol registry.
+  - In other words the definitions share the same key.
