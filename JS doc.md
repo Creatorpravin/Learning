@@ -487,7 +487,7 @@ let b=a;
 let c=b;
 let d=c;
 let f=d;
-x.p=10;
+a.p=10;
 console.log(f.p);
 ```
 **3.6 Scope Quirks**
