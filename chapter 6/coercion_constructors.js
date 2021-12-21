@@ -1,0 +1,10 @@
+let a = Boolean(true); //true
+let b = Boolean([]); //false
+let c = Boolean({});//false
+let d  = Boolean(false); // false
+let e = Boolean(Nan); // false
+let f = Boolean(null); // false
+let g = Boolean(undefined); // false
+let h = Boolean(''); // false
+let i = Boolean(0); // false
+let h = Boolean(-0); // false

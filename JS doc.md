@@ -993,3 +993,181 @@ break the code in that one little odd case where it may happen.
   - This safety mechanism will prevent the program from breaking. In reality, however,
 these types of cases will almost never happen. We can treat majority of these cases
 as examples – not something you should be actually trying to do in code.
+
+**Type Coercion In Constructors**
+  - Coercion also occurs when we provide an initialization value to a type constructor:
+  - In the last two cases we supplied an array literal {} and an object literal [] to
+Boolean constructor. What does this mean? Not much, but the point is that at
+least it evaluates to true in this odd case.
+  - This is just a safety net to prevent bugs.
+ ```javascript
+ let a = Boolean(true); //true
+let b = Boolean([]); //false
+let c = Boolean({});//false
+let d  = Boolean(false); // false
+let e = Boolean(Nan); // false
+let f = Boolean(null); // false
+let g = Boolean(undefined); // false
+let h = Boolean(''); // false
+let i = Boolean(0); // false
+let h = Boolean(-0); // false
+ ```
+  - Meaningless values still evaluate to either true or false, because these are the
+only values available for boolean types.
+Other built-in data type constructors behave in the same way. JavaScript will try
+to coerce to an ideal value specific to that type.
+
+**Type Coercion**
+ - Coercion is the process of converting a value from one type into another. For
+example, number to string, object to string, string to number (if the entire string
+consists of numeric characters) and so on...
+ - But when values are used together with different operators not all cases are
+straightforward to the untrained eye.
+ - To someone new to the language, the following logic might seem obscure:
+```javascript
+[] = []; //false
+```
+ - Let’s say that it is false because two instances of [] are not the same, because
+JavaScript == operator tests objects by reference and not by value.
+```javascript
+let a = []; 
+a == a ; //true
+```
+ - But this statement evaluates to true because variable a points to the same instance
+of the array literal. They refer to the same location in memory.
+ - But what about cases like this? Even though you would never write code like this
+in production environment, it calls for understanding of type coercion:
+```javascript
+[] == ![]; //true
+```
+  - JavaScript will often coerce different types of values to either strings or numbers.
+The Boolean type is no exception:
+```javascript
+true + false; //1
+```
+  - The above statement is the same as 1 + 0. And here’s the absolute classic:
+```javascript
+NaN == NaN;//false
+```
+ - These types of cases might appear bizarre at first, but as your knowledge of types
+and operators deepens it will start to make a lot more sense.
+ - Let’s start simple. The unary plus and minus operators force the value to a number.
+If the value is not a number, NaN is generated:
+```javascript
+const s = "text";
+console.log(-s); //NaN 
+```
+ - Here unary minus (-) struggles to convert the string "text" to a number. What
+does -"text" mean anyway? So it returns NaN because ”text” is not a number.
+ - Here is the same logic demonstrated using the Number type function:
+```javascript
+Number("text"); //NaN ("text" is not a numeric string)
+Number("1"); //1 ("1" is numeric string)
+```
+  - But when unary minus (-) is applied to a number, it produces expected value:
+
+```javascript
+const s = 1;
+console.log(-s); //-1
+const t = 1;
+console.log(+t); //1
+```
+  - This rule is specific to the unary operator.
+
+**Number And String Arithmetics**
+  - Naturally the arithmetic + operator requires two values.
+```javascript
+5+5; //10
+```
+ - If both values are integers, arithmetic operation is performed. If one of them is
+a string then coercion happens and string addition is invoked.
+ - If the type of the two values provided to the arithmetic + operator is different, this
+conflict must be resolved. JavaScript will use type coercion to change one of
+the values before evaluating the entire statement to a more meaningful result.
+  - What will happen if left value is a string and right value is a number?
+ ```javascript
+ "1"+1;//"11"
+ ```
+  - Here + is treated as a string addition operator. The right value is converted to
+"1" via String(1) and then the statement is evaluated as follows:
+```javascript
+"1"+"1"; //"11"
+```
+ - In JavaScript there are actually three + operators: unary, arithmetic and string.
+ - Here JavaScript treats + not as the unary addition operator, but as the arithmetic
+addition operator instead. But... when it sees that one of the values is a string, it
+invokes the string addition operator. It makes no difference whether the string is
+on the left or right side. The statement still evaluates to a string
+```javascript
+l + "ol"; //"lol"
+```
+ - Operators follow specific associativity rules. Like + and most other operators, the
+arithmetic addition operator (+) is evaluated from left to right:
+```javascript
+1+1; //2
+```
+ - But the assignment operator is evaluated in right to left order:
+```javascript
+let n = 2; //undefined
+```
+ - Note that in example above, while N is assigned value of 2, the statement itself
+evaluates to undefined.
+```javascript
+n;//2
+```
+**6.0.2 Adding Multiple Values**
+  - Often you will encounter statements tied together by multiple operators. What
+should the following statement evaluate to?
+```javascript
+1+1+1+1+2+""; //"6"
+```
+ - First, all of the purely numeric values will be combined, ending up with the sum
+of 5 on the left hand side and "" on the right hand side
+```javascript
+5+"";
+```
+ - But this is still not enough to produce the final result. Adding a numeric value to a
+string value will coerce the numeric value to a string and then add them together:
+ - Finally we arrive at "5" in string format.
+When adding numbers and strings, numeric values always take precedence. This
+seems to be a trend in JavaScript. In the next example we we will compare numbers
+to strings using the equality operator. JavaScript chooses to convert strings to
+numbers first, instead of numbers to strings.
+**6.0.3 Operator Precedence**
+  - Some operators take precedence over others. What this means is that multiplication will be evaluated before addition.
+  - Let’s take this statement for example:
+```javascript
+1+1+1+2*"";//3
+```
+ - Several things will happen here.
+The string "" will coerce to 0 and 2 * 0 will evaluate to 0.
+```javascript
+1+1+1+2*"";
+1+1+1+2*0;
+1+1+1+0;
+3+0;//3
+```
+**6.0.4 String To Number Comparison**
+ - When it comes to equality operator == numeric strings are evaluated to numbers
+in the same way the Number(string) function evaluates to numbers (or NaN).
+ - According to EcmaScript specification, coercion between a string and a numeric
+value on both sides of the == operator can be visualized as follows.
+**Comparing Numeric String To Number**
+
+```javascript
+1 == "1"; //true
+"1" == 1; //true
+```
+
+**Comparing Non-Numeric String To Number**
+  - If the string does not contain a numeric value, it will evaluate to NaN and therefore
+further evaluating to false:
+```javascript
+1 == "a"; //false
+```
+**Other Comparisons**
+  - Other comparisons between different types (boolean to string, boolean to number, etc) follow similar rules. As you continue writing JavaScript code, you will
+eventually develop intuition for them and it will become second nature.
+  - The operator precedence and associativity table on the next page might help you
+when things get tough.
+
