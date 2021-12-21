@@ -844,3 +844,73 @@ console.log(obj[sym]); //25 tide eachother by key 'age'
 was originally assigned to obj[bol]) when it was defined, because both variables
 sym and bol are tied to the same key "age" in global symbol registry.
   - In other words the definitions share the same key.
+
+**Constructors And Instances**
+  - There is a distinction between constructors and instances. The constructor
+function is the definition of a custom object type. The instance is the object that
+was instantiated from that constructor function using the new operator.
+  - Let’s create a custom Pancake constructor, containing one object property number
+and one method bake() which will increase pancake number by 1 when called:
+```javascript
+let Pancake = function (){
+    //create object property
+    this.number = 0;
+    //create object method
+    this.bake = function() {
+        console.log("Baking the pancake...");
+        //Increase number of pancake baked:
+        this.number++;
+        
+    };
+}
+```
+ - Note that properties and methods are attached to the object via this keyword
+The constructor is only a design of the object type. In order to start using it, we
+have to instantiate it. When we do that, an instance of the object is created in
+computer memory:
+```javascript
+let pancake = new Pancake();
+```
+ - Let’s bake 3 pancakes by using bake() method which increments pancake counter:
+```javascript
+pancake.bake();
+pancake.bake();
+pancake.bake();
+```
+  - 3 pancakes successfully baked! Let’s take a look at pancake.number now:
+ ```javascript
+ console.log(pancake.number);
+ ```
+ - You can look up the constructor function’s type. The constructor function Pancake
+is an object of type Function. This is true of all custom objects. It makes sense
+because the function itself is the constructor:
+```javascript
+console.log(Pancake.constructor);//function Function(){}
+```
+  - But, if you output constructor via the instantiated object, it will show you the
+entire function body in string format:
+
+```javascript
+console.log(Pancake.constructor);//function Function(){}
+//ƒ (){
+    //create object property
+    //this.number = 0;
+    //create object method
+    //this.bake = function() {
+        //console.log("Baking the pancake...");
+        //Increase number of pancake baked:…
+
+/*let body="cosole.log('Hello from f() function!')";
+let f = new function(body);
+f();*/
+```
+  - You can actually create a brand new function by supplying the body in string
+format to Function constructor:
+```javascript
+let body="cosole.log('Hello from f() function!')";
+let f = new function(body);
+f();
+```
+  - This tells us that Function is the constructor for creating JavaScript functions.
+But when we created our own Pancake function, Pancake became the constructor
+of our custom class that we could also initialize using the new keyword.
