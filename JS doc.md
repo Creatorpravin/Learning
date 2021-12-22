@@ -1362,3 +1362,165 @@ than half of the time, you won’t even need to think about it.
 there’d be no hoisting but everything would still work as planned. Statements inside
 a function’s body are executed when the function is called by its name. Nameless
 functions can still be assigned as values themselves. (See next example.)
+```javascript
+function fun(){
+  console.log("Hello from fun() function 1.");
+  }
+  //The code above is the same as:
+  var fun = function(){
+    console.log("Hello from fun() function 2.");
+  }
+```
+ - It is possible to assign an anonymous function expression to a variable name.
+It’s important to note, however, that anonymous functions that were assigned to
+variable names are not hoisted unlike named functions.
+ - This valid JavaScript code will not produce a function redefinition error.   
+ - The
+function will be simply overwritten by second definition.
+ - Even though fun() was a function, when we created a new variable fun and
+assigned another function to it, we rewired the name of the original function.
+ - Having said this, what do you think will happen if we call fun() at this point?
+ ```javascript
+ fun();
+ ```
+```javascript
+"Hello from fun() function 2."
+```
+ - You might think that the following code will produce a redefinition error:
+
+```javascript
+function fun(){
+  console.log("Hello from fun() function 1.");
+  }
+  //The code above is the same as:
+  var fun = function(){
+    console.log("Hello from fun() function 2.");
+  }
+
+```
+  - However, this is still perfectly valid code – no error is generated. Whenever you
+have two function defined using function keyword and they happen to share the
+same name, the function that was defined last will take precedence.
+  - In this case if you call fun(); the console will output the second message:
+```javascript
+"Hello from fun() function 2."
+```
+  - This actually makes sense.
+In following scenario variable name will take precedence over function definitions
+even if it was defined prior to the second function definition with the same name:
+```javascript
+ var fun = function(){
+    console.log("Hello from fun() function 2.");
+  }
+
+function fun(){
+  console.log("Hello from fun() function 1.");
+  }
+  //The code above is the same as:
+ 
+```
+  - And now let’s call
+  
+  
+   fun() to see what happens in this case:
+ ```javascript
+ fun();
+ ```
+ But this time the output is:
+```javascript
+ "Hello from fun() function 1."
+```
+ - You can see the order in which JavaScript hoists variables and functions. Functions
+are hoisted first. Then variables.
+**Defining Variables Inside Function Scope**
+ - At this point you might want to know that variables defined inside a function will
+be limited only to the scope of that function. Trying to access them outside of
+the function will result in a reference error:
+```javascript
+//define a variable inside a block scope?
+function fun()
+{
+var apple=1;
+}
+console.log(apple);//ReferanceError: apple is not defined
+```
+
+**Simple scope accessibility rules:**
+ - Here var is defined in Global Scope, but its value propagates into the
+block scope as well. What actually happens is, when block scope 1 cannot find
+var definition in within its own brackets
+  - Defining variables inside function scope is basically one way street
+ordeal. Nothing can leave the confines of a function into its parent scope.
+  - Functions enable closure pattern, because their variables are concealed from global
+scope, but can still be accessed from other function scopes within them:
+  - Nothing can get out of function scope into its outer scope. This
+enables the closure pattern. We’ll take a look at it in just a moment!
+  - The idea is to protect variables from the global scope but still be able to call the
+function from it. We’ll take a look at this in greater detail in just a moment
+**7.1.1 Variable Types**
+ - JavaScript is a dynamically-typed language.
+ - The type of the variable (defined using var or let keyword) can be assigned and
+changed at any time during the run-time of your application, after it was already
+compiled by browser’s JavaScript engine.
+ - The keywords var, let and const do not determine the variable’s type. Instead,
+they determine how the variable can be used: can it be used outside of the scope
+in which defined? Can it be re-assigned to another value during run-time? For
+example, var and let can, but const can’t.
+**var ES5** 
+  - The var keyword is still with us from original specification. You should probably
+start using let and const instead. For the most part it is still available but only
+to support legacy code.
+**let ES6**
+  - let defines a variable but limits its use to the scope in which it was defined.
+**const ES6**
+  - const is the same as let but you can’t re-assign it to a new value once defined.
+**7.1.2 Scope Visibility Differences**
+**No Difference In Global Scope**
+ - When variables are defined in global scope there is no differences between var, let
+and const in terms of scope visibility.
+- They all propagate into inner block-level, function-level and event callback scopes:
+ - Keywords let and const limit variable to the scope in which they were defined:
+ - Variables defined using let and const are not hoisted. Only var is.
+ **In Function Scope**
+  - However, when it comes to functions, all variable types, including var remain
+limited to their scope:
+  - You cannot access variables outside of the function scope in which they were
+defined regardless of which keyword was used.
+**Closures**
+  - A function closure is a function trapped inside another function:
+  - Calling add() increments counter. This is not possible using other scope patterns.
+  - add() returns an anonymous function which increments
+the counter variable that was defined in an outer scope.
+  - Let’s try to use that pattern to create our own closure:
+ ```javascript
+ var plus = (function(){
+    var counter = 0;
+    return function(){
+        counter +=1;
+        return counter;
+    }
+})();
+plus();
+ ```
+  - The plus() function is defined by an anonymous function that executes itself.
+
+**Why Are We Doing This?**
+  - Inside the scope of plus, another anonymous function is created – it increments a
+private variable counter and sends the result back into global scope as a function’s
+return value.
+  - Take away: Global Scope cannot directly access nor modify the counter variable
+at any time. Only the code inside the closure allows its inner function to modify
+the variable, still, without the variable leaking into Global Scope. . .
+  - The whole point is that Global Scope does not need to know or understand how
+the code inside plus() works. It only cares about receiving the result of plus()
+operation so it can pass it to other functions, etc.
+  - So why did we even bother explaining them? Beside that closures are one of the
+top-asked questions on JavaScript interviews?
+  - Closures are similar to the idea of encapsulation – one of the key principles of
+Object Oriented Programming, where you hide the inner workings of a function or
+a method from the environment from which it was called.
+  - This idea of making some variables private is key to understanding many other
+programming concepts.
+  - If you think about it, this is exactly why let was added to JavaScript. It provides
+automatic privacy for variables defined in block-level scope. Variable privacy is a
+fundamental feature of many programming languages in general.
