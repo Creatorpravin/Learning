@@ -1271,3 +1271,94 @@ we can be sure that feature object was not yet populated.
 time (if this.features == null) or updating existing data (that has already
 been downloaded at some point in the past.)
 
+**7.0.1 Scope**
+  - Scope is simply the area enclosed by {} brackets. But be careful not to confuse it
+with the identical empty object-literal syntax.
+  - There are 3 unique scope types:
+  - The global scope, block scope and function scope. Each expects different things
+and has unique rules when it comes to variable definitions.
+  - Event callback functions follow the same rules as function scope, they are just
+used in a slightly different context. Loops can also have their own block-scope.
+**7.1 Variable Definitions**
+**Case-Sensitivity**
+  - Variables are case-sensitive. This means a and A are two different variables:
+```javascript
+let a = 1;
+let A = "hello";
+
+console.log(a); //1
+console.log(A); //hello
+```
+**Definitions**
+ - Variables can be defined using var, let or const keywords.
+Of course, if you tried to refer to a variable that wasn’t defined anywhere, you
+would generate a ReferenceError error ”variable name is not defined”:
+```javascript
+console.log(apple);//ReferenceError: apple is not defined
+{
+
+}
+```
+
+  - Let’s use this setup to explore variable definitions using var keyword and hoisting.
+  - Prior to let and const the traditional model allowed only var definitions:
+
+  - Let’s use this setup to explore variable definitions using var keyword and hoisting.
+
+  - Prior to let and const the traditional model allowed only var definitions
+```javascript
+var apple = 1;
+{
+  console.log(apple);//1
+}
+```
+ - Here apple is defined in global scope. But it can also be accessed from an inner
+block-scope. Anything (even a function definition) defined in global scope becomes
+available anywhere in your program. The value propagates into all inner scopes.
+ - When a variable is defined in global scope using var keyword, it also automatically
+becomes available as a property on window object.
+**Hoisting**
+  - If apple was defined using var keyword inside a block-scope, it would be hoisted
+back to global scope! Hoisting simply means ”raised” or ”placed on top of”.
+  - Hoisting is limited to variables defined using var keyword and function name defined using function keyword.
+  - Variables defined using let and const are not hoisted and their use remains limited
+only to the scope in which they were defined.
+  - As an exception, variables defined var keyword inside function-level scope are not
+hoisted. Commonly, when we talk about hoisting block-scope is implied.
+  - We will talk more about hoisting in just a moment!
+  - Likewise, variables defined in global scope will propagate to pretty much every
+other scope defined in global context, including block-level scope, for-loop scope,
+function-level scope, and event callback functions created using setTimeout,
+setInterval or addEventListener functions.
+```javascript
+console.log(apple); 
+{
+  var apple=1;
+}
+```
+  - Variable apple is hoisted to global scope. But the value of the hoisted variable is
+now undefined – not 1. Only its name definition was hoisted.
+  - Hoisting is like a safety feature. You should not rely on it when writing code. You
+may not retain the value of a hoisted variable in global scope, but you will still
+save your program from generating an error and halting execution flow.
+ - Thankfully, hoisting in JavaScript is automatic. When writing your program more
+than half of the time, you won’t even need to think about it.
+**Function Name Hoisting**
+ - Hoisting also applies to function names. But variable hoisting always takes precedence. We’ll see how that works in this section.
+ - You can call a function in your code, as long as it is defined at some point later:
+**Function Name Hoisting**
+  - Hoisting also applies to function names. But variable hoisting always takes precedence. We’ll see how that works in this section.
+  - You can call a function in your code, as long as it is defined at some point later:
+  ```javascript
+  fun();
+  function fun(){
+    console.log("Hello from fun() function.");
+  }
+
+  ```
+   -Note that the function was defined after it was called. This is legal in JavaScript.
+  - Just make sure you understand that it happened because of function name hoisting
+  - It goes without saying if the function was already defined prior to being called,
+there’d be no hoisting but everything would still work as planned. Statements inside
+a function’s body are executed when the function is called by its name. Nameless
+functions can still be assigned as values themselves. (See next example.)
