@@ -1583,3 +1583,33 @@ A = [2]; //Uncaught SyntaxError: Identifier 'A' has already been declared
   - Similar to arrays, when it comes to object literals, const only makes the definition
 constant. But it doesn’t mean you can’t change values of the properties assigned
 to a variable that was defined with const:
+```javascript
+// You can create a const object:
+const car = {type:"Fiat", model:"500", color:"white"};
+
+// You can change a property:
+car.color = "red";
+
+// You can add a property:
+car.owner = "Johnson";
+console.dir(car);
+//IT WILL CREATE ERROR
+const car = {type:"Fiat", model:"500", color:"white"};
+
+car = {type:"Volvo", model:"EX60", color:"red"};    // ERROR
+```
+**Conclusion**
+  - In case of a more complex data structure (object or array) you can think of const
+as something that does not allow you to reassign it to a new object again. The
+variable is locked to the original object, but you can still change the value of its
+properties (or indexes, in case of an array.)
+  - If the value of a variable was defined with const and a single primitive (string,
+number, boolean,) such as speed of light, PI, etc, it cannot be changed.
+
+**7.1.6 Dos and Dont’s**
+  - Do not use var unless for some reason you want to hoist the variable name.
+(These cases are rare and usually don’t comply with good software design.)
+  - Do use let and const instead of var, wherever possible. Variable hoisting (variables defined using var) can be the cause of unpredictable bugs, because only the
+variable name is hoisted, the value becomes undefined.
+  - Do use const to define constants such as PI, speed of light, tax rate, etc.
+– values that you know shouldn’t change during the lifetime of your application.
