@@ -1524,3 +1524,62 @@ programming concepts.
   - If you think about it, this is exactly why let was added to JavaScript. It provides
 automatic privacy for variables defined in block-level scope. Variable privacy is a
 fundamental feature of many programming languages in general.
+**In Block-level Local Scope**
+  - The let and const keywords conceal variable visibility to scope in which they were
+defined and its inner scopes.
+ - Scope visibility differences surface when you start defining variables inside local
+block-level scope or function-level scope.
+**In Classes**
+  - The class scope is simply a placeholder. Trying to define variables directly in class
+scope will produce an error:
+```javascript
+class cat { 
+  let property = 20; //"Unexpexted token" Error
+  this.property = 2;
+  }
+```
+  - Here are the proper places for defining local variables and properties. Note, in
+class methods, let (or var or const) only create a local variable to that scope.
+Therefore, it cannot be accessed outside of the method in which it was defined.
+```javascript
+ class cat {
+        constructor(){
+            let property = 1; //Ok: local variable 
+            this.something = 2;//Ok: object property
+        }
+        mehtod(){
+            console.log(this.property); //undefined
+            console.log(this.something);//1
+        }
+    }
+```
+  - In classes variables are defined inside its constructor function or its methods:  
+**7.1.3 const**
+  - The const keyword is distinct from let and var.
+  - It requires assignment on definition:
+```javascript
+let a;
+console.log(a);
+const b;//Uncaught SyntaxError: Missing initializer in const declaration
+```
+  - This makes sense because value of const cannot be reassigned.
+```javascript
+const speed_of_light = 186000;
+speed_of_light = 1; //VM1126:2 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:2:16
+
+```
+  - It’s still possible to change values of a more complex data structure such as Array
+or objects, even if variable was defined using const. Let’s take a look!
+**7.1.4 const and Arrays**
+ - Changing a value in the const array is still allowed:
+```javascript
+const A = [];
+A[0] = 5; //ok
+A = [2]; //Uncaught SyntaxError: Identifier 'A' has already been declared
+```
+  - You just can’t assign any new objects to the original variable name again.
+**7.1.5 const and Object Literals**
+  - Similar to arrays, when it comes to object literals, const only makes the definition
+constant. But it doesn’t mean you can’t change values of the properties assigned
+to a variable that was defined with const:
