@@ -1163,11 +1163,111 @@ value on both sides of the == operator can be visualized as follows.
   - If the string does not contain a numeric value, it will evaluate to NaN and therefore
 further evaluating to false:
 ```javascript
-1 == "a"; //false
+1 == "a"; //fab nlse
 ```
 **Other Comparisons**
   - Other comparisons between different types (boolean to string, boolean to number, etc) follow similar rules. As you continue writing JavaScript code, you will
 eventually develop intuition for them and it will become second nature.
   - The operator precedence and associativity table on the next page might help you
 when things get tough.
+
+**6.0.5 Operator Precedence & Associativity Table**
+  - There are roughly 20 operator precedence levels. Parenthesis () overrides the
+natural order. Red values are first in associativity order: for example, subtraction
+operator subtracts blue from red. Assignment operators follow right to left order.
+  - Consider an expression describable by the representation below. Note that both OP1 and OP2 are fill-in-the-blanks for OPerators.
+  ```javascript
+  a OP1 b OP2 c
+  ```
+    - If OP1 and OP2 have different precedence levels (see the table below), the operator with the highest precedence goes first and associativity does not matter. Observe how multiplication has higher precedence than addition and executed first, even though addition is written first in the code.
+```javascript
+console.log(3 + 10 * 2);   // logs 23
+console.log(3 + (10 * 2)); // logs 23 because parentheses here are superfluous
+console.log((3 + 10) * 2); // logs 26 because the parentheses change the order
+
+```
+ - **The mathematical operation of * * raising a quantity to a power.**
+```javascript
+console.log(3 + 4 * 5); // 3 + 20
+// expected output: 23
+
+console.log(4 * 3 ** 2); // 4 * 9
+// expected output: 36
+
+let a;
+let b;
+
+console.log(a = b = 5);
+// expected output: 5
+```
+
+  - Associativity flows in either left-to-right or right-to-left direction: it determines
+the order of the operation, usually for operators that require more than one value
+
+**6.0.6 L-value and R-value**
+  - In many computer languages values on the left and right side of the operator are
+referred to as L-value and R-value. In EcmaScript spec they are often referred
+to as x and y values.
+**Assignment Operator**
+  - The assignment operator takes the R-value and transfers it over to L-value, which
+is usually a variable identifier name.
+**Arithmetic Addition Operator**
+But the arithmetic addition operator takes the L-value and adds R-value to it.
+**6.0.7 null vs undefined**
+  - The null primitive is not an object (although some may believe it is,) – so it
+doesn’t have a built in constructor, like some of the other types. Luckily, we can
+(and should) use its literal value: null.
+Think of null as a unique type for explicitly assigning a ”nothing” or ”empty”
+value to a variable. This way it doesn’t end up undefined.
+  - If you don’t assign a variable to null, its value will be undefined by default:
+```javascript
+ let bike;
+  console.log(bike);//undefined
+```
+  - To same effect, you can also explicitly assign variable to undefined:
+  ```javascript
+  let bike=undefined;
+  console.log(bike);//undefined
+
+  ```
+  - But that’s something we should avoid. If the value is unknown at the time of
+variable definition it is always best to use null instead of undefined.
+  - The null keyword is used to assign a temporary default value to a variable before
+it’s populated with actual object data at a later time in your program.
+
+**Initialize or Update**
+  - In a real-case scenario the null value can help us determine whether the data needs
+to be initialized for the first time, or existing data merely needs to be updated.
+We’ll take a look at a practical example in the next source code listing.
+59
+  - Let’s take a look at this scenario:
+ ```javascript
+ let bike = null;
+class Motorcycle{
+    constructor(make,model,year){
+       this.make = make;
+       this.model = model;
+       this.year = year;
+       this.features = null;
+    }
+    getFeatures(){
+        if(this.features == null){
+            this.features = {/* get features from database */}
+        } else {
+            this.features = {/* get features from database */}
+        }
+    }
+}
+bike = new Motorcycle("kawasaki","z900RS CSFE",2019);
+bike.getFeatures();
+ ```
+ - Here we assigned null to bike. Later at some point in code, the variable was
+instantiated with a real object. At no point in our program bike was undefined,
+even before it was initialized for the first time.
+ - Inside the object itself, the this.features property was also assigned to null.
+ - Maybe at a later time, we can download feature list from a database. Until then,
+we can be sure that feature object was not yet populated.
+ - This gives us a distinction between two classic cases: downloading data for the first
+time (if this.features == null) or updating existing data (that has already
+been downloaded at some point in the past.)
 
