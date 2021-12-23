@@ -1833,3 +1833,111 @@ function:
 "prototype" in Object;//true
 "length" in object; //truer
 ```
+
+
+**Chapter 9**
+**...rest and ...spread**
+**9.0.1 Rest Properties**
+ - The ...rest syntax can help you refer to a larger number of items by extracting
+them from a single function parameter name. The single ...rest parameter is
+assumed to contain one or more arguments passed to the function:
+  - Using ...rest properties to break down a larger number of arguments
+and passing them to higher-order function Array.map()
+  - We can further shorten code by moving console output to a separate print function:
+ ```javascript
+ let print = item => console.log(item);
+ let f = (...item) => item.map(print);
+
+ ```
+ Call the f() function with an arbitrary number of arguments:
+```javascript
+f(1, 2, 3, 4, 3);
+```
+ - The function takes rest parameters: you can specify as many as you need.
+Console output:
+
+```console
+1
+VM214:2 2
+VM214:2 3
+VM214:2 4
+VM214:2 3
+```
+ - After arrow functions were introduced in EcmaScript 6, to further shorten code
+some started to name their variables using a single character:
+```javascript
+let f = (i...)=>i.map(v=>console.log(v));
+```
+  - We just used multiple language features: an arrow function, ...rest, and .map()
+to abstract our code to something that looks like a math equation without sacrificing original functionality. It definitely looks cleaner than a for-loop!
+  - This might make your code even shorter, but it’s probably harder to understand.
+Remember, if you are working on a team, another person might be reading your
+code. Sometimes that person will be you in the future.
+
+**9.0.2 Spread Properties**
+  - You can think of spread as an opposite of rest.
+  - It can help you extract parts from an object.
+  
+  **9.0.3 ...rest and ...spread**
+ - It’s tempting to call ...rest or ...spread syntax operators. And you will often hear
+people refer to them as such. But in fact it is only syntax. An operator is often
+thought of as something that modifies a value. Rest and spread assign values.
+  - If we box them into the category of operators, perhaps we could say they would be
+similar to the equality operator =. Rest and spread simply abstract it for working
+with multiple assignments.
+ - The rest syntax is called rest parameters, in the context of using it as a parameter
+name in a function definition, where it simply means: ”the rest of arguments”.
+Sometimes it is referred to as rest elements, because it assumes multiple values.
+  - Both rest and spread syntax takes on the form of ...name. So what’s the
+difference?
+  - ...spread operator – expand iterables into one or more arguments.
+  - ...rest parameter – collect all remaining parameters (”the rest of”) into an array.
+
+**...rest**
+  - Let’s say we have a simple sum() function:
+  - This limits us to two arguments.
+The ...rest parameters can gather an unknown number of arguments passed to
+the function and store them in an array (named args in this example):
+```javascript
+function sum(...args){
+ console.log(args);
+ 
+ }
+ sum(1,2,3,4);
+
+```
+  - It is similar to the built-in arguments array-like object. But there is a difference.
+As the name suggests, rest can capture ”the rest of” parameters.
+  - Keep in mind, ...rest must be either the only arguments token, or the last one on
+the list. It cannot be the first argument of many:
+`function sum(...args, b, c){}//error`
+  - The ...rest parameters cannot appear as the leading parameter name when
+followed by more parameters. You can think of it as ”the rest of” arguments when
+used in this context.
+`function sum(b, ...args, c){}//error`
+ - Likeiwise ...rest cannot appear in the middle of an argument list. In
+context of multiple function parameters, it is always the last one on the list.
+ - If you don’t follow this rule, the following error will be generated in console:
+ `function sum(a, b, c...args){}//correct`
+```javascript
+//Quirk: if you pass an array, it will register as an array:
+sum([1,2,3]);//array(3)
+//But you can flatter an array using spread syntax
+sum(...[1,2,3]); //
+
+```
+  - In this case the three dots in ...[1,2,3] is actually ...spread. You can see from
+this example that ...spread is like a reverse of ...rest: it unpacks values from an
+array (or an object, as we will see later.)
+  - Contrary to ...rest, ...spread is allowed to be used anywhere on a list.
+  - But ...rest and ...spread can sometimes overlap:
+  ```javascript
+  function print(a, ...args){
+    console.log(a);
+    console.log(args);
+  }
+  print(...[1,2,3],4,5); //here it is ...spread
+  //a=1
+  // args =[2,3,4,5]
+  ```
+  
