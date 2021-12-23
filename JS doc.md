@@ -1702,9 +1702,9 @@ console.log(x);
 ```
  - Logical operators are used to determine logic between the values of expressions or
 variables.
+
+
 **8.0.6 Bitwise**
-
-
   - &	AND	= Sets each bit to 1 if both bits are 1
   - |	OR =	Sets each bit to 1 if one of two bits is 1
   - ^	XOR =	Sets each bit to 1 if only one of two bits is 1
@@ -1729,6 +1729,7 @@ up online. They have unique properties: for example: the << operator is the
 same as multiplying a whole number by 2 and >> operator is the same as dividing
 a whole number by 2. They are sometimes used as performance optimizations
 because they are faster than * and / operators in terms of processor cycles.
+
 **8.0.7 typeof**
   - The typeof operator is used to check the type of a value. It will often evaluate
 to either primitive type, object or function. The value produced by the typeof
