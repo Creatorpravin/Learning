@@ -1676,6 +1676,7 @@ x +="b"; //'ab'
 console.log(x);
 ```
   - In this context the += operator can   be thought of as string concatenation operator.
+  
 **8.0.4 Comparison**
 ```javascript
 1 == 1 ;//true
@@ -1692,7 +1693,8 @@ console.log(x);
 2 <= 1; //flase
 ```
   - Triple equality operator checks for value and type.
-**88.0.5 Logical**
+
+**8.0.5 Logical**
 ```javascript
 (5<1 && 3>2)//false AND both must be satisfied
 1==1 || 2==2//true OR any one satisfies 
