@@ -1612,4 +1612,4 @@ number, boolean,) such as speed of light, PI, etc, it cannot be changed.
   - Do use let and const instead of var, wherever possible. Variable hoisting (variables defined using var) can be the cause of unpredictable bugs, because only the
 variable name is hoisted, the value becomes undefined.
   - Do use const to define constants such as PI, speed of light, tax rate, etc.
-– values that you know shouldn’t change during the lifetime of your application.
+ values that you know shouldn’t change during the lifetime of your application.
