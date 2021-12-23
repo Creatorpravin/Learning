@@ -1676,7 +1676,7 @@ x +="b"; //'ab'
 console.log(x);
 ```
   - In this context the += operator can   be thought of as string concatenation operator.
-  
+
 **8.0.4 Comparison**
 ```javascript
 1 == 1 ;//true
@@ -1712,8 +1712,8 @@ variables.
   - ^	XOR =	Sets each bit to 1 if only one of two bits is 1
   - ~	NOT =	Inverts all the bits
   - <<	Zero = fill left shift	Shifts left by pushing zeros in from the right and let the leftmost bits fall off
-  - >>	Signed right shift =	Shifts right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
-  - >>>	Zero fill right = shift	Shifts right by pushing zeros in from the left, and let the rightmost bits fall off
+  - ```>>```	Signed right shift =	Shifts right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
+  - ```>>>```	Zero fill right = shift	Shifts right by pushing zeros in from the left, and let the rightmost bits fall off
  ```javascript
  5 & 1	// 1 =	0101 & 0001	- 0001
   5 | 1	// 5 =	0101 | 0001	- 0101
