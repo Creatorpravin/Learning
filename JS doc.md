@@ -1605,7 +1605,6 @@ variable is locked to the original object, but you can still change the value of
 properties (or indexes, in case of an array.)
   - If the value of a variable was defined with const and a single primitive (string,
 number, boolean,) such as speed of light, PI, etc, it cannot be changed.
-
 **7.1.6 Dos and Dont’s**
   - Do not use var unless for some reason you want to hoist the variable name.
 (These cases are rare and usually don’t comply with good software design.)
@@ -1613,3 +1612,67 @@ number, boolean,) such as speed of light, PI, etc, it cannot be changed.
 variable name is hoisted, the value becomes undefined.
   - Do use const to define constants such as PI, speed of light, tax rate, etc.
  values that you know shouldn’t change during the lifetime of your application.
+#**Chapter 8**
+##**Operators**
+**8.0.1 Arithmetic**
+```console
++ Additon 
+- Subraction
+* Multiplication
+/ Division
+% Modulus
+++ Increment
+-- Decrement
+```
+
+  - The arithmetic operators are pretty basic. They do exactly what you expect.
+  - The modulus operator returns the number of times one number fits into the other.
+Here, 4 fits into 10 only 2 times – it is also often used to determine the remainder.
+  - You can create statements without assigning the value to a variable name. It is
+possible to type them directly into your browser’s developer console for practice:
+ - That works in Chrome console. But in your source code, evaluating simple statements is meaningless:
+
+```javascript
+1+1; //2
+1-2; //1
+8/2; //4
+5*3; //15
+```
+ - More often, you will perform operations directly on variable names:
+```javascript
+let variable = 1; // undefined
+variable + 2; //3
+variable - 1; //0
+variable / 2; //0.5
+variable * 5; //5
+variable * variable; //1
+variable++; //1
+variable++; //2
+variable++; //3
+variable--; //4
+console.log(variable);
+```
+**8.0.2 Assignment**
+```javascript
+= Assignment //x=1;
++= Addition //x+=2;
+-= Subraction //x-=1;
+*= Multiplication //x*=2;
+/= Division //x/=2;
+%= Modulus //x%=1;
+
+```
+
+  - Assignment operators assign a value to a variable. There are several assignment
+operators that can also combine assignment with one of the arithmetic operations.
+**8.0.3 String**
+  - Strings can be assigned to variable names or each other using the + operator which
+we earlier saw used as arithmetic addition. But when one or both of the values on
+either side of + operator are strings, it is treated as a string addition operator.
+```javascript
+x="a"; //a
+x +="b"; //'ab'
+'x'+'y'; //'xy'
+console.log(x);
+```
+  - In this context the += operator can   be thought of as string concatenation operator.
