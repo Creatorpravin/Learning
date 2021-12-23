@@ -1115,6 +1115,7 @@ evaluates to undefined.
 ```javascript
 n;//2
 ```
+
 **6.0.2 Adding Multiple Values**
   - Often you will encounter statements tied together by multiple operators. What
 should the following statement evaluate to?
@@ -1133,6 +1134,7 @@ When adding numbers and strings, numeric values always take precedence. This
 seems to be a trend in JavaScript. In the next example we we will compare numbers
 to strings using the equality operator. JavaScript chooses to convert strings to
 numbers first, instead of numbers to strings.
+
 **6.0.3 Operator Precedence**
   - Some operators take precedence over others. What this means is that multiplication will be evaluated before addition.
   - Let’s take this statement for example:
@@ -1147,11 +1149,13 @@ The string "" will coerce to 0 and 2 * 0 will evaluate to 0.
 1+1+1+0;
 3+0;//3
 ```
+
 **6.0.4 String To Number Comparison**
  - When it comes to equality operator == numeric strings are evaluated to numbers
 in the same way the Number(string) function evaluates to numbers (or NaN).
  - According to EcmaScript specification, coercion between a string and a numeric
 value on both sides of the == operator can be visualized as follows.
+
 **Comparing Numeric String To Number**
 
 ```javascript
@@ -1225,7 +1229,7 @@ value to a variable. This way it doesn’t end up undefined.
   console.log(bike);//undefined
 ```
   - To same effect, you can also explicitly assign variable to undefined:
-  ```javascript
+  ```javascriptmd file code format
   let bike=undefined;
   console.log(bike);//undefined
 
@@ -1279,6 +1283,7 @@ with the identical empty object-literal syntax.
 and has unique rules when it comes to variable definitions.
   - Event callback functions follow the same rules as function scope, they are just
 used in a slightly different context. Loops can also have their own block-scope.
+
 **7.1 Variable Definitions**
 **Case-Sensitivity**
   - Variables are case-sensitive. This means a and A are two different variables:
@@ -1317,6 +1322,7 @@ block-scope. Anything (even a function definition) defined in global scope becom
 available anywhere in your program. The value propagates into all inner scopes.
  - When a variable is defined in global scope using var keyword, it also automatically
 becomes available as a property on window object.
+
 **Hoisting**
   - If apple was defined using var keyword inside a block-scope, it would be hoisted
 back to global scope! Hoisting simply means ”raised” or ”placed on top of”.
@@ -1343,9 +1349,11 @@ may not retain the value of a hoisted variable in global scope, but you will sti
 save your program from generating an error and halting execution flow.
  - Thankfully, hoisting in JavaScript is automatic. When writing your program more
 than half of the time, you won’t even need to think about it.
+
 **Function Name Hoisting**
  - Hoisting also applies to function names. But variable hoisting always takes precedence. We’ll see how that works in this section.
  - You can call a function in your code, as long as it is defined at some point later:
+
 **Function Name Hoisting**
   - Hoisting also applies to function names. But variable hoisting always takes precedence. We’ll see how that works in this section.
   - You can call a function in your code, as long as it is defined at some point later:
@@ -1457,6 +1465,7 @@ scope, but can still be accessed from other function scopes within them:
 enables the closure pattern. We’ll take a look at it in just a moment!
   - The idea is to protect variables from the global scope but still be able to call the
 function from it. We’ll take a look at this in greater detail in just a moment
+
 **7.1.1 Variable Types**
  - JavaScript is a dynamically-typed language.
  - The type of the variable (defined using var or let keyword) can be assigned and
@@ -1470,10 +1479,13 @@ example, var and let can, but const can’t.
   - The var keyword is still with us from original specification. You should probably
 start using let and const instead. For the most part it is still available but only
 to support legacy code.
+
 **let ES6**
   - let defines a variable but limits its use to the scope in which it was defined.
+
 **const ES6**
   - const is the same as let but you can’t re-assign it to a new value once defined.
+
 **7.1.2 Scope Visibility Differences**
 **No Difference In Global Scope**
  - When variables are defined in global scope there is no differences between var, let
@@ -1481,11 +1493,13 @@ and const in terms of scope visibility.
 - They all propagate into inner block-level, function-level and event callback scopes:
  - Keywords let and const limit variable to the scope in which they were defined:
  - Variables defined using let and const are not hoisted. Only var is.
+
  **In Function Scope**
   - However, when it comes to functions, all variable types, including var remain
 limited to their scope:
   - You cannot access variables outside of the function scope in which they were
 defined regardless of which keyword was used.
+
 **Closures**
   - A function closure is a function trapped inside another function:
   - Calling add() increments counter. This is not possible using other scope patterns.
@@ -1524,11 +1538,13 @@ programming concepts.
   - If you think about it, this is exactly why let was added to JavaScript. It provides
 automatic privacy for variables defined in block-level scope. Variable privacy is a
 fundamental feature of many programming languages in general.
+
 **In Block-level Local Scope**
   - The let and const keywords conceal variable visibility to scope in which they were
 defined and its inner scopes.
  - Scope visibility differences surface when you start defining variables inside local
 block-level scope or function-level scope.
+
 **In Classes**
   - The class scope is simply a placeholder. Trying to define variables directly in class
 scope will produce an error:
@@ -1554,6 +1570,7 @@ Therefore, it cannot be accessed outside of the method in which it was defined.
     }
 ```
   - In classes variables are defined inside its constructor function or its methods:  
+
 **7.1.3 const**
   - The const keyword is distinct from let and var.
   - It requires assignment on definition:
@@ -1571,6 +1588,7 @@ speed_of_light = 1; //VM1126:2 Uncaught TypeError: Assignment to constant variab
 ```
   - It’s still possible to change values of a more complex data structure such as Array
 or objects, even if variable was defined using const. Let’s take a look!
+
 **7.1.4 const and Arrays**
  - Changing a value in the const array is still allowed:
 ```javascript
@@ -1579,6 +1597,7 @@ A[0] = 5; //ok
 A = [2]; //Uncaught SyntaxError: Identifier 'A' has already been declared
 ```
   - You just can’t assign any new objects to the original variable name again.
+
 **7.1.5 const and Object Literals**
   - Similar to arrays, when it comes to object literals, const only makes the definition
 constant. But it doesn’t mean you can’t change values of the properties assigned
@@ -1598,6 +1617,7 @@ const car = {type:"Fiat", model:"500", color:"white"};
 
 car = {type:"Volvo", model:"EX60", color:"red"};    // ERROR
 ```
+
 **Conclusion**
   - In case of a more complex data structure (object or array) you can think of const
 as something that does not allow you to reassign it to a new object again. The
@@ -1605,6 +1625,7 @@ variable is locked to the original object, but you can still change the value of
 properties (or indexes, in case of an array.)
   - If the value of a variable was defined with const and a single primitive (string,
 number, boolean,) such as speed of light, PI, etc, it cannot be changed.
+
 **7.1.6 Dos and Dont’s**
   - Do not use var unless for some reason you want to hoist the variable name.
 (These cases are rare and usually don’t comply with good software design.)
@@ -1612,6 +1633,7 @@ number, boolean,) such as speed of light, PI, etc, it cannot be changed.
 variable name is hoisted, the value becomes undefined.
   - Do use const to define constants such as PI, speed of light, tax rate, etc.
  values that you know shouldn’t change during the lifetime of your application.
+
 #**Chapter 8**
 ##**Operators**
 **8.0.1 Arithmetic**
@@ -1665,6 +1687,7 @@ console.log(variable);
 
   - Assignment operators assign a value to a variable. There are several assignment
 operators that can also combine assignment with one of the arithmetic operations.
+
 **8.0.3 String**
   - Strings can be assigned to variable names or each other using the + operator which
 we earlier saw used as arithmetic addition. But when one or both of the values on
