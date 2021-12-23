@@ -592,6 +592,7 @@ referred to as a function expression.
 ## **Primitive Types**
 
 **Primitive Types**
+  - A primitive (primitive value, primitive data type) is data that is not an object and has no methods.
  - JavaScript has 7 primitive types: null, undefined, number, bigint, string,
 boolean and symbol. Primitives helps us work with simple values such as strings,
 numbers and booleans.
@@ -1779,3 +1780,56 @@ sense as your knowledge of JavaScript deepens.
   - NaN is the symbol usually produced in the context of a numeric operation. One
 such example is trying to instantiate a number object by passing a string value to
 its constructor: new Number(”str”) in which case NaN would be returned.
+**8.0.8 Ternary (?:)**
+ - The ternary operator has the form of: statement?statement:statement;
+Statements can be expressions or a single value:
+```javascript
+var satement = 45;
+let result = 45;
+result = satement ? "pass" : "fail";
+console.log(result);
+```
+  - The ternary operator is like an inline if-statement. It does not support {} brackets
+or multiple statements.
+**8.0.9 delete**
+  - The delete keyword can be used to delete an object property:
+ ```javascript
+let bird = {name:"raven",speed:"30mpg"};
+console.log(bird);//{name:"raven",speed:"30mpg"};
+delete bird.speed;
+console.log(bird);//{name:"raven",speed:"30mpg"};
+ ```
+   - You cannot use delete to remove stand-alone variables. Even though, if you try
+to do that, no error will be generated (unless you are in strict mode.)
+**8.0.10 in**
+ - The in operator can be used to check if a property name exists in an object:
+```javascript
+ "c" in {"a": 1, "b":2,"c":3};//true
+1 in {"a": 1, "b":2,"c":3};//false
+```
+  - The in operator, when used together with arrays, will check if an index exists.
+Note, it is ignorant of actual value (in either arrays or objects.)
+```javascript
+0 in["a","b","c"];//true
+1 in["a","b","c"];//true
+2 in["a","b","c"];//true
+3 in["a","b","c"];//false
+```
+  - You can check for properties on built-in data types. The length property is native
+to all arrays:
+```javascript
+"length" in [];  //true
+"length" in["a","b","c"];//true
+```
+  - The ”length” property does not exist natively on an object unless it’s added explicitly:
+```javascript
+"length" in {};//false
+"length" in {"length":1}//true
+```
+Check for presence of constructor or prototype property on an object constructor
+function:
+```javascript
+"constructor" in Object;//true
+"prototype" in Object;//true
+"length" in object; //truer
+```
