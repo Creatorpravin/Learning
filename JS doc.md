@@ -1676,3 +1676,80 @@ x +="b"; //'ab'
 console.log(x);
 ```
   - In this context the += operator can   be thought of as string concatenation operator.
+**8.0.4 Comparison**
+```javascript
+1 == 1 ;//true
+'1' == 1 ; //true Equality
+'1' == '1' ; //true
+1 === 1 ; //true
+'1' === 1 ; //flase Equality of value and type
+'1' === '1' ; //true
+1 != 1 ; //false
+1 != 2 ; //true Equality
+2 > 1 ; //true
+5 < 7 ; //true
+2 >= 1; //true
+2 <= 1; //flase
+```
+  - Triple equality operator checks for value and type.
+**88.0.5 Logical**
+```javascript
+(5<1 && 3>2)//false AND both must be satisfied
+1==1 || 2==2//true OR any one satisfies 
+!true //false NOT EQUAL TO
+!(1 == 2) // true
+
+```
+ - Logical operators are used to determine logic between the values of expressions or
+variables.
+**8.0.6 Bitwise**
+
+
+  - &	AND	= Sets each bit to 1 if both bits are 1
+  - |	OR =	Sets each bit to 1 if one of two bits is 1
+  - ^	XOR =	Sets each bit to 1 if only one of two bits is 1
+  - ~	NOT =	Inverts all the bits
+  - <<	Zero = fill left shift	Shifts left by pushing zeros in from the right and let the leftmost bits fall off
+  - >>	Signed right shift =	Shifts right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
+  - >>>	Zero fill right = shift	Shifts right by pushing zeros in from the left, and let the rightmost bits fall off
+ ```javascript
+ 5 & 1	// 1 =	0101 & 0001	- 0001
+  5 | 1	// 5 =	0101 | 0001	- 0101
+  ~ 5	// 10	= ~0101	- 1010
+  5 << 1	// 10	= 0101 - << 1	- 1010
+  5 ^ 1	// 4 =	0101 ^ 0001	- 0100
+  5 >> 1 //	2	= 0101 >> 1	- 0010
+  5 >>> 1	// 2= 0101 >>> 1 - 0010
+ ```
+   - In binary number system decimal numbers have an equivalent represented by a
+series of 0’s and 1’s. For example 5 is 0101 and 1 is 0001. Bitwise operators work
+on those bits, rather than number’s decimal values.
+  - We won’t go into great detail about how they work, but you can easily look them
+up online. They have unique properties: for example: the << operator is the
+same as multiplying a whole number by 2 and >> operator is the same as dividing
+a whole number by 2. They are sometimes used as performance optimizations
+because they are faster than * and / operators in terms of processor cycles.
+**8.0.7 typeof**
+  - The typeof operator is used to check the type of a value. It will often evaluate
+to either primitive type, object or function. The value produced by the typeof
+operator is always string format:
+```javascript
+typeof 10;//number
+typeof 10n;//bigint
+typeof 'text';//string
+typeof NaN;//number
+typeof true;//boolean
+typeof [];//object
+typeof {};//object
+typeof Object; //function
+typeof new Object();//object
+typeof null;//object
+
+```
+  - NaN (Not a Number) evaluates to ’number’. This is just one of many
+JavaScript quirks. However, they are not bugs and usually start to make more
+sense as your knowledge of JavaScript deepens.
+  - NaN lives natively on Number.NaN – it is considered to be a primitive value.
+  - NaN is the symbol usually produced in the context of a numeric operation. One
+such example is trying to instantiate a number object by passing a string value to
+its constructor: new Number(”str”) in which case NaN would be returned.
