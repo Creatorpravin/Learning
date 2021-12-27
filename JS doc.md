@@ -1940,4 +1940,66 @@ array (or an object, as we will see later.)
   //a=1
   // args =[2,3,4,5]
   ```
+  - Here, first ...spread forms a complete list of arguments: 1, 2, 3, 4, 5 and
+that’s what’s passed into the print function.
+  - Inside the function, a equals 1, and [2, 3, 4, 5] is ”the rest of” arguments.
+Here’s another example:
+```javascript
+function print(a,b,c, ...args)
+{
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(args);
+}
+print(...[1,2,3],4,5);
+```
+**Creating a sum() function with ...rest arguments**
+  - Our first sum function using ...rest parameters might look like this
+```javascript
+  function sum(...args){
+    let sum = 0;
+    for (let temp of args)
+    sum +=temp;
+    return sum;
+}
+let add = sum(1,2,3,4,5);
+console.log(add);
   
+```
+  - But because ...args produces an array, which makes it an iterable, we can use a
+reducer to perform the sum operation:
+```javascript
+  function sum(...args){
+    return args.reduce((k, j)=>k+j,0)
+}
+let add=sum(1,2,3,4,5,20);
+console.log(add);
+
+```
+  - But ...rest parameters also work in arrow functions and we can further shorten
+the function to following form:
+```javascript
+let sum = (...args)=>args.reduce((k,j)=>k+j,0);
+sum(1,2,3,4,5,20);
+console.log(sum);
+```
+  - Some people think while this format is shorter, it’s harder to read. But that’s the
+trade off you get with functional programming style. People with background in
+math find this format elegant. Traditional programmers might not.
+**Flattening arrays with ...spread**
+  - Luna would be a nice name for a female cat with silvery fur that resembles the
+```javascript
+moon’s surface.
+let subscribed =["netflix","amazon"];
+const ott = [...subscribed,"disney","zeetv"];
+console.dir(ott);
+```
+**Using ...spread outside of arrays,objects or function parameters**
+You can’t use ...spread syntax to assign values to variables.
+```javascript
+let a = ...[1,2,3]; //error Uncaught SyntaxError: Unexpected token '...'
+```
+  - Are you disappointed? Don’t be. You will love Destructuring Assignment.
+
+
