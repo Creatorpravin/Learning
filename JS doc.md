@@ -2128,3 +2128,84 @@ nest: {eggs: 10}
  let c = [...a,...b];
  console.log(c);
  ```
+# **Chapter 10**
+## **Closure**
+  - Closure Introduction
+There are many different ways to explain a closure. The explanations in this
+chapter should not be taken for the holy grail of closures. But it is my hope that
+interpretation presented in this book will be enough to deepen your understanding.
+  - Feel free to play around with the examples shown here on codepen.io and see
+how they work. Eventually it should sink in.
+In C, and many other languages, when a function call exits, memory allocated for
+that function is wiped out as part of automatic memory management on the stack.
+  - But in JavaScript, variables and functions defined inside that function still remain
+in memory, even after the function is called.
+  - Retaining a link to variables or methods defined inside the function, after it has
+already been executed, is part of how a closure works.
+  - JavaScript is an ever-evolving language.
+  - When closures came around, there were no classes or private variables in JavaScript.
+  - It can be said that until EcmaScript 6, closures could be used to (roughly) simulate
+something similar to what is known as object’s method privacy.
+  - Closures are part of traditional programming style in JavaScript. They are a prime
+candidate for interview questions.    Having said this, JavaScript Grammar cannot
+be complete without a discussion on closures.
+**What Is Closure?**
+  - A closure enables you to keep a reference to all local function variables, in the
+state they were found after the function exited.
+  - Closures are difficult to understand, knowing nothing about scope rules and how
+execution context delegates control flow in JavaScript. But I think this task can
+be simplified if we start simple and take a look at a few practical examples.
+  - To understand closures, we need to – at the very least – understand the following
+construct. Primarily it is enabled by the idea that in JavaScript you can define a
+function inside another function. Technically, that’s what a closure is.
+
+```javascript
+function global(){
+    function inner(){
+        console.log("inner");
+    }
+    inner();//Call inner
+}
+global();//"inner'
+
+```
+  - In the following example, global function sendMail defines an anonymous function
+and assigns it to variable send. This variable is visible only from the scope of
+sendEmail function, but not from global scope:
+```javascript
+function sendEmail(from,sub,message){
+    let msg = `"${sub}">"${message}" received from "${from}"`;
+    let send =function () {console.log(msg)}
+    send();
+}
+sendEmail('Pravin','re:subject','Good news');
+
+```
+  - In JavaScript, inner functions have access to variables defined in the
+scope of the function in which they are defined.
+  - When we call sendEmail it will create and call send function. It is not possible
+to call send() directly from global scope.
+  - Console Output:
+```console
+  "re:subject">"Good news" received from "Pravin"
+```
+ - We can expose a reference to private methods (inner functions) by returning them
+from the function. The following example is exactly the same as one above, except
+here instead of calling the send method we return a refernce to it on line 004:
+```javascript
+function sendEmail(from,sub,message){
+    let msg = `"${sub}">"${message}" received from "${from}"`;
+    let send =function () {console.log(msg)}
+    return send;
+}
+let ref = sendEmail('Pravin','re:subject','Good news');
+ref();
+```
+  - Instead of calling send(), let’s return it. This way a reference to this
+private method can be created in global scope.
+  - Now we can call send() by reference directly from global scope.
+  - Even after sendEmail function was called, msg and send variables remained in
+memory. In languages like C, they would be removed from the automatic memory
+  - on the stack, and we wouldn’t be able to access them. But not in JavaScript.
+  - Let’s take a look at another example. First we defined print, set, increase and
+decrease variables as global placeholders. 
