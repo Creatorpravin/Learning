@@ -1635,8 +1635,8 @@ variable name is hoisted, the value becomes undefined.
   - Do use const to define constants such as PI, speed of light, tax rate, etc.
  values that you know shouldn’t change during the lifetime of your application.
 
-#**Chapter 8**
-##**Operators**
+# **Chapter 8**
+## **Operators**
 **8.0.1 Arithmetic**
 ```console
 + Additon 
@@ -1657,7 +1657,7 @@ possible to type them directly into your browser’s developer console for pract
 
 ```javascript
 1+1; //2
-1-2; //1
+1-2; //-1
 8/2; //4
 5*3; //15
 ```
@@ -2002,4 +2002,129 @@ let a = ...[1,2,3]; //error Uncaught SyntaxError: Unexpected token '...'
 ```
   - Are you disappointed? Don’t be. You will love Destructuring Assignment.
 
+**9.1 Destructuring Assignment**
+  - Destructuring assignment can be used to extract multiple items from arrays and
+objects and assign them to variables:
+```javascript
+[a,b] = [10,20];
+console.log(a,b);//10 20
+```
+  - The above code is the same as:
+```javascript
+ var a = 10;
+ var b = 20;
+```
 
+  - When var, let or const are not specified, var is assumed:
+ ```javascript
+ [a] = [1];
+  console.log(window.a);// 1
+ ```
+   - As expected let definitions are not available as a property on window object:
+ ```javascript
+ let  [a] = [1];
+  console.log(window.a);// undefined
+ ```
+  - It is possible to destructure into ...rest array:
+  ```javascript
+  [a,b,...rest] = [30,40,50,60,70];
+console.log(a,b);
+console.log(...rest);
+
+  ```
+
+    - Destructuring is often used to extract object properties to a matching name:
+ ```javascript
+let {oranges} = {orangeS :1 };
+console.log(oranges);
+ ```
+   - The order doesn’t matter – as long as there is property grapes the value will be
+assigned to the variable with the same name on the receiving end:
+```javascript
+let fruitBasket={apples:1,oranges:2,mangoes:3};
+let {apples, mangoes} = fruitBasket;
+console.log(apples+mangoes);
+```
+  - Extract from multiple values. Grab apples and oranges and count them:
+  - Destructuring is not implicitly   recursive, second-level objects are not scanned:
+    
+```javascript
+let {oranges} = {apple:1,inner:{orange:2}};
+console.log(oranges);//undefined
+
+```
+  - But it’s possible to extract directly from object’s inner properties:
+```javascript
+  let deep = {
+    basket:{
+        fruit:{
+            name: "orange",
+            shape: "round",
+            weight: 0.2
+        }
+    }
+}
+let {name, shape, weight} = deep.basket.fruit;
+console.log(name);
+console.log(shape);
+console.log(weight);
+```
+  - If variable is not found in object, you will end up with undefined. For example, if
+we attempt to destructure to property name that doesn’t exist in the object:
+```javascript
+let {apples}={oranges:1};
+console.log(apples);//undefined
+```
+  - It is possible to destructure and rename at the same time:
+```javascript
+ let {automobile:car}={automobile:"Tesle"};
+  console.log(car);//Tesla
+```
+
+**Merging objects with ...spread**
+  - You can use ...spread syntax to easily merge two or more objects:
+ ```javascript
+ let a = {p:1,q:2,m:()=>{}};
+ let b = {r:4,s:5,n:()=>{}};
+ let c = {...a,...b};
+ ```
+   - What are the contents of object c?
+  ```javascript
+  console.log(c);
+  ```
+  Console output;
+ ```console
+ {p: 1, q: 2, r: 4, s: 5, m: ƒ, …}
+m: ()=>{}
+n: ()=>{}
+p: 1
+q: 2
+r: 4
+s: 5
+[[Prototype]]: Object
+ ```
+   - The great thing is that it’s not just a shallow copy.
+...spread copies nested properties too:
+```javascript
+let a = {nest:{nest:{eggs:10}}};
+let b = {eggs:5};
+let c = {...a,...b};
+console.log(c);
+```
+Console output:
+```console
+{nest: {…}, eggs: 5}
+eggs: 5
+nest:
+nest: {eggs: 10}
+[[Prototype]]: Object
+[[Prototype]]: Object
+```
+**Merging arrays with ...spread**
+  - The same can be done with arrays:
+ ```javascript
+ let a = [1,2];
+ let b = [3,4];
+ let c = [...a,...b];
+ console.log(c);
+ ```
