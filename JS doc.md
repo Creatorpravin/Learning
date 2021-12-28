@@ -2404,3 +2404,49 @@ And the outcome is:
 ```console
 favorite planets are venus and Mercury
 ```
+
+# **Chapter 11**
+## **Loops**
+ - Loops are fundamental to working with lists. The primary purpose of a loop is
+to iterate over one or a set of multiple statements. Iterating is commonplace in
+software development – it means to repeat an action a multiple number of times.
+  - Working with loops introduces the idea of iterators. Some built-in types are
+iterable. Iterables that can be passed to a for...of loops instead of using traditional
+for-loop. You can say that an iterable object abstracts away the index values of
+a list and helps you focus on solving the problem.
+  - Array is an iterable. Object is not (objects are enumerable).
+  - An iterable type guarantees the order of items in the set. This is why arrays have
+an index for each item. Enumerable types do not guarantee the order in which
+properties will appear when iterated.
+**11.0.1 Types of loops in JavaScript**
+  - There are different ways to iterate in JavaScript. Starting from classic while and
+for- loops to leaning more toward functional programming style iterators: using
+array’s higher-order methods. 
+  - Common iterators are for, for...of, for...in, while
+and Array.forEach. 
+  - Some Array methods are assumed to be iterators: .values,
+.keys, .map, .every, .some, .filter, .reduce and a few others. They are called
+higher-order functions, because they take another function as an argument.
+**Incrementing And Reducing**
+  - Loops are often used for walking through a large list of objects and updating their
+properties. Loops can be used for filtering out objects and reducing the list to
+something more meaningful.
+  - They can also be used for reducing a set of values to a single value:
+```javascript
+  let miles = [50,6,9,20,15,30];
+// Add up all numbers using a for loop
+let a = 0;
+for(let i=0; i<5;i++)
+   a += miles[i];
+console.log(a);//99
+```
+  - You can implement a reducer to the same effect:
+ ```javascript
+ let miles = [50,6,9,20,15,30];
+const R =(accumulator,value) => accumulator + value;
+const result = miles.reduce(R);
+console.log(result);
+ ```
+ **Generating HTML Elements Dynamically**
+  - Create a number of HTML elements dynamically to populate the UI view:
+  
