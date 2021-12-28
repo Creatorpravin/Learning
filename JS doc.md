@@ -2550,9 +2550,132 @@ for(let y=0;y<2;y++)
               console.log(x, y);
 ```
   - Console output (all combinations between x / y):
-  ```console
+  
+```console
   0 0
 1 0
 0 1
 1 1
+
 ```
+
+
+**Loop’s Length**
+
+  - The condition statement will usually check if counter has reached a limit and if
+so, the loop will terminate:
+
+  - You can add brackets if you need to execute multiple statements:
+```javascript
+for(let i=0;i<3;i++){
+    let loop = "loop";
+    console.log(loop);
+}
+```
+Console output:
+```console
+loop
+loop
+loop
+```
+**Skipping Steps**
+  - You can skip an iteration step by using continue keyword
+ ```javascript
+ for(let i=0;i<3;i++){
+    if(i==1)
+    continue;
+    console.log(i);
+  }
+ ```
+ Console output:
+```console
+0
+2
+```
+  - The continue keyword tells code flow to go to the next step without executing any
+next statements in this for-loop’s scope during the current iteration step.
+ **Breaking Early**
+  - You can break out of a for loop by using break keyword
+```javascript
+ for(let i = 0;i<2;i++){
+    console.log("loop");
+    break;
+}
+```
+  - Note the condition statement was skipped here. The loop will break by an explicit
+command from the statement itself.
+In this case the for loop will print ”loop.” to the console only once. The break
+  - keyword simply exits the loop whenever it’s encountered. But it can also be
+conditional (see next example.)
+**Custom Breaking Condition**
+  - None of the 3 statements separated by ;; in a for loop are required. It’s perfectly
+legal to move the conditional test into the for loop’s body, instead of testing for
+it between the parenthesis.
+  - This example skips the middle statement, where we would usually create a conditional test for the counter, and replaces it by its own condition inside the loop
+where it breaks out of the loop if i is greater than 1:
+```javascript
+for(let i = 0;;i++){
+    console.log("loop, i = "+i);
+    if(i>1)
+    break;
+}
+```
+  - If not for the if statement inside the for loop, it would continue indefinitely because
+there are not other conditions stopping it from running.
+Console output:
+```console
+loop, i = 0
+loop, i = 1
+loop, i = 2 
+```
+  - The word ”loop.” is printed 3 times. The condition i is greater than 1 might
+deceive us into thinking that the text will be printed 2 times at most. But it’s printed 3 times! That’s because counting started with 0 and not 1, and at its
+upper limit the condition evaluates to 2 and not 1.
+**Breaking To Label**
+  - In JavaScript, a statement can be labeled when a label name: is prepended to a
+statement. Because a for loop is a statement you can label for loops.
+  - Let’s try to increment value of c inside the inner loop. By choosing whether to
+break the loop and jump to inner or mark label we change the pattern in which
+the for loops will work:
+1. This example produces 11 when breaking to mark: label.
+```javascript
+let c = 0;
+mark: for(let i=0; i<5;i++)
+    inner: for(let j=0; j<5;j++){
+        c++;
+        if(i==2)
+        break mark;
+    }
+    console.log(c);//11
+```
+2. This example produces 21 when breaking to inner: label.
+```javascript
+let c = 0;
+mark: for(let i=0; i<5;i++)
+    inner: for(let j=0; j<5;j++){
+        c++;
+        if(i==2)
+        break inner;
+    }
+    console.log(c);//21
+
+```
+  - The two examples are logically different based on which label the execution flow
+of the inner for loop is transferred to.
+**Breaking from a labeled block scope**
+  - While we’re on the subject, you can use break keyword to break out of regular non
+for-loop block scope as long as it’s labeled:
+```javascript
+block:{
+    console.log("before");
+    break block;
+    console.log("after");
+}
+
+```
+Console output:
+```console
+"before"
+
+```
+  - Execution flow never reaches ”after”.
