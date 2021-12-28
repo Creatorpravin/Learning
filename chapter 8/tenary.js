@@ -5,4 +5,7 @@ let marks = 45;
 // check the condition
 let result = (marks >= 40) ? 'pass' : 'fail';
 
-console.log(`You ${result} the exam.`);
+var statement = 45;
+let rest = 40;
+rest = (rest >= statement) ? "pass" : "fail";
+console.log(result);
