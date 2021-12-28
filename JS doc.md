@@ -2209,3 +2209,198 @@ memory. In languages like C, they would be removed from the automatic memory
   - on the stack, and we wouldn’t be able to access them. But not in JavaScript.
   - Let’s take a look at another example. First we defined print, set, increase and
 decrease variables as global placeholders. 
+```javascript
+let print,set, increase, decrease;
+function manager(){
+    console.log("manager();");
+    let number = 15;
+    print = function(){console.log(number)}
+    set = function(value) {number = value}
+    increase = function() {number++}
+    decrease = function() {number--}
+}
+
+```
+
+  - In order to assign anonymous function names to global function variables, we need
+to run manager() at least once.
+
+```javascript
+manager();//undefined
+print();//15
+for(let i = 0; i<200 ; i++) increase();
+print();// 215
+decrease();
+print();//214
+set(755);//755
+let old_print = print;
+manager();
+print();//15
+old_print();//755
+```
+   - The set(755) function resets the value of number to 755.
+**Explanation**
+  - After calling manager() for the first time. The function executed and all global
+references were linked to their respective anonymous functions. This created our
+first closure. Now, let’s try to use the global methods to see what happens.
+  - We then calleBeautiful Closure
+It can be assumed that closures are used in Functional Programming for similar
+reasons to why private methods are used in Object Oriented Programming. They
+provide a method API to an object in the form of a function.
+What if we could advance this idea and create a closure that looked beautiful and
+returned several methods rather than just one?d some methods: increase(), decrease() and set() to modify
+the value of number variable defined inside manager function. At each step we
+printed out the value using the print() method, to confirm it actually changed.
+**Beautiful Closure**
+  - It can be assumed that closures are used in Functional Programming for similar
+reasons to why private methods are used in Object Oriented Programming. They
+provide a method API to an object in the form of a function.
+  - What if we could advance this idea and create a closure that looked beautiful and
+returned several methods rather than just one?
+let get = null; //placeholder for global getter function
+```javascript
+function closure(){
+    this.inc = 0
+    get = () => this.inc;//getter
+    function increase() {this.inc++;}
+    function decrease() {this.inc--;}
+    function set(v) {this.inc = v;}
+    function reset() {this.inc=0;}
+    function del(){
+        delete this.inc;//become undefined
+        this.inc = null;
+        console.log("this.inc deleted");
+
+    }
+    function readd(){
+        if(!this.inc)
+         this.inc = "re-added";
+    }
+    return [increase,decrease,set(15),reset,del,readd];
+}
+
+
+```
+  - The del method will completely remove inc property from the object and readd will
+re-add the property back. For simplicity of the explanation there is no safeguarding
+against errors. But naturally, if the inc property was deleted, and an attempt to
+call any of the methods was detected, a reference error would be generated.
+  - Initialize closure:
+ ```javascript
+ let f = closure();
+console.log(f)
+ ```
+   - Variable f now points to an array of exposed methods. We can bring them into
+global scope by assigning them to unique function names:
+```javascript
+let inc = f[0];
+let dec = f[1];
+let set = f[2];
+let res = f[3];
+let del = f[4];
+let add = f[5];
+```
+  - We can now call them to modify the hidden inc property:
+
+```javascript
+inc();//1
+inc();//2
+inc();//3
+dec();//2
+get();//2
+set(7);//7
+get();//7
+res(0);//0
+get();//0
+```
+- Finally we can delete the property itself using del method:
+```javascript
+//Delete property
+del(0);//null
+get();
+```
+  - Calling other functions at this point would produce a reference error, so let’s re-add
+the inc property back to the object:
+```javascript
+//read property inc
+add();
+get();//"re-added"
+```
+ - Reset the inc property to 0 and increment it by 1:
+```javascript
+res();
+ inc();
+ get();
+```
+**Closing Words**
+  - Whenever a function is declared inside another function, a closure is created.
+  - When a function containing another function is called, a new execution context
+is created, holding a fresh copy of all local variables. You can create a reference
+to them in global scope, by linking to variable names defined in global scope, or
+returning the closure from the outer function using return keyword.
+  - A closure enables you to keep a reference to all local function variables, in the
+state they were found after the function exited.
+ - **Note:** new Function() constructor does not create a closure, because objects
+created with new keyword also creates a stand-alone context.
+
+**10.0.1 Arity**
+  - Arity is the number of arguments a function takes.
+  - You can access function’s arity via Function.length property:
+```javascript
+function f(a,b,c){}
+let arity = f.length;
+console.log(arity);
+```
+**10.0.2 Currying**
+  - In JavaScript functions are expressions. This also means a function can return
+another function. In the previous section we looked at the closure pattern. Currying
+is a pattern that immediately evaluates and returns another function expression.
+  - A curried function can be constructed by chaining closures by defining and immediately returning all inner functions at the same time.
+  - Here is an example of a curried function:
+  ```javascript
+  let planets = function(a){
+    return function(b){
+    return 'favorite planets are ' + a + ' and ' +b;
+    }
+
+    };
+    let favoritePlanet = planets('jupiter');
+    let fav1 = favoritePlanet('Earth');
+    console.log(fav1);
+    let fav2 = favoritePlanet('Mars');
+    console.log(fav2);
+    let fav3 = favoritePlanet('Saturn');
+    console.log(fav3);
+
+  ```
+
+  - Function planets returns another anonymous function. So when it is assigned
+to favoritePlanets with one argument ”Jupiter”, it can be called again with a
+secondary argument.
+  - Here is the result of the 3 curried functions from example above:
+```console
+favorite planets are jupiter and Earth
+favorite planets are jupiter and Mars
+favorite planets are jupiter and Saturn
+```
+  - The inner function can be invoked immediately after the first call:
+  ```javascript
+    let p = planets('Earth')('Mars');
+    console.log(p);
+  ```
+  And the result is:
+  ```console
+  favorite plnaets are Earth and Mars
+  ```
+    - Currying is originally considered to be part of functional programming style.
+  - It is not a surprise then, that this older currying syntax can be rewritten into this
+far more elegant arrow function format:
+```javascript
+let planets = (a) => (b) => 'favorite planets are ' + a + ' and ' +b;
+let fav1=planets ("venus")("Mercury");
+console.log(fav1);
+```
+And the outcome is:
+```console
+favorite planets are venus and Mercury
+```
