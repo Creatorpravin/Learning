@@ -2449,4 +2449,58 @@ console.log(result);
  ```
  **Generating HTML Elements Dynamically**
   - Create a number of HTML elements dynamically to populate the UI view:
-  
+```javascript
+ for(let i=0;i<10;i++){
+    i = 1;
+    let element = document.createElement('div');
+    element.innerHTML = 'element' + i;
+    document.appendChild(element);
+}
+```
+  - This code will add 10 div elements to the document.
+  - It is possible to use appendChild method to create nested elements.
+
+
+**Render lists**
+  - Loops are often used together with render lists. Rendering is simply the act of
+displaying something on the screen. In software development, there are plenty of
+times when you need to display a list of items.
+
+**Dynamically sorted tables**
+  - Building an entire table dynamically can help you sort values by column using an
+Array.entries and Array.sort methods.
+  - In some cases you will have to write your own sorting function, if your table columns
+are stored in an object as properties and not array items. That however, may or
+may not be a good idea, depending on the data set.
+**Note**
+  - You cannot easily make a decision about exactly how to deal with lists, until some
+sort of data layout is defined. So, choosing which type of loop to use will be often
+determined by other decisions made and the layout of your custom data structures.
+**11.1 for loops**
+  - For loop syntax comes in three syntactic flavors:
+```javascript
+//For-loop with an empyt body
+for(initializer; condition; increment);
+//Iterate over a single statement
+for(initializer; condition; increment) single_statement;
+//Iterate over multiple statements
+for(initializer; condition; increment){
+  multiple;
+  statements;
+}
+```
+  - For loops require 3 statements separated by two semicolons, which can be any
+legal JavaScript statement, a function call, or even an empty statement.
+  - You’ll often use the following pattern in basic implementations: 1) initialize
+counter 2) test condition and 3) increment or decrement counter.
+**11.1.1 0-index based counter**
+  - Initializing the for-loop counter with a 0-index based value is a good idea, because
+most lists (like arrays) are 0-index based, where first item is located at array[0]
+and not array[1]. This might take some time to get used to
+**11.1.2 The Infinite for Loop**
+  - A for loop can be defined without any of the default statements. But by doing
+this you will create an infinite for-loop that will freeze your program:
+```javascript
+for(;;)
+ console.log("hi");//Infinite foe loop *strictly don't do it.*
+```
