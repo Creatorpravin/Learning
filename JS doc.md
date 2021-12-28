@@ -2504,3 +2504,55 @@ this you will create an infinite for-loop that will freeze your program:
 for(;;)
  console.log("hi");//Infinite foe loop *strictly don't do it.*
 ```
+  - You probably don’t really want to do this, unless for some reason it becomes
+necessary. A while loop should probably be used in this case.
+**811.1.3 Multiple Statements**
+  - Multiple statements can be separated by comma. In the following example the
+inc() function is used to increment value of global variable counter. Note the
+combination of the two statements: i++, inc():
+```javascript
+let counter = 0;
+function inc(){counter++;console.log(counter)}
+for(let i =0;i<10;i++,inc());
+;
+```
+  - This body-less for loop progresses the counter 10 times. The actual value is
+incremented inside the inc() function. This is just an example of executing multiple
+statements, we should definitely avoid using global variables in these types of cases.
+
+**Incrementing Numbers**
+  - At their basic, loops can be used to increment numbers.
+```javascript
+  let counter = 0;
+   for(let i = 0; i < 10 ; i++)
+        counter++;
+        console.log(counter);
+```
+
+**for loops and let scope.**
+  - Bracket-less for-loop syntax is not good friends with the let keyword. The following
+code will generate an error:
+```javascript
+for(var i=0;i<10;i++) let x = i;
+```
+  - A let variable cannot be defined without scope brackets. All variables defined using
+let keyword require their own local scope. This is fixed by:
+```javascript
+for(var i=0;i<10;i++) { let x = i; }
+```
+**Nested for Loops**
+  - Because a for loop is a JavaScript statement in itself it can be used as the iterable
+statement of another for loop. This hierarchical for loop is often used for working
+with 2-dimensional grids:
+```javascript
+for(let y=0;y<2;y++)
+    for (let x=0;x<2;x++)
+              console.log(x, y);
+```
+  - Console output (all combinations between x / y):
+  ```console
+  0 0
+1 0
+0 1
+1 1
+```
