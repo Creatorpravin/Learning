@@ -2679,3 +2679,112 @@ Console output:
 
 ```
   - Execution flow never reaches ”after”.
+  
+  **11.2 for...of Loop**
+  - Using indexed iterators, such as the for loop, can become a hassle when dealing
+with arrays or object properties. Especially when their number is not known.
+  - for...of loops to the rescue!
+  - We’ll start with a slightly advanced example where we will use a for...of loop
+together with a generator, and then discover some of the other, simpler use-cases.
+
+**11.2.1 for...of and Generators**
+  - Sometimes you might want to use a for loop with a generator – a special type of
+function with star * character appended to the function* keyword.
+  - When a generator function is called, the multiple yield statements inside it do not
+execute at the same time, as you would normally expect. Only the first one does.
+  - To execute yield statements 2 and 3, you have to call the generator function
+again (two more times). Internally, the yield statement counter is incremented
+automatically every time you call the generator function.
+  - Generator executes a yield statement asynchronously, even though the code inside
+the generator function has linear appearance. This is done on purpose - it makes
+code more readable compared to alternatives (XMLHttpRequest, Ajax, etc).
+```javascript
+function* generator(){
+    yield 1;
+    yield 2;
+    yield 3;
+}
+for(let value of generator())
+  console.log(value)
+
+```
+  - The code above is equivalent to calling generator manually 3 times (When you
+want to increment generator manually just make sure that you first assign it to
+another variable.):
+
+```javascript
+let gen = generator();
+
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+
+```
+  - Here’s the console output in either case:
+```console
+1
+2
+3
+```
+  - Generators are one-time use functions. You should not attempt to reuse a generator function more than once as if it were a regular function (after the last yield
+statement has been executed.)11.2.2 **for...of and Strings**
+  - Strings are iterable.
+You can walk each character of a string using a for...of loop:
+
+```javascript
+let string="text";
+for(let value of string)
+   console.log(value); 
+```
+Console:
+```console
+t
+e
+x
+t
+```
+**11.2.3 for...of and Arrays**
+  - Let’s say we have an array:
+ ```javascript
+ let array = [0,1,2];
+ ```
+   - We can iterate through it without having to create index variables. Once the end
+of the array is reached the loop will end automatically:
+```javascript
+const array = [1,2,3,4];
+for(let value of array)
+  console.log(value)
+```
+Console:
+```console
+1
+2
+3
+4
+```
+**11.2.4 for...of and Objects**
+  - It would be nice to have the ability to iterate over an object’s properties using
+for...of loop, right?
+```javascript
+let object = {a:1,b:2,c:3};
+for(let value of object)
+  console.log(value)//Object is not iteratable
+  
+```
+  - But for...of loops work only with iterable values. An object is not an iterable. (It
+has enumerable properties.) One solution is to convert the object to an iterable
+first before using it in a for...of loop.
+**11.2.5 for...of loops and objects converted to iterables**
+  - As a remedy you can first convert an object to an iterable using some of the built-in
+Object methods: .keys, .values or .entries:
+```javascript
+let enumerable={property:1,method:()=>{}};
+for (let key of Object.keys(enumerable))
+  console.log(key);//property method
+
+for (let value of Object.values(enumerable))
+  console.log(value);//1 [Function: method]
+
+for (let entry of Object.entries(enumerable))
+  console.log(entry);//[ 'property', 1 ] [ 'method', [Function: method] ]
+```
