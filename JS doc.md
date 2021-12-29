@@ -2788,3 +2788,80 @@ for (let value of Object.values(enumerable))
 for (let entry of Object.entries(enumerable))
   console.log(entry);//[ 'property', 1 ] [ 'method', [Function: method] ]
 ```
+  - This can also be achievable by using a for...in loop instead, without having to use
+any of the Object conversion methods.
+We’ll take a look at that in the following section.
+**11.3 for...in Loops**
+  - The for...of loops (in previous section) only accept iterables. Unless the object is
+first converted to an iterable, a for...of loop won’t be of any help.
+  - for...in loops work with enumerable object properties. It’s a much more elegant
+solution for iterating through Object properties.
+  - When you have an object at hand you should probably use a for...in loop.
+ ```javascript
+ let object = {a:1,b:2,c:5,method:()=>{}};
+for (let value in object)
+   console.log(value, object[value]);
+   
+/*Console
+a 1
+b 2
+c 5
+method [Function: method]*/
+ ```
+   - A for...in loop will iterate only enumerable object properties. Not all object
+properties are enumerable, even if they exist on the object. All non-enumerable
+properties will be skipped by for...in iterator.
+  - You won’t see constructor and prototype properties in an output from the
+for...in loop. Although they exist on an object they are not considered to be
+enumerable.
+
+**11.4 While Loops**
+  - A while loop will iterate for an indefinite number of times until the specified
+condition (there is only one) evaluates to false. At which point your loop will stop
+and execution flow will resume.
+```javascript
+while (condition){
+  /*do something until condition is false*/
+}
+```
+  - Once condition evaluates to false the while loop will break automatically:
+```javascript
+ let c = 0;
+while (c++ <= 5)
+console.log(c);
+
+```
+Console:
+```console
+1
+2
+3
+4
+5
+6
+```
+  - A secondary condition can be tested within the loop. This makes it possible to
+break from the loop earlier if needed:
+```javascript
+while(condition_1){
+  if(condition_2)
+     break;
+}
+```
+**11.4.1 While and continue**
+  - The continue keyword can be used to skip steps:
+  let c = 0;
+```javascript
+while (c++ < 1000){
+ if (c > 1)
+     continue;
+     console.log(c)
+}
+```
+  - Console output:
+```console
+1
+```
+  - Just keep in mind this is just an example. In reality, this would be considered bad
+code, because the if statement is still executed 1000 times. The console prints 1
+only when c == 0. If you need an early exist, use break instead.
