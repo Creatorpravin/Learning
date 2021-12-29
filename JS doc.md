@@ -2865,3 +2865,108 @@ while (c++ < 1000){
   - Just keep in mind this is just an example. In reality, this would be considered bad
 code, because the if statement is still executed 1000 times. The console prints 1
 only when c == 0. If you need an early exist, use break instead.
+
+# **Chapter 12**
+## **Arrays**
+  - Many of the Array.* methods are iterators. Instead of passing your array into a
+for or a while loop you should use built-in Array methods instead. Arrays usually
+already have methods offering cleaner syntax for anything you would write yourself
+to solve the same problem. So why re-invent the wheel?
+  - Array methods are attached to Array.prototype property. This means you can
+execute them directly from array object like array.forEach() or directly from
+array’s literal value like: [1,2,3].forEach();
+**12.0.1 Array.prototype.sort()**
+  - Previous (pre-ES10) implementation of V8 used an unstable quick sort algorithm
+for arrays containing more than 10 items.
+  - A stable sorting algorithm is when two objects with equal keys appear in the same
+order in the sorted output as they appear in the unsorted input. But this is no
+longer the case. ES10 offers a stable array sort:
+
+```javascript
+var fruit = [
+    {name:"Apple", count:13,},
+    {name:"Pear", count:12,},
+    {name:"Banana", count:12,},
+    {name:"Strawberry", count:11,},
+    {name:"Cherry", count:11,},
+    {name:"Blackberry", count:10,},
+    {name:"Pineapple", count:10,}
+
+];
+```
+
+Console Output:
+```javascript
+//create our own criteria function:
+let mySort=(a,b)=>a.count - b.count;
+//Perform stable ES10 sort:
+let sorted = fruit.sort(mySort);
+console.log(sorted);
+```
+Console Output:
+
+```console
+[
+  { name: 'Blackberry', count: 10 },
+  { name: 'Pineapple', count: 10 },
+  { name: 'Strawberry', count: 11 },
+  { name: 'Cherry', count: 11 },
+  { name: 'Pear', count: 12 },
+  { name: 'Banana', count: 12 },
+  { name: 'Apple', count: 13 }
+]
+```
+**12.0.2 Array.forEach**
+  - The forEach method will execute a function for every item in the array.
+  - Each iteration step receives 3 arguments value, index, object.
+It’s similar to a for-loop but it looks cleaner:
+```javascript
+let fruit = ['pear',
+'banana',
+'orange',
+'apple',
+'cherry'];
+let print = function(item,index,object){
+    console.log(item);
+}
+fruit.forEach(print);
+```
+  - Starting from ES6 it can be suggested to use arrow functions together with Array
+methods. The code will be easier to read and maintain when building large scale
+applications. Let’s take a look at how we can make syntax cleaner:
+  - Because in JavaScript functions are also expressions, you can pass the function
+directly into the forEach method:
+```javascript
+let print = function(item,index,object){
+    console.log(item,index,object);
+}
+fruit.forEach(print);
+
+```
+  - But you might want to use an arrow function here: () => {}
+ ```javascript
+ fruit.forEach((item,index,object)=>{
+console.log(item,index,object);});
+
+ ```
+   - The console output from both of the cases above:
+ ```console
+  pear 0 [ 'pear', 'banana', 'orange', 'apple', 'cherry' ]
+banana 1 [ 'pear', 'banana', 'orange', 'apple', 'cherry' ]
+orange 2 [ 'pear', 'banana', 'orange', 'apple', 'cherry' ]
+apple 3 [ 'pear', 'banana', 'orange', 'apple', 'cherry' ]
+cherry 4 [ 'pear', 'banana', 'orange', 'apple', 'cherry' ]
+ ```
+   - If you can get away with one argument and return statement you can use this slim
+form:
+```javascript
+fruit.forEach(item=>console.log(item));
+```
+  - As long as you have only one single statement you can remove brackets.
+```console
+  pear
+banana
+orange
+apple
+cherry
+```
