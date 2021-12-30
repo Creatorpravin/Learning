@@ -3119,3 +3119,76 @@ as the items and the reducer is associative:
   - Do not use it to mutate (change original values of) its arguments.
   - Do not use it perform side effects, like API calls and routing transitions.
     - Do not use it to call non-pure functions, e.g. Date.now() or Math.random().
+
+**12.0.10 Array.flat()**
+
+  - Flattening a multi-dimensional array:
+```javascript
+  let multi = [1,2,3,[4,5,6,[7,8,9,[10,11,12]]]];
+multi.flat();//(7) [1, 2, 3, 4, 5, 6, Array(4)]
+multi.flat().flat();//(10) [1, 2, 3, 4, 5, 6, 7, 8, 9, Array(3)]
+multi.flat().flat().flat();//12) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+multi.flat(Infinity);//(12) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+```
+
+**12.0.11 Array.flatMap()**
+
+```javascript
+let array = [1,2,3,4,5];
+array.map(x=>x*2);
+```
+  - Becomes;
+```console
+(5) [2, 4, 6, 8, 10]
+0: 2
+1: 4
+2: 6
+3: 8
+4: 10
+length: 5
+```
+Now flatten the map:
+```javascript
+let array = [1,2,3,4,5];
+console.log(array.flatMap(x=>x*2));
+//[ 2, 4, 6, 8, 10 ]
+```
+**12.0.12 String.prototype.matchAll()**
+Matching multiple patterns in a string is a common problem when writing software.
+Use cases include extracting name and email addresses at the same time from an
+email header, scanning for presence of unique patterns, etc.
+In the past, to match multiple items we used String.match with a regular expression and /g (”global”) flag or RegExp.exec and/or RegExp.test with /g.
+First, let’s take a look at how the older spec worked.
+String.match with string argument only returns the first match:
+```javascript
+let string = "hello";
+let matches = string.match("l");
+console.log(matches[0]);
+```
+  - The result is a single "l" (note: the match is stored in matches[0], not matches.)
+  - Only "l" is returned from a search for "l" in the word "hello".
+  - The same goes for using string.match with a regex argument. Let’s locate the "l"
+character in the string "hello" using the regular expression /l/:
+```javascript
+let string = "hello";
+let matches = string.match("l");
+console.log(matches[0]);
+```
+**Adding /g to the mix**
+  - String.match with a regex and the /g flag does return multiple matches:
+
+```javascript
+let string = "hello";
+let ret = string.match(/l/g);
+console.log(ret);
+// ['l', 'l']
+//0: "l"
+//1: "l"
+//length: 2
+
+```
+  - Great... we’ve got our multiple matches using < ES10. It worked all along. So
+why bother with a completely new matchAll method? Well, before we can answer
+this question in more detail, let’s take a look at capture groups. If nothing else,
+you might learn something new about regular expressions.
+
