@@ -3118,7 +3118,7 @@ as the items and the reducer is associative:
   - Do not use it for just about anything else (use a loop).
   - Do not use it to mutate (change original values of) its arguments.
   - Do not use it perform side effects, like API calls and routing transitions.
-    - Do not use it to call non-pure functions, e.g. Date.now() or Math.random().
+ - Do not use it to call non-pure functions, e.g. Date.now() or Math.random().
 
 **12.0.10 Array.flat()**
 
@@ -3192,3 +3192,189 @@ why bother with a completely new matchAll method? Well, before we can answer
 this question in more detail, let’s take a look at capture groups. If nothing else,
 you might learn something new about regular expressions.
 
+**Regular Expression Capture Groups**
+  - Capturing groups in regex is simply extracting a pattern from () parenthesis.
+  - You can capture groups with /regex/.exec(string) and with string.match.
+Regular capture group is created by wrapping a pattern in (pattern).
+  - But to create groups property on resulting object it is: (?<name>pattern).
+  - To create a group name: prepend ?<name> inside brackets. The resulting object
+will have a new property groups.name attached (see code below.)
+This is the string we will take as the specimen for our experiment:
+```javascript
+const string = 'black*raven lime*parrot white*seagull';
+const regex = /(?<color>.*?)\*(?<bird>[a-z0-9]+)/g;
+while (match = regex.exec(string))
+{
+    let value = match[0];
+    let index = match.index;
+    let input = match.input;
+    console.log(`${value} at ${index} with '${input}`);
+    console.log(match.groups.color);
+    console.log(match.groups.bird);
+
+}
+```
+  - Note: match.groups.color & match.groups.bird are created
+from adding ?<color> and ?<bird> to the () match in the regex string.
+
+  - regex.exec method needs to be called multiple times to walk the entire set of
+the search results. During each iteration when .exec is called, the next result is
+revealed (exec doesn’t return all matches right away.) Hence, while loop
+
+Console Output:
+```console
+lack*raven at 0 with 'black*raven lime*parrot white*seagull
+black
+raven
+ lime*parrot at 11 with 'black*raven lime*parrot white*seagull
+ lime
+parrot
+ white*seagull at 23 with 'black*raven lime*parrot white*seagull
+ white
+seagull
+```
+**But there is the quirk:**
+ - If you remove /g from this regex, you will create an infinite loop cycling on the
+first result forever. This has been a huge pain in the past. Imagine receiving a
+regex from some database where you are unsure of whether it has /g at the end
+or not. You’d have to check for it first, which would require additional code.
+  - And now, we have enough background to answer the question:
+
+**Good reasons to use .matchAll()**
+1. It can be more elegant when using with capture groups. A capture group is
+simply the part of regular expression with ( ) that extracts a pattern.
+2. It returns an iterator instead of array. Iterators on their own are useful.
+3. An iterator can be converted to an array using spread operator (...)
+4. It avoids regular expressions with /g flag... useful when an unknown regular
+expression is retrieved from database or outside source and used together with the
+archaic RegEx object.
+5. Regular expressions created using RegEx object cannot be chained using the
+dot (.) operator.
+6. Advanced: RegEx object changes internal .lastIndex property that tracks last matching position. This can wreck havoc in complex cases.
+**How does .matchAll() work?**
+  - Let’s try to match all instances of letter e and l in the word hello. Because an
+iterator is returned we can walk it with a for...of loop:
+```javascript
+let iterator = "hello".matchAll(/[el]/);
+for (const match of iterator)
+  console.log(match);
+```
+  - Note that .matchAll method does not require /g flag.
+ ```console
+ [ 'e', index: 1, input: 'hello', groups: undefined ]
+[ 'l', index: 2, input: 'hello', groups: undefined ]
+[ 'l', index: 3, input: 'hello', groups: undefined ]
+ ```
+ **Capture Groups example with .matchAll()**
+  - .matchAll returns an iterator so we can walk it with for...of loop.
+  
+```javascript 
+const string = 'black*raven lime*parrot white*seagull';
+const regex = /(?<color>.*?)\*(?<bird>[a-z0-9]+)/g;
+while (match = regex.exec(string))
+{
+    let value = match[0];
+    let index = match.index;
+    let input = match.input;
+    console.log(`${value} at ${index} with '${input}`);
+    console.log(match.groups.color);
+    console.log(match.groups.bird);
+
+}
+```
+  - Console Output:
+
+```console
+lack*raven at 0 with 'black*raven lime*parrot white*seagull
+black
+raven
+ lime*parrot at 11 with 'black*raven lime*parrot white*seagull
+ lime
+parrot
+ white*seagull at 23 with 'black*raven lime*parrot white*seagull
+ white
+```
+
+  - Perhaps aesthetically it is very similar to the original regex.exec while loop implementation. But as stated earlier this is the better way for the reasons mentioned
+above. And removing /g won’t cause an infinite loop.
+
+**12.0.13 Dos and Dont’s**
+  - Do use string.matchAll instead of regex.exec & string.match with /g flag.
+
+**12.0.14 Comparing Two Objects**
+  - It makes sense to compare two literal numeric values such as 1 === 1 or literal
+boolean values true === false, but what does it mean to compare two objects?
+Furthermore == and === operators won’t help because they compare by reference
+and not by value: [] and [] may be equal by value but they are different arrays:
+```javascript
+[] === [];//false by value
+let x = [];
+x===x;//true only by referance
+```
+  - We’ll have to write our own function! One way of thinking about comparing
+objects is comparing the number, type and value of all of their properties.
+  - Following naming convention of strcmp: a function that compares strings in many
+languages, we can write a custom function objcmp that compares two objects:
+```javascript
+export default function objcmp(a,b){
+    //Copy properties into a and b
+    let A = Object.getOwnPropertyNames(a);
+    let B = Object.getOwnPropertyNames(b);
+     
+    //Return early if number of properties is not equal
+    if(A.length != B.length)
+    return false;
+
+    //Return early if number of properties on both objects
+    for(let i = 0; i<A.length;i++)
+    {
+        let propName = A[i];
+        //properties must equal by value *and type
+        if(a[propName] !== b[propName])
+        return false;
+    }
+    //objects are equal
+    return true
+
+}
+objcmp();
+
+```
+  - The function objcmp takes two arguments: a and b, representing the two objects
+we want to compare.
+  - This is a non-recursive, shallow copy algorithm. In other words, we are only comparing first-class properties attached directly to the object. Properties attached to
+properties are not compared. In many cases this is enough.
+  - But there is another, much greater problem. In its current form the function
+assumes that properties cannot point to either an array or object. Two common
+data structures that are very likely to be part of an arbitrary object.
+  - Even if we’re not doing a deep comparison, the function will fail if any of the
+properties point to either an object or an array, regardless of whether their length
+and actual values are the same:
+
+```javascript
+let a = {prop:[1,2], obj:{}};
+let b = {prop:[1,2], obj:{}};
+objcmp(a,b);
+```
+  - Our algorithm failed on [1,2] === [1,2] comparison. So how do we deal with
+this situation? First, we can write our own is array function. Because array is
+the only object in JavaScript with length property and at least 3 higher-order
+functions: filter, reduce and map, we can say that if these methods exist on an
+object, then it must be an array, with roughly 99% certainty:
+```javascript
+function isArray(value){
+    return typeof value.reduce == "function" &&
+    typeof value.filter == "function" &&
+    typeof value.map == "function" &&
+    typeof value.length == "number" ;
+
+
+}
+//Test the function 
+console.log(isArray(1));//false
+console.log(isArray("string"));//false
+console.log(isArray({a:1}));//false
+console.log(isArray(true));//false
+console.log(isArray([]));//true
+console.log(isArray([1,2,3,4,5]));//true
+```
