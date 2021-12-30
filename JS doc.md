@@ -2970,3 +2970,152 @@ orange
 apple
 cherry
 ```
+**12.0.3 Array.every**
+  - Return value: boolean
+  - Not to be confused with ”execute for every item” logic of forEach. In many cases
+method every will actually not run on every item in the array when at least one
+item doesn’t evaluate to true based on specified condition.
+  - The method every will return true if the value of every single item in the array
+satisfies the condition specified in its function argument:
+  - The result is true because none of the numbers in the array are greater than or
+equal to 10. Let’s take at the same function with a different value set. If 10 or a
+greater number was present in the array the result would be false:
+  - Here one of the numbers is 256. Which can be translated to ”not every value
+in the array is ¡ 10”. Hence, false is returned. It’s important to note that once
+  - Array.every method encounters 256 the condition function will not execute on the
+remaining items. Just a single failed test will cause false.
+  - Array.every does not modify the original array. The value inside the function is a
+copy, not a reference to the value in the original array
+```javascript
+const isBelowThreshold = (currentValue) => currentValue < 40;
+
+const array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+
+// expected output: true
+```
+**12.0.4 Array.some**
+  - Return value: boolean
+Similar to Array.every except it stops looping whenever it encounters a value that
+evaluates to true (and not false like in Array.every) Let’s compare:
+```javascript
+let number = [0,10,2,3,4,5,6,7];
+let condition = value => value < 10;
+let some = number.some(condition);
+let every = number.every(condition);
+console.log(some);
+console.log(every);
+```
+  - Here some returns true because it checks first value: 0 for ¡ 10 and immediately
+returns true without having to check the rest of the values.
+  - The every method returns false on the same data set. That’s because when it
+reaches the second item whose value is 10, the ¡ 10 test fails.
+  - Note: Try not to think of some as an ”opposite” of every. In some cases they
+return the same result on the same data set.
+
+**12.0.5 Array.filter**
+  - Return value: new array consisting only of items that passed a condition.
+
+```javascript
+ let number = [0,10,2,3,4,5,6,7]
+let condition = value => value < 10;
+let filtered = number.filter(condition);
+console.log(filtered);
+console.log(number);
+
+```
+  - The new filtered array contains all original items except 10. Because it did not pass the ¡ 10 test. In a real-world scenario the condition can be much more complex
+and involve larger objects sets.
+**12.0.6 Array.map**
+  - Return value: a copy of the original array with modified values (if any.)
+
+```javascript
+let number = [24,24,2,4,56,85,63];
+let condition = number.map(value => value + 1);
+console.log(condition);
+```
+  - Array.map is like Array.forEach but it returns a copy of the modified array. Note
+that original array is still unchanged.
+**12.0.7 Array.reduce**
+  - Return value: accumulator
+  - Reducers are similar to other methods. Yet they are unique because they have an
+accumulator value. The accumulator value must be initialized. There are different
+types of reducers. In this first example we’ll take at a simple case.
+  - As values are iterated this accumulator adds all numbers into a single value:
+Like any other Array method that works with iterables, a reducer has access to
+the value it is currently iterating (currentValue).
+  - This reducer added up all the numbers into the single accumulator value and
+returned it: 1 + 2 + 4 = 7.
+  - How to understand reducers in more complex, practical situations?
+When developing software in the real world you won’t be using reducers to count
+numbers. This can be done with a simple for loop. You will encounter plenty of
+situations where a set of data should be ”reduced” only to the set of important
+values based on some criteria.
+```javascript
+const array1 = [1, 2, 3, 4];
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+// 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer));
+// expected output: 10
+
+// 5 + 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer, 5));
+// expected output: 15
+
+```
+**Array.reduce or Array.filter?**
+  - There is a reason why Array object has a number of different methods that at
+first sight appear to do the same things.
+  - When it comes to Array methods, always try to to choose a proper tool for the
+task. Don’t use reduce just because you want to use reduce – figure out if a
+particular method was purposed to produces a more efficient logic.
+  - It is written, somewhere, that reduce is the father of filter and map. Anything
+you can do with filter and map can be done with reduce.
+  - However, reduce provides a more elegant solution to adding up numbers than a
+for-loop or other Array methods.
+**Reducers And Updating Object Properties In A Database**
+  - After an API action – update or delete an item, for example – you may want
+to update the application view. But why update all objects everywhere, when you
+can ”reduce” which object properties should be affected, without having to copy
+entire lists of object – even the ones that weren’t affected by the API call?
+
+**12.0.8 Practical Reducer Ideas**
+  - Narrowing down on object properties
+Let’s say your car listing management application has a button that updates the
+price of a particular vehicle. The user sets a new price and clicks on the button.
+An action is dispatched to update the vehicle in the database.
+  - Then the callback function returns containing the object with all properties for
+that vehicle ID (price, make, model, year). But, we only need to update the price.
+  - A reducer can make sure to narrow down on (or ”hand pick”) only the vehicle
+price property, not the entire set of properties on the object. The object is then
+sent back to the database and application view is updated.
+
+**Counting weekends**
+  - Imagine a task where you had to implement a function that, given month would
+return number of weekends, working days and holidays there are in that month. A
+month could be represented by the number of days in it.
+  - It’s important to keep the input values the same type as the return value of a
+reducer. This is one of the main characteristics of a reducer: to reduce a set (not
+necessarily by filtering, although it is a possibility.)
+  - Function Purity
+Reducers are often used in code written following Functional Programming style
+principles. One of which is function purity. The following Dos and Dont’s
+describe some of properties of a pure function.
+
+**12.0.9 Dos and Dont’s**
+  - Even though these are not absolute requirements, these ideas might be helpful for
+avoiding anti-pattern code. Only use reduce() when the result has the same type
+as the items and the reducer is associative: 
+```javascript
+[1,2,3,4,5].reduce((a,b)=>a+b, 0);
+```
+  - Do use it for summing up some numbers.
+  - Do use it for multiplying some numbers.
+  - Do use it for updating state in React.
+  - Do not use it for building new lists or objects from scratch.
+  - Do not use it for just about anything else (use a loop).
+  - Do not use it to mutate (change original values of) its arguments.
+  - Do not use it perform side effects, like API calls and routing transitions.
+    - Do not use it to call non-pure functions, e.g. Date.now() or Math.random().
