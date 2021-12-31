@@ -10,3 +10,4 @@ let clicked = function(){
 setTimeout(print,1000);
 clicked();
 //document.addEventListener('click', clicked);
+
