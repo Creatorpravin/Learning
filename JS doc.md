@@ -3378,3 +3378,253 @@ console.log(isArray(true));//false
 console.log(isArray([]));//true
 console.log(isArray([1,2,3,4,5]));//true
 ```
+**12.0.15 Writing arrcmp**
+  - Let’s write our own arrcmp function based on the assumption the array equality
+means that each value at each corresponding index in both arrays match:
+
+```javascript
+let a = [1,2];
+let b = [1,2];
+let c = [5,5];
+function is_array(value) {
+    return typeof value.reduce=="function"&&
+           typeof value.filter=="function"&&
+           typeof value.map=="function"&&
+           typeof value.length=="number";
+}
+ function arrcmp(a,b){
+     // one or more values are not arrays:
+     if(!(is_array(a)&&is_array(b)))
+      return false;
+    //Not equal by length
+    if(a.length != b.length)
+    return false;
+    //compare by value
+    for(let i=0;i<a.length;i++)
+    if(i[a]!==b[i])
+    return false;
+    //All test passed: array a and b are equal
+return true;
+
+
+ }
+ console.log(arrcmp(a,b));//true
+ console.log(arrcmp(b,b));//true
+ console.log(arrcmp(a,b));//false
+```
+
+ - There is no built in function for comparing arrays in JavaScript. There is probably
+a good reason for it. How data is mapped to an array largely depends on overall
+design of the data in your application.
+  - After all, what exactly does it mean for two arrays to be equal? The data layout
+can be different from project to project. So is the nature of what you’re trying
+to accomplish, by storing data in arrays. For this reason an array does not always
+guarantee integrity between its values and indexes they are stored at.
+Without a concrete project, we can only assume that it does.
+
+**12.0.16 Improving objcmp**
+
+  - Now that we have is array and arr cmp let’s add two special case comparisons to
+the objcmp function: one for arrays using our new function, and one for objects
+using recursion. This deepens our algorithm and makes it less prone to bugs.
+We will call objcmp from itself (line 025) if one of the object properties checks
+out to be an object literal itself:
+```javascript
+let a = [1,2];
+let b = [1,2];
+let c = [5,5];
+function is_array(value) {
+    return typeof value.reduce=="function"&&
+           typeof value.filter=="function"&&
+           typeof value.map=="function"&&
+           typeof value.length=="number";
+}
+function arrcmp(a,b){
+    // one or more values are not arrays:
+    if(!(is_array(a)&&is_array(b)))
+     return false;
+   //Not equal by length
+   if(a.length != b.length)
+   return false;
+   //compare by value
+   for(let i=0;i<a.length;i++)
+   if(i[a]!==b[i])
+   return false;
+   //All test passed: array a and b are equal
+return true;
+
+}
+function objcmp(a,b){
+    //copy properties into A and B
+    let A=Object.getOwnPropertyNames(a);
+    let B=Object.getOwnPropertyNames(b);
+    if(A.length != B.length)
+     return false;
+    
+     for (let i=0;i<A.length;i++){
+         let propName=A[i];
+         let p1 = a[propName];
+         let p2 = b[propName];
+         
+         if(is_array(p1)&&is_array(p2)){
+             if(!arrcmp(p1, p2))
+              return false;
+
+         } else
+         if(p1.constructor === Object &&
+            p2.constructor === Object){
+                if(!objcmp(p1, p2))
+                  return false;
+            } else if (p1 !== p2)
+             return false;
+
+     }
+
+   return true;
+}
+console.log(objcmp(a,b))//true
+console.log(objcmp({a:{b:12}},{a:{b:12}}));//true
+console.log(objcmp({a:{b:12}},{a:{b:13}}));//false
+console.log(objcmp({a:function(){}},{a:function(){}}));//false
+```
+  - A test for whether
+property points to an array or an object literal was added. If the property is neither,
+primitive value is tested as usual.
+
+**12.0.17 Testing objcmp on a more complex object**
+ - Let’s try it out in action!
+```javascript
+ console.log(objcmp(a,b))//true
+console.log(objcmp({a:{b:12}},{a:{b:12}}));//true
+console.log(objcmp({a:{b:12}},{a:{b:13}}));//false
+console.log(objcmp({a:function(){}},{a:function(){}}));//false
+
+```
+  - Our object comparison function now works as expected. It’s not perfect but at
+least it won’t get stuck in large majority of cases. In fact, it even checks object
+properties recursively, which is a bit more of a deeper search than before.
+  - Possible Improvements: You can further improve this function by checking for
+arrays of objects, instead of just arrays of values.
+As you can see, this is exactly why a native function for a deep search doesn’t exist.
+  - It really depends on your data implementation. Who says your arrays will contain
+objects or that any object property will ever point to another object? Without
+this knowledge, it’s difficult to create a common-case algorithm without risking
+creating an anti-pattern (when your code does more than it needs to.)
+
+**Chapter Review**
+  - Trying to solve one problem (compare two objects) led to discovery of another
+problem we also needed to solve first (compare two arrays.) This is not something
+we predicted at the time we thought of writing objcmp.
+  - JavaScript already provides Array.isArray method – so why reinvent the wheel?
+  - Taking initiative to solve any problem is what makes the distinction between a
+hobbyist coder and a software developer. The skill of thinking for yourself to solve
+problems, instead of using existing libraries, helps you train yourself for.
+  - Writing your own code is always a good idea. If you can’t write an is array
+function yourself, chances are you won’t have the practice and training to write
+an important function later, one that doesn’t exist but is crucial to success of a
+real-life project, facing much more complex problems.
+  - This might cause you not only reputation among your peers, but the job itself.
+  - Most interviews at software companies don’t test only for knowledge, they want
+to see your problem-solving approach. Perhaps, it’s a good idea to develop it!
+
+# **13.1 Functions**
+
+  - In JavaScript there are two types of functions: the standard function that can be
+defined using function keyword and an arrow function ()=>{} added later in ES6.
+  - Regular functions can be called. But they can also act as object constructors,
+when used together with new operator in order to create an instance of an object.
+  - Note that since EcmaScript >= 6 you can use class keyword to the same effect.
+  - Inside a function, the this keyword can point either to the context from which the
+function was called. But it can also point to an instance of the created object, if
+that function was used as an object constructor.
+  - Functions have an array-like arguments object inside their scope, which holds the
+length of parameters and values that were passed to the function, even if parameter
+names were not present in function definition.
+  - An arrow function can be called. But it cannot be used to instantiate objects.
+  - Arrow functions are often used with functional programming style. Like regular
+functions, they can be used to define object methods. They are also often used
+as event callback functions. Inside the scope of an arrow function this keyword
+points to whatever this equals to outside of its own scope.
+  - Arrow functions do not have the array-like arguments inside their scope. 
+ 
+
+**13.1.1 Function Anatomy**
+  - The function definition consists of the function keyword followed by its name
+(shown as update, in the following example) parenthesis containinga list of parameter names (a,b,c) and the function body enclosed in brackets:
+```javascript
+let num = 7;
+let arr = [1,2];
+let obj = {net:11};
+
+function update(a,b,c,d = 'hi'){
+return a,b,c,d;
+
+}
+const res=update(num,arr,obj);
+console.log(res);
+```
+  - The return keyword is optional. But function will return anyway once all statements in its body are done executing, even if return keyword is not specified.
+  - The this keyword inside an ES5 style function points to the context from which the
+function was executed. Very often it is the global window object. If the function
+is used to instantiate an object using new keyword then this keyword will point
+to object instance that was instantiated using function.
+  - The arguments is an array-like object that contains 0-index list of arguments that
+were passed into the function, even if parameter names were not specified in the
+function’s definition.
+**13.1.2 Anonymous Functions**
+  - Nameless or anonymous functions can be defined by using the same syntax but
+skipping the function name.
+  - Anonymous functions are often used as event callbacks, where we usually don’t
+need to know what the names are – we simply want to execute them at a specific
+time after an event has finished doing its work:
+```javascript
+setTimeout(function(){
+    console.log("print something in 1 second.");
+    console.log(arguments);
+},1000);
+```
+  - Anonymous function used as a 
+  setTimeout event callback.
+ ```javascript
+ document.addEventListner("click",function(){
+   console.log("Document was clicked.");
+   console.log(arguments);
+
+ });
+ ```
+   - Anonymous function used to intercept a mouse click event.
+
+**13.1.3 Assigning Functions To Variables**
+  - Anonymous functions can be assigned to a variable, making them named functions
+again. By doing this you can separate the function definition from its use in an
+event-based method:
+```javascript
+let print = function(){
+    console.log("Print something in 1 second.");
+    console.log(arguments);
+}
+let clicked = function(){
+    console.log("Document was clicked");
+    console.log(arguments);
+}
+//call anonymous named functions
+print();
+clicked();
+```
+ - ”anonymous” functions that were assigned to a variable name become
+named functions.
+  - You can also pass them to the event functions just by their name:
+```javascript
+//cleaner code
+ setTimeout(print,1000);
+clicked();
+document.addEventListener('click', clicked);
+```
+  - This often makes your code look cleaner. Note that different event functions
+generate their own arguments, regardless of whether your anonymous function
+defines parameters to catch them – they will be passed into the function:
+```javascript
+let clicked = function(event){
+  console.log(event, event.target);
+}
+```
