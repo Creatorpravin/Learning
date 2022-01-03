@@ -292,3 +292,216 @@ console.log(unique);
   5, 8, 3
 ]
 ```
+**9. Write a program to calculate the sum of the first 10 natural numbers.**
+
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+
+function sum(number){
+let sum = 0, i = 1;
+while(i <= number) {
+    sum += i;
+    i++;
+}
+
+console.log('The sum of 10 natural numbers:', sum);
+}
+sum(10);
+```
+
+*Output*
+
+```console
+The sum of 10 natural numbers: 55
+```
+
+**10. Write a program to print the sum of the even and odd numbers for a given number?(100)**
+
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+const oddEven= function(value){
+    let even=0,odd=0;
+    for(let i=0;i<=value;i++){
+if(i % 2 == 0) {
+    even = even + i;
+}
+
+else {
+    odd = odd + i;
+}
+
+}
+console.log("The sum of even numbers:",even);
+console.log("The sum of odd numbers:",odd);
+};
+oddEven(100);
+
+```
+
+*Output*
+```console
+The sum of even numbers: 2550
+The sum of even numbers: 2500
+```
+
+**11. Write a program to merge two arrays? ([1,2,9,3,5,1,4,5], [11,54,70,40])**
+
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+let arr1=[1,2,9,3,5,1,4,5],arr2 = [11,54,70,40];
+function merge(){
+let merge=[...arr1,...arr2];
+ return merge;
+}
+console.log(merge());
+```
+*Output*
+```console
+[
+   1,  2, 9,  3,  5,
+   1,  4, 5, 11, 54,
+  70, 40
+]
+```
+**12. Remove duplicate from an array of an object by id and name? a. [{id: 1, name: ‘Stephen covey’ }, {id: 2, name: ‘Robin Sharma’ }, {id: 3, name:‘Tolstoy’}, {id: 3, name: ‘Tolstoy’}, {id: 5, name: ‘James clear’}]**
+
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict";
+var x = new Set();
+var array = [
+    {id: 1, name: 'Stephen covey'},
+    {id: 2, name: 'Robin Sharma' }, 
+    {id: 3, name: 'Tolstoy'}, 
+    {id: 3, name: 'Tolstoy'}, 
+    {id: 5, name: 'James clear'}
+];
+var filteredArray = array.filter(value => {
+  var duplicate1 = x.has(value.id);
+  x.add(value.id);
+  var duplicate2 = x.has(value.name);
+  x.add(value.name);
+  return !duplicate1&&!duplicate2;
+});
+console.log(filteredArray);
+
+```
+*Output*
+```console
+[
+  { id: 1, name: 'Stephen covey' },
+  { id: 2, name: 'Robin Sharma' },
+  { id: 3, name: 'Tolstoy' },
+  { id: 5, name: 'James clear' }
+]
+```
+**13. Compare two objects, If all properties are equal return true or return false? a. ({id: 1, name: “edison”}, {id: 1, name: “edison”})b. ({id: 1, name: “edison”}, {id: 2, name: “edison”})**
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+var a={id: 1, name: "edison"};
+var b={id: 1, name: "edison"};
+var c={id: 1, name: "edison"};
+var d={id: 2, name: "edison"};
+function is_array(value) {
+    return typeof value.reduce=="function"&&
+           typeof value.filter=="function"&&
+           typeof value.map=="function"&&
+           typeof value.length=="number";
+}
+function arrcmp(a,b){
+    // one or more values are not arrays:
+    if(!(is_array(a)&&is_array(b)))
+     return false;
+   //Not equal by length
+   if(a.length != b.length)
+   return false;
+   //compare by value
+   for(let i=0;i<a.length;i++)
+   if(i[a]!==b[i])
+   return false;
+   //All test passed: array a and b are equal
+return true;
+
+}
+function objcmp(a,b){
+    //copy properties into A and B
+    let A=Object.getOwnPropertyNames(a);
+    let B=Object.getOwnPropertyNames(b);
+    if(A.length != B.length)
+     return false;
+    
+     for (let i=0;i<A.length;i++){
+         let propName=A[i];
+         let p1 = a[propName];
+         let p2 = b[propName];
+         
+         if(is_array(p1)&&is_array(p2)){
+             if(!arrcmp(p1, p2))
+              return false;
+
+         } else
+         if(p1.constructor === Object &&
+            p2.constructor === Object){
+                if(!objcmp(p1, p2))
+                  return false;
+            } else if (p1 !== p2)
+             return false;
+
+     }
+
+   return true;
+}
+console.log(objcmp(a,b));//true
+console.log(objcmp(c,d));//false
+```
+*Output*
+```console
+true
+false
+```
+**14. Take a multidimensional array and flat the array?[1,4,2,3,[10,20,20], [100,500,700,600],[2000,1000]]**
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+let multi = [1,4,2,3,[10,20,20], [100,500,700,600],
+[2000,1000]]
+console.log(multi.flat(Infinity));
+```
+
+*Output*
+```console
+[
+     1,   4,   2,    3,
+    10,  20,  20,  100,
+   500, 700, 600, 2000,
+  1000
+]
+```
