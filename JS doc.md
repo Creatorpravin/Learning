@@ -3737,3 +3737,44 @@ to its internal implementation:
 context into this keyword was a mistake and created duality and much confusion.
   - Later arrow functions were invented to deal with some of the side effects of this
 odd-ball use-case for this keyword. And that is our next subject!
+
+
+# **Chapter 14**
+
+## **Higher-order Functions**
+
+**14.0.1 Theory**
+
+  - Higher-order functions may sound complicated but they are actually simpler than
+their regular (first-order) functions that you’ve already been dealing with all along.
+Higher-order functions, as the name suggests, is something that exists at a higher
+level of thinking. That’s what abstraction is. If you want to become even better
+at software development, abstraction is a very important concept to understand.
+  - You can think of abstraction as the quality of dealing with ideas rather than gritty
+details. Once you get a good grasp on it, abstraction will become your best friend.
+
+**Abstraction**
+  - When you are driving a car and you push the break pedal, you don’t think about
+weight distribution, the brake caliper containing pistons that push the brake pads
+against the disc, or how power assistance mode augments the pressure you are
+placing on the pedal. You simply want the car to stop. That’s what you expect
+to happen. You see? You’ve already been using abstract thinking – it’s natural.
+  - How does this hold up in the context of writing software applications? In the
+following section, we will write our own higher-order function map that will walk
+through each item in an array, and apply a function to it. If our map function was
+the car brake system from previous example, it would be the brake pedal.  
+- It will be
+responsible for controlling the brake calipers and pistons – a mechanism designed
+to take care of the low-level details by making them abstract. So when we call map function, we don’t have to think of all the gritty details. We simply want
+something to happen and have the expected result returned from the function.
+  -That’s great, but before using the function we actually have to design its content
+and determine how we want those gritty details to work.
+  - JavaScript already supports several higher-order functions that do just that. But
+before using them, we will write our own. If anything, this will help us deepen our
+understanding not only of high-order functions but of abstraction in general.
+
+**Writing your first higher-order function**
+  - Not all problems can be solved with built-in JavaScript methods. Working on
+custom software, you will be faced with situations where you would have to write
+your own functions of this kind, or functions that require thinking in abstract terms
+in order to produce the most efficient solution.
