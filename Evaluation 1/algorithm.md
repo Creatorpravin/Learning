@@ -485,8 +485,7 @@ BEGIN
   sum(10);
 ```
   
- 
-**code**
+ **code**
 ```javascript
 "use strict"
 
@@ -511,8 +510,33 @@ The sum of 10 natural numbers: 55
 **10. Write a program to print the sum of the even and odd numbers for a given number?(100)**
 
 **Algorithm**
- 
-**psuedocode**
+- Step 1. Use strict mode as public.
+- Step 2. Create a fucntion with parameter.
+- Step 3. Declare two variables odd and even with 0 value.
+- Step 4. Iterate for loop till 100 times.
+- Step 5. Filter the even by if(i % 2 == 0) then add the every number.
+- Step 6. Use else statement add all the odd numbers.
+- Step 7. Print both values in console.
+- Step 8. Call the function.
+- Step 9. Stop.
+
+ **psuedocode**
+```markdown
+BEGIN
+ "use strict"
+INIT oddEven= function(value)
+    INIT even=0,odd=0;
+    FOR(let i=0;i<=value;i++) DO
+        IF (i % 2 == 0) THEN
+             even = even + i;
+        ELSE 
+            odd = odd + i;
+        ENDIF
+    PRINT ("The sum of even numbers:",even);
+    PRINT ("The sum of odd numbers:",odd);
+oddEven(100);     
+```
+    
 
 **code**
 ```javascript
@@ -545,8 +569,26 @@ The sum of even numbers: 2500
 **11. Write a program to merge two arrays? ([1,2,9,3,5,1,4,5], [11,54,70,40])**
 
 **Algorithm**
+- Step 1. Use strict mode as public.
+- Step 2. Declare two arrays arr1 and arr2.
+- Step 3. Write a function merge.
+- Step 4. Use ...rest operator to merge the array.
+- Step 5. Return the array.
+- Step 6. Call the function and print it's return value.
+- Step 7. Stop.
  
 **psuedocode**
+
+```markdown
+BEGIN
+"use strict"
+INIT arr1=[1,2,9,3,5,1,4,5],arr2 = [11,54,70,40];
+FUNCTION merge()
+  INIT merge=[...arr1,...arr2];
+  RETURN merge;
+  ENDFUNCTION
+PRINT (merge());
+```
 
 **code**
 ```javascript
@@ -569,6 +611,13 @@ console.log(merge());
 **12. Remove duplicate from an array of an object by id and name? a. [{id: 1, name: ‘Stephen covey’ }, {id: 2, name: ‘Robin Sharma’ }, {id: 3, name:‘Tolstoy’}, {id: 3, name: ‘Tolstoy’}, {id: 5, name: ‘James clear’}]**
 
 **Algorithm**
+- Step 1. Use strict mode as public.
+- Step 2. Declare a constructor and a array.
+- Step 3. Use filter function to iterate the values in array.
+- Step 4. Declare two variable to check the name and id in consructor with has() method indicates whether the Set object contains the specified value.
+- Step 5. Check both values using ! && return the value.
+- Step 6. Then call the function with array and print it.
+- Step 7. Stop.
  
 **psuedocode**
 
@@ -603,68 +652,66 @@ console.log(filteredArray);
 ]
 ```
 **13. Compare two objects, If all properties are equal return true or return false? a. ({id: 1, name: “edison”}, {id: 1, name: “edison”})b. ({id: 1, name: “edison”}, {id: 2, name: “edison”})**
+
 **Algorithm**
+- Step 1. Use strict mode as public.
+- Step 2. Create four objects.
+- Step 3. Create a function with two parameters.
+- Step 4. Get the property name of two parameters then check both length.
+- Step 5. Use for loop to iterate the peoperty in A.
+- Step 6. Check both of properties with if condition return the boolean value.
+- Step 7. Call the function with two properties.
+- Step 8. Stop.
  
 **psuedocode**
 
+```markdown
+BEGIN
+INIT a={id: 1, name: "edison"};
+INIT b={id: 1, name: "edison"};
+INIT c={id: 1, name: "edison"};
+INIT d={id: 2, name: "edison"};
+FUNCTION objcmp(x,y)
+    INIT A=Object.getOwnPropertyNames(x);
+    INIT B=Object.getOwnPropertyNames(y);
+    IF(A.length!=B.length)THEN
+      RETURN false;
+      ENDIF
+    FOR(let i=0;i< A.length;i++) DO
+       INIT propName=A[i];
+       IF(x[propName]!==y[propName]) THEN
+         RETURN false;
+       ELSE
+          RETURN true;
+        ENDIF
+    ENDFOR
+    ENDFUNCTION
+     
+```
+
+
 **code**
 ```javascript
-"use strict"
+"use strict";
 var a={id: 1, name: "edison"};
 var b={id: 1, name: "edison"};
 var c={id: 1, name: "edison"};
 var d={id: 2, name: "edison"};
-function is_array(value) {
-    return typeof value.reduce=="function"&&
-           typeof value.filter=="function"&&
-           typeof value.map=="function"&&
-           typeof value.length=="number";
-}
-function arrcmp(a,b){
-    // one or more values are not arrays:
-    if(!(is_array(a)&&is_array(b)))
-     return false;
-   //Not equal by length
-   if(a.length != b.length)
-   return false;
-   //compare by value
-   for(let i=0;i<a.length;i++)
-   if(i[a]!==b[i])
-   return false;
-   //All test passed: array a and b are equal
-return true;
 
-}
-function objcmp(a,b){
-    //copy properties into A and B
-    let A=Object.getOwnPropertyNames(a);
-    let B=Object.getOwnPropertyNames(b);
-    if(A.length != B.length)
-     return false;
-    
-     for (let i=0;i<A.length;i++){
+function objcmp(x,y){
+    let A=Object.getOwnPropertyNames(x);
+    let B=Object.getOwnPropertyNames(y);
+    if(A.length!=B.length)
+      return false;
+    for(let i=0;i<A.length;i++){
          let propName=A[i];
-         let p1 = a[propName];
-         let p2 = b[propName];
-         
-         if(is_array(p1)&&is_array(p2)){
-             if(!arrcmp(p1, p2))
-              return false;
-
-         } else
-         if(p1.constructor === Object &&
-            p2.constructor === Object){
-                if(!objcmp(p1, p2))
-                  return false;
-            } else if (p1 !== p2)
-             return false;
-
-     }
-
-   return true;
+         if(x[propName]!==y[propName])
+           return false;
+     } 
+     return true;
 }
-console.log(objcmp(a,b));//true
-console.log(objcmp(c,d));//false
+console.log(objcmp(a,b));     //true
+console.log(objcmp(c,d));     //false
 ```
 *Output*
 ```console
@@ -673,8 +720,19 @@ false
 ```
 **14. Take a multidimensional array and flat the array?[1,4,2,3,[10,20,20], [100,500,700,600],[2000,1000]]**
 **Algorithm**
- 
+- Step 1. Use strict mode as public.
+- Step 2. Create a muiltidimentional array.
+- Step 3. Use multi.flat to flat the array to single array.
+- Step 4. Print the Array.
+- Step 5. Stop.
 **psuedocode**
+```markdown
+BEGIN
+"use strict"
+INIT multi = [1,4,2,3,[10,20,20], [100,500,700,600],
+[2000,1000]];
+PRINT (multi.flat(Infinity));
+```
 
 **code**
 ```javascript
@@ -696,8 +754,28 @@ console.log(multi.flat(Infinity));
 
 **15. Group by the id of the following array of objects using the Array.reduce method?[{id: 1, name: ‘edison’ }, {id: 2, name: ‘Annand’ }, {id: 3, name: ‘Vasnath’}]**
 **Algorithm**
+- Step 1. Use strict mode as public.
+- Step 2. Delare the array of objects.
+- Step 3. Use the reduce function to iterate previous value with current value.
+- Step 4. Check the both value and add count into previous value or make it one
+- Step 5. Print the value.
+- Step 6. Stop. 
  
 **psuedocode**
+```markdown
+BEGIN
+"use strict";
+INIT peoples=[
+    {id: 1, name: 'edison' }, 
+    {id: 2, name: 'Annand' }, 
+    {id: 3, name: 'Vasnath'}
+];
+INIT groupByid = peoples.reduce((acc, intex) => {
+    acc[intex.id] = acc[intex.id] + 1 || 1;
+    RETURN acc;
+PRINT (groupByid); 
+
+```
 
 **code**
 ```javascript
@@ -727,12 +805,28 @@ console.log(groupByid);
 *****
 ```
 **Algorithm**
- 
+- Step 1. Use strict mode as public.
+- Step 2. Declare variable with 5 value and make another one with empty string.
+- Step 3. Run for loop 5 times then run the nested for loop i times.
+- Step 4. Print the "*" in nested loop and print /n at the end of nested loop.
+- Step 5. Then print the string values.
+- Step 6. Stop. 
 **psuedocode**
+BEGIN
+"use strict";
+INIT n = 5;
+INIT string = "";
+FOR(let i = 1; i <= n; i++) DO
+  FOR (let j = 0; j < i; j++) DO
+    SET string += "*";
+    ENDFOR
+  SET string += "\n";
+  ENDFOR
+PRINT (string);
 
 **code**
 ```javascript
-"use strict"
+"use strict";
 const n = 5;
 let string = "";
 for (let i = 1; i <= n; i++) {
