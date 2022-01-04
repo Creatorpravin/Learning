@@ -5,7 +5,7 @@
 let isPrime = true;
 let output;
 //const number = 23;
-let primeNumber = function (number){
+const primeNumber = function (number){
 // check if number is equal to 1
 if (number === 1) {
     output = "1 is neither prime nor composite number.";

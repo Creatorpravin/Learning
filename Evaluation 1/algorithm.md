@@ -3,7 +3,7 @@
 **1. Check prime number?**
 
 **Algorithm**
-  - Step 1. Create two variable one is boolean=true another undefined.
+  - Step 1. Use strict mode as public. Create two variable one is boolean=true another undefined.
   - Step 2. Write a function with parameter and assign to a variable.
   - Step 3. Check the number is == 1 then print  is neither prime nor composite number.
   - Step 4. else number is > 1 then generate a count of numbers using for loop.
@@ -11,10 +11,12 @@
   - Step 6. if condition check isPrime is true or false.
   - Step 7. true - is a prime number false - is not a prime number  and return it.
   - Step 8. Call the function with a parameter number.
- 
+  - Step 9. Stop.
 **Psuedocode**
 
+```markdown
 BEGIN
+"use strict"
 INIT sPrime = true, output
 INIT primeNumber = FUNCTION(number)
    IF(number === 1) THEN
@@ -34,6 +36,7 @@ INIT primeNumber = FUNCTION(number)
    ELSE 
      PRINT The number is not a prime number
    ENDIF    
+```
        
        
 **code**
@@ -41,7 +44,8 @@ INIT primeNumber = FUNCTION(number)
 "use strict"
 let isPrime = true;
 let output;
-let primeNumber = function (number){
+
+const primeNumber = function (number){
 // check if number is equal to 1
 if (number === 1) {
     output = "1 is neither prime nor composite number.";
@@ -91,8 +95,26 @@ console.log(primeNumber(25));
   - But the ‘===’ operator tests for strict equality i.e it **will not do the type conversion** hence if the two values are not of the same type, when compared, it will return false.
 
 **Algorithm**
- 
+ - Step 1. Use strict mode as public. 
+ - Step 2. Create a funcion with parameter and assing to a variable.
+ - Step 3. Then duplicate one value to string by adding empty string.
+ - Step 4. Check the both value with "==" and "===" operator and print it.
+ - Step 5. Call the funciton with any number.
+ - Step 6. Compare a string and string constructor with "==" and "===" operator and print in console.
+ - Step 7. Stop.
+
 **psuedocode**
+```markdown
+BEGIN
+"use strict"
+INIT check = FUNCTION(value)
+    PRINT (value +"") ==value);
+    PRINT (value +"") ===value);
+    FUNCTION END
+check(25);
+PRINT("yavar"==new String ("yavar"));
+PRINT("yavar"===new String ("yavar"));
+```
 
 **code**
 ```javascript
@@ -118,25 +140,51 @@ false
 **3.How would you reverse a string in JavaScript?**
 
 **Algorithm**
- 
+- Step 1. Use strict mode as public. 
+- Step 2. Create a function with string parameters and initialise reversed variable as empty string.
+- Step 3. Check the string with if consition and use for...of loop to get individual string.
+- Step 4. Then add the string reversly with reversed variable.
+- Step 5. Call the function with string.
+- Step 6. Stop.
+
 **psuedocode**
+```markdown
+BEGIN
+"use strict"
+FUNCTION reverseString(String)
+   IF(typeof Str === 'string')
+     SET  reversed = TYPEOF STRING;
+     FOR (let c of String) DO
+      SET reversed = c + reversed;
+    ENDFOR
+       PRINT reversed;
+     ELSE
+      PRINT (Str,"Not a string");
+    FUNCTION END
+reverseString("yavar technologies");
+```
 
 **code**
 
 ```javascript
 "use strict"
-function reverseString(String){
-    let reversed = '';
-    for (let c of String) {
+function reverseString(Str){
+    if (typeof Str === 'string'){
+     let reversed = '';
+    for (let c of Str) {
         reversed = c + reversed;
     }
     console.log(reversed);
+  }else{
+      console.log(Str,"Not a string");
+  }
 }
-reverseString("yavar technologies");
+reverseString("Yavar technologies");
 /*//using Inbuilt function
 let str = 'yavar';
 let reverse = [...str].reverse().join('');
 console.log(reverse);*/
+
 ```
 
 *output*
@@ -147,13 +195,25 @@ seigolonhcet ravay
 **4. How would you reverse words in a sentence?**
 
 **Algorithm**
- - Step 1. Use the split(" ") method to return a new array
+ - Step 1. Use strict mode as public. Use the split(" ") method to return a new array
  - Step 2. Use the reverse() method to reverse the new created array 
  - Step 3. Use the join(" ") method to join all elements of the array into a string
  - Step 4. Return the reversed string
  - Step 5. Call the string function with string parameters
+ - Step 6. Stop.
 
 **psuedocode**
+```markdown
+BEGIN
+"use strict"
+FUNCTION reverseString(str) 
+     SET splitString = str.split(" "); 
+     SET reverseArray = splitString.reverse(); 
+     SET joinArray = reverseArray.join(" "); 
+   RETURN joinArray;
+  ENDFUNCTION
+PRINT (reverseString("hello world");
+```
 
 **code**
 ```javascript
@@ -168,10 +228,10 @@ function reverseString(str) {
  
 console.log(reverseString("hello world"));
 //compress the program 
-let reverse = function (str) {
+/*let reverse = function (str) {
  return str.split(" ").reverse().join(" ")};
 
-console.log(reverse("world hello"));
+console.log(reverse("world hello"));*/
 ```
 
 *Output*
@@ -183,8 +243,29 @@ hello world
 
 **5. How will you verify a word as a palindrome?**
 **Algorithm**
- 
+ - Step 1. Use strict mode as public.
+ - Step 2. Create a function with string parameter 
+ - Step 3. Initialise the varibale to know the length of string.
+ - Step 4. Run the for loop for iteration of half word.
+ - Step 5. Use if condition to check first value with last value else print not palindrome.
+ - Step 6. Then call the function with string parameter.
+ - Step 7. Stop.
+
 **psuedocode**
+```markdown
+BEGIN
+"use strict"
+FUNCTION checkPalindrome(str)
+     SET len = str.length;
+     FOR (let i = 0; i < len / 2; i++) DO
+       IF str[i] !== str[len - 1 - i]) 
+         RETURN It is not a palindrome.
+        ENDIF
+       ENDFOR
+     RETURN  It is a palindrome
+PRINT (checkPalindrome("redivider")
+PRINT (checkPalindrome("redivide")
+```
 
 **code**
 ```javascript
@@ -226,13 +307,25 @@ It is not a palindrome
   - The forEach() method calls a function for each element in an array.
 
   - Note:Array.map is like Array.forEach but it returns a copy of the modified array.That original array is still unchanged.
-**Algorithm**
- 
-**psuedocode**
-
-**code**
 
 **.forEach**
+
+**Algorithm**
+  - Step 1. Use strict mode as public.
+  - Step 2. Create a array with string values.
+  - Step 3. Use the forEach to iterate the values.
+  - Step 4. Print the values.
+  - Step 5. Stop.
+ 
+**psuedocode**
+  ```markdown
+   BEGIN
+    "use strict"
+    INIT fruit = ['pear','banana','orange','apple','cherry'];
+    fruit.forEach(item => PRINT (item));
+  ```
+
+**code**
 
 ```javascript
 "use strict"
@@ -258,6 +351,24 @@ cherry
 
 **.map**
 
+**Algorithm**
+  - Step 1. Use strict mode as public.
+  - Step 2. Create a array with string values.
+  - Step 3. Use map method with the array and write the event.
+  - Step 4. Assing to variable.
+  - Step 5. Print the variable.
+  - Step 6. Stop.
+ 
+**psuedocode**
+```markdown
+BEGIN
+"use strict"
+SET number = [24,24,2,4,56,85,63];
+SET condition = number.map(value => value + 1);
+PRINT condition;
+```
+**code**
+
 ```javascript
 "use strict"
 let number = [24,24,2,4,56,85,63];
@@ -276,8 +387,18 @@ console.log(condition);
 **7. Generate a random number between 1 to 5?**
 
 **Algorithm**
- 
+  - Step 1. Use strict mode as public.
+  - Step 2. Use Math.floor to returns the largest integer less than or equal to a given number
+  - Step 3. Math.random to get the random value till given number.
+  - Step 5. Add the number 1 to avoid the 0 values.
+  - Step 6. Then print the number.
+  - Step 7. Stop. 
+   
 **psuedocode**
+```markdown
+BEGIN
+PRINT (Math.floor((Math.random() * 5) + 1));
+```
 
 **code**
 
@@ -291,13 +412,35 @@ console.log(Math.floor((Math.random() * 5) + 1));
 
 ```console
 4
+3
+1
+2
+
 ```
 
 **8. Remove duplicate from the following array?([1,2,9,4,5,8,3,5,1,4,5])**
 
 **Algorithm**
- 
+  - Step 1. Use strict mode as public.
+  - Step 2. Create one array with duplicate values and one empty array.
+  - Step 3. Use for...each to iterate the values in array. 
+  - Step 4. Use if condition to check if true or false. 
+  - Step 5. arr.include for check extisting values with current values and push them into empty array.
+  - Step 6. Call the function with array.
+  - Step 7. Print the new array.
+  - Step 8. Stop.
 **psuedocode**
+
+```markdown
+BEGIN
+ SET animals = [1,2,9,4,5,8,3,5,1,4,5];
+ SET unique = [];  
+ animals.forEach((item) =>
+  IF(!unique.includes(item))
+      unique.push(item);  
+  ENDIF
+ PRINT unique;
+```
 
 **code**
 ```javascript
@@ -322,9 +465,27 @@ console.log(unique);
 **9. Write a program to calculate the sum of the first 10 natural numbers.**
 
 **Algorithm**
- 
+  - Step 1. Use strict mode as public.
+  - Step 2. Create a function with parameter.
+  - Step 3. Declare two varibale sum = 0 , i = 1.
+  - Step 4. Use while to iterate the values.
+  - Step 5. Add the iterated values inside the while.
+  - Step 6. Print the value and call the fucntion.
+  - Step 7. Stop.   
 **psuedocode**
-
+```markdown
+BEGIN
+  FUNCTION sum(number)
+  INIT sum = 0, i = 1;
+  WHILE (i <= number) DO
+  SET sum += i;
+  SET i++;
+  PRINT ('The sum of 10 natural numbers:', sum);
+  ENDFUNCTION
+  sum(10);
+```
+  
+ 
 **code**
 ```javascript
 "use strict"
