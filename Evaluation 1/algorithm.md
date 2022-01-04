@@ -811,6 +811,7 @@ console.log(groupByid);
 - Step 4. Print the "*" in nested loop and print /n at the end of nested loop.
 - Step 5. Then print the string values.
 - Step 6. Stop. 
+
 **psuedocode**
 BEGIN
 "use strict";
