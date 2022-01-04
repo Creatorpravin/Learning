@@ -3,18 +3,44 @@
 **1. Check prime number?**
 
 **Algorithm**
+  - Step 1. Create two variable one is boolean=true another undefined.
+  - Step 2. Write a function with parameter and assign to a variable.
+  - Step 3. Check the number is == 1 then print  is neither prime nor composite number.
+  - Step 4. else number is > 1 then generate a count of numbers using for loop.
+  - Step 5. Check the condtion number % i == 0 then prime = false.
+  - Step 6. if condition check isPrime is true or false.
+  - Step 7. true - is a prime number false - is not a prime number  and return it.
+  - Step 8. Call the function with a parameter number.
  
 **Psuedocode**
 
+BEGIN
+INIT sPrime = true, output
+INIT primeNumber = FUNCTION(number)
+   IF(number === 1) THEN
+      PRINT 1 is neither prime nor composite number.
+   ELSEIF(number > 1)
+       FOR (2<100) DO
+         IF(number % i == 0)THEN
+            sPrime = false;
+            BREAK;
+            ENDIF
+        ENDFOR
+      IF(isprime)
+       PRINT number is a prime number         
+      ELSE
+       PRINT number is not a prime number   
+      ENDIF       
+   ELSE 
+     PRINT The number is not a prime number
+   ENDIF    
+       
+       
 **code**
 ```javascript
 "use strict"
-// check if a number is prime or not
-
-
 let isPrime = true;
 let output;
-//const number = 23;
 let primeNumber = function (number){
 // check if number is equal to 1
 if (number === 1) {
@@ -119,6 +145,7 @@ seigolonhcet ravay
 ```
 
 **4. How would you reverse words in a sentence?**
+
 **Algorithm**
  - Step 1. Use the split(" ") method to return a new array
  - Step 2. Use the reverse() method to reverse the new created array 
@@ -570,4 +597,258 @@ console.log(string);
 2 3
 4 5 6
 7 8 9 10
+```
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+
+```javascript
+"use strict"
+const n = 4; 
+let string = "";
+let count = 1;
+for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= i; j++) {
+    string += " " + count;
+    count++;
+  }
+  string += "\n";
+}
+console.log(string);
+```
+*Output*
+```console
+1
+2 3
+4 5 6
+7 8 9 10
+```
+**19. Write a program in Javascript to display the pattern like a diamond**
+```console
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   *** 
+    *
+```
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+let n = 5;
+let string = "";
+// Pyramid
+for (let i = 1; i <= n; i++) {
+  for (let j = 1; j < n - i + 1; j++) {
+    string += " ";
+  }
+  for (let k = 1; k <= 2 * i - 1; k++) {
+    string += "*";
+  }
+  string += "\n";
+}
+// Reverse Pyramid
+for (let i = 1; i <= n - 1; i++) {
+  for (let j = 1; j < i + 1; j++) {
+    string += " ";
+  }
+  for (let k = 1; k <= 2 * (n - i) - 1; k++) {
+    string += "*";
+  }
+  string += "\n";
+}
+console.log(string);
+```
+*Output*
+```console
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   *** 
+    *
+```
+
+**20. Explain following terms**
+**a. console.log**
+  - The console.log() is a function in JavaScript which is used to print any kind of variables defined before in it or to just print any message that needs to be display.
+**code**
+```javascript
+console.log("Hello world!");//Hello world!
+const myObj = {firstname:"Praveen", lastname:"Kumar"};
+console.log(myObj);
+```
+*Output*
+```console
+Hello world!
+{ firstname: 'Praveen', lastname: 'Kumar' }
+
+```
+**b. console.dir**
+  - If you want to take a look at all object’s properties and methods, you can print it
+out directly into the console using console.dir method.
+
+**code**
+```javascript
+let x = {property: 1, prop1: 2, method: function(){}};
+console.dir(x);
+```
+
+*Output*
+```console
+{ property: 1, prop1: 2, method: [Function: method] }
+```
+**c. console.count**
+  - The console.count() method logs the number of times that this particular call to count() has been called.
+**code**
+```javascript
+function greet() {
+  console.count(user);
+  return user;
+}
+
+user = "praveen";
+greet();
+user = "kumar";
+greet();
+greet();
+console.count("kumar");
+```
+*Output*
+
+```console
+praveen: 1
+kumar: 1
+kumar: 2
+kumar: 3
+```
+
+
+**d. console.table**
+ - The console.table() method displays tabular data as a table.
+
+ - This function takes one mandatory argument data, which must be an array or an object, and one additional optional parameter columns.
+
+**code**
+```javascript
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  
+  var arun = new Person("Arun", "Pandian");
+  var dinesh = new Person("Dinesh", "Kumar");
+  var bala = new Person("Bala", "Subramani");
+  
+  console.table([arun, dinesh, bala]);
+
+```
+*Output*
+_____________________________________
+│ (index) │ firstName │  lastName   │
+_____________________________________
+│    0    │  'Arun'   │  'Pandian'  │
+
+│    1    │ 'Dinesh'  │   'Kumar'   │
+
+│    2    │  'Bala'   │ 'Subramani' │
+  ___________________________________
+
+**e. console.time/timeLog/timeEnd**
+  - The console.timeLog() method logs the current value of a timer that was previously started by calling console.time() to the console.
+  - **console.time/console.timeEnd**You can track the amount of time between function calls. This can be helpful
+when optimizing code:
+
+**code**
+```javascript
+console.time("answer time");
+console.timeLog("answer time");
+console.timeEnd("answer time");
+```
+*Output*
+```console
+answer time: 0.099ms
+answer time: 0.467ms
+```
+
+**f. console.trace**
+  - The trace() method displays a trace that show how the code ended up at a certain point.
+  - The console.trace() method outputs a stack trace
+**code**
+```javascript
+function foo() {
+    function bar() {
+      console.trace();
+    }
+    bar();
+  }
+    foo();
+```
+*Output*
+
+```console
+bar	
+foo	
+(anonymous)
+
+```
+
+**g. console.group/groupEnd**
+  - The console.group() method creates a new inline group in the Web console log. This indents following console messages by an additional level, until console.groupEnd() is called.
+
+**code**
+```javascript
+console.log("This is the outer level");
+console.group();
+console.log("Level 2");
+console.group();
+console.log("Level 3");
+console.warn("More of level 3");
+console.groupEnd();
+console.log("Back to level 2");
+console.groupEnd();
+console.log("Back to the outer level");
+
+```
+
+*Output*
+```console
+This is the outer level
+  Level 2
+    Level 3
+    More of level 3
+  Back to level 2
+Back to the outer level
+```
+
+**h. console.assert**
+ - The console.assert() method writes an error message to the console if the assertion is false. If the assertion is true, nothing happens.
+**code**
+```javascript
+const errorMsg = 'the # is not even';
+for (let number = 2; number <= 5; number += 1) {
+    console.log('the # is ' + number);
+    console.assert(number % 2 === 0, {number: number, errorMsg: errorMsg});
+}
+```
+*Output*
+```console
+the # is 2
+the # is 3
+Assertion failed: [object Object]
+the # is 4
+the # is 5
+Assertion fa
 ```
