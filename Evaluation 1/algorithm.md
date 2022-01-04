@@ -808,11 +808,12 @@ console.log(groupByid);
 - Step 1. Use strict mode as public.
 - Step 2. Declare variable with 5 value and make another one with empty string.
 - Step 3. Run for loop 5 times then run the nested for loop i times.
-- Step 4. Print the "*" in nested loop and print /n at the end of nested loop.
+- Step 4. Add the "*" in nested loop and add /n at the end of nested loop.
 - Step 5. Then print the string values.
 - Step 6. Stop. 
 
 **psuedocode**
+```markdown
 BEGIN
 "use strict";
 INIT n = 5;
@@ -824,6 +825,7 @@ FOR(let i = 1; i <= n; i++) DO
   SET string += "\n";
   ENDFOR
 PRINT (string);
+```
 
 **code**
 ```javascript
@@ -855,9 +857,32 @@ console.log(string);
 7 8 9 10
 ```
 **Algorithm**
+- Step 1. Use strict mode as public.
+- Step 2. Declare variable with 4 value and make another one with empty string.
+- Step 3. Declare count variable at public with number 1.
+- Step 4. Run for loop 4 times then run the nested for loop i times.
+- Step 5. Add the count value to a variable as string and increment it.
+- Step 6. Add the count in nested loop and add /n at the end of nested loop.
+- Step 7. Print the string variable.
+- Step 8. Stop.
+
  
 **psuedocode**
-
+```markdown
+BEGIN 
+"use strict"
+INIT n = 4; 
+INIT string = "";
+INIT count = 1;
+FOR(let i = 1; i <= n; i++)
+   FOR(let j = 1; j <= i; j++)
+     SET tring += " " + count;
+     SETcount++;
+     ENDFOR
+   SET string += "\n";
+   ENDFOR
+PRINT (string);
+```
 **code**
 
 ```javascript
@@ -881,6 +906,72 @@ console.log(string);
 4 5 6
 7 8 9 10
 ```
+
+**18. Write a program in Javascript to make such a pattern like a pyramid with numbers increased by 1**
+```console
+   1
+  2 3
+ 4 5 6
+7 8 9 10
+
+```
+**Algorithm**
+- Step 1. Use strict mode as public.
+- Step 2. Declare count variable at public with number 1 and a empty string.
+- Step 3. Run for loop 4 times then run the nested for loop 5 - i times for print spaces.
+- Step 4. Then create another for loop with condition of (2*i)-i 
+- Step 5. Add the count value to a variable as string and increment count.
+- Step 6. Add the count in nested loop and add /n at the end of nested loop.
+- Step 7. Then print the value.
+
+**psuedocode**
+```markdown
+BEGIN
+"use strict";
+INIT number = "";
+INIT count=1;
+FOR (let i = 1;i<5;i++) DO
+  FOR (let j = 1;j<= 5 - i;j++) DO
+    SET number += " ";
+    ENDFOR
+  FOR (let k = 0; k < 2*i-i ; k++) DO
+   SET number += count;
+   SET count++;
+   SET number += "
+   ENDFOR
+  SET += "\n";
+  ENDFOR
+PRINT (number);
+```
+
+**code**
+```javascript
+"use strict";
+let number = "";
+let count=1;
+for (let i = 1;i<5;i++) {
+  for (let j = 1;j<= 5 - i;j++){
+    number += " ";
+  }
+  for (let k = 0; k < 2*i-i ; k++) {
+    number += count;
+    count++;
+    number += " ";
+  }
+  number += "\n";
+}
+console.log(number);
+```
+
+*Output*
+```console
+   1
+  2 3
+ 4 5 6
+7 8 9 10
+
+```
+
 **19. Write a program in Javascript to display the pattern like a diamond**
 ```console
     *
