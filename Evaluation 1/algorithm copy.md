@@ -571,3 +571,41 @@ console.log(string);
 4 5 6
 7 8 9 10
 ```
+
+**Algorithm**
+ 
+**psuedocode**
+
+**code**
+```javascript
+"use strict"
+const n = 4; 
+let string = "";
+let count = 1;
+
+for (let i = 1; i <= n; i++) {
+  
+  for (let j = 1; j <= i; j++) {
+    string += " " + count;
+    count++;
+  }
+  string += "\n";
+}
+console.log(string);
+```
+
+*Output*
+ ```console
+ 1
+ 2 3
+ 4 5 6
+ 7 8 9 10
+
+ ```
+ **18. Write a program in Javascript to make such a pattern like a pyramid with numbers increased by 1**
+   ```console
+   1
+  2 3
+ 4 5 6
+7 8 9 10
+   ```
