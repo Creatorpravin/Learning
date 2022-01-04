@@ -12,6 +12,7 @@
   - Step 7. true - is a prime number false - is not a prime number  and return it.
   - Step 8. Call the function with a parameter number.
   - Step 9. Stop.
+  
 **Psuedocode**
 
 ```markdown
