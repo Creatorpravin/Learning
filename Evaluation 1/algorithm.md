@@ -1155,11 +1155,11 @@ function Person(firstName, lastName) {
 
 ```
 *Output*
-  | (index)  |        firstname   | lastName   │
-   | ------   |     ---------- |   ---------- |
-   |  0	     |        'Arun'    |'Pandian'  │
-   |  1	     |     'Dinesh'     |'Kumar'   │
-   |  2	     |    'Bala'    |'Subramani' │
+  | (index)  |        firstname   | lastName   
+   | ------   |     ---------- |   ---------- 
+   |  0	     |        'Arun'    |'Pandian'  
+   |  1	     |     'Dinesh'     |'Kumar'   
+   |  2	     |    'Bala'    |'Subramani' 
 
 
 │ (index) │ firstName │  lastName   │
