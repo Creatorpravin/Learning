@@ -3778,3 +3778,51 @@ understanding not only of high-order functions but of abstraction in general.
 custom software, you will be faced with situations where you would have to write
 your own functions of this kind, or functions that require thinking in abstract terms
 in order to produce the most efficient solution.
+
+**The first-order function that applies an action**
+  - The actual action happens not in map, but in the function passed to map as one
+of its parameters. This means the map function doesn’t have one single purpose.
+  - It is whatever the function passed into it does. And that can be anything.
+  - We’ll create the map function and pass a first-order function into it, whose single
+purpose will be to increment a numeric value by 1. Just like in the car brakes
+example, the user of our map function should not be concerned about how the
+internal for-loop iterates through all items. We just want to give it a task. In
+order to do that, we will pass another function into the higher-order map function.
+  - **Important:** What actually makes the function abstract is the fact that the higherorder function itself does not need to know exactly what it’s doing. It is simply
+a logical scaffold to perform an action on a set of values. Much like a for-loop.
+  - In fact, a for-loop is at its core. But when the function is actually being used, it
+is of no concern. You can think of this as abstracting the for-loop (it becomes
+assumed.)
+  - They are actually often used together with first-order functions. Try not to think
+of a higher-order function as a specific feature. They can behave as a for-loop.
+  - But they can also be used as a way to instantiate an event – in which case a
+first-order function would be used together with it as a callback function. They
+are not limited to a single purpose. They enable a few different logical patterns that cannot be created using first-order functions alone.
+  - For example Array.map iterates through a set of values and applies a modification.
+  - The Array.reduce ”reduces” a set of values to a single value.
+Event-based setTimeout is a higher-order function, and so is addEventListener.
+**14.0.2 Definition**
+  - A higher-order function is a function that either takes a function as one of its
+parameters or returns a function (or both.)
+**14.0.3 Abstract**
+  - Here is one way of visually thinking about the pattern of a high-order function. It
+exists as a higher level th**inking.
+**14.0.4 Iterators**
+ - The Array.map method is one of the most common higher-order functions. It
+takes a function to run on every item in the array. Then it returns a modified copy
+of the original array:
+Here is a rather abstract way of thinking about the problem: ”Add 1 to each item
+in the array.” Simple logic which is defined in add one function.
+The Array.map method does not expose its loop implementation. The idea is not
+to make the iterator merely more efficient either (although, that would help) but
+hide it completely. We are only concerned with supplying a first-order function to
+the map method. Internally, it will run the function on each value in the array.
+This is a very powerful technique that can apply to many problems. But the
+greatest advantage of using a higher-order function is that it abstracts problem
+solving. It helps us focus on the key: running the function on each individual item
+in the array, while abstracting away the for-loop (or while loop).
+Let’s create the function that will modify the values. The body of the function
+depends on what type of modifications you’re looking to apply to each array item.
+We will create a first-order function called add one, which simply adds 1 to the
+value. This is just a helper function that will work together with a higher-order
+function (first-order and higher-order functions are often used together.)
