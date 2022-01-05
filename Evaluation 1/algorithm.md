@@ -621,6 +621,25 @@ console.log(merge());
 - Step 7. Stop.
  
 **psuedocode**
+```markdown
+BEGIN
+"use strict";
+INIT x = new Set();
+INIT array = [
+    {id: 1, name: 'Stephen covey'},
+    {id: 2, name: 'Robin Sharma' }, 
+    {id: 3, name: 'Tolstoy'}, 
+    {id: 3, name: 'Tolstoy'}, 
+    {id: 5, name: 'James clear'}
+];
+INIT filteredArray = array.filter(value => {
+  INIT duplicate1 = x.has(value.id);
+  SET x.add(value.id);
+  var duplicate2 = x.has(value.name);
+  SET x.add(value.name);
+  RETURN !duplicate1&&!duplicate2;
+PRINT (filteredArray);
+```
 
 **code**
 ```javascript
@@ -986,8 +1005,38 @@ console.log(number);
     *
 ```
 **Algorithm**
- 
+ - Step 1. Use strict mode as public.
+ - Step 2. Declare n variable at public with number 1 and a empty string.
+ - Step 3. Run for loop nth times do spaces then run the nested for loop 2*i-1 times for print stars.
+ - Step 4. Add /n at the end of nested loop.
+ - Step 5. Again run for loop nth - 1 times do spaces then run the nested for loop 2*(n-1) times for print stars.
+ - Step 6. Add /n at the end of nested loop.
+ - Step 7. Stop.
+
 **psuedocode**
+```markdown
+BEGIN
+"use strict"
+INIT n = 5;
+INIT string = "";
+FOR (let i = 1; i <= n; i++) DO
+  FOR (let j = 1; j < n - i + 1; j++)
+   SET string += " ";
+  ENDFOR
+  FOR (let k = 1; k <= 2 * i - 1; k++)
+   SET string += "*"; 
+ SET string += "\n";
+  ENDFOR
+ ENDFOR
+ FOR (let i = 1; i <= n - 1; i++)
+    FOR (let j = 1; j < i + 1; j++)
+     SET string += " ";
+     ENDFOR
+    FOR (let k = 1; k <= 2 * (n - i) - 1; k++)
+      SET string += "*"; 
+   SET string += "\n";
+PRINT (string);
+```
 
 **code**
 ```javascript
