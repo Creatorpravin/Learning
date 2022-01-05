@@ -20,14 +20,14 @@ BEGIN
 "use strict"
 INIT sPrime = true, output
 INIT primeNumber = FUNCTION(number)
-   IF(number === 1) THEN
+   IF(number === 1|| typeof number === "string"|| number < 1) THEN
       PRINT 1 is neither prime nor composite number.
    ELSEIF(number > 1)
        FOR (2<100) DO
          IF(number % i == 0)THEN
             sPrime = false;
             BREAK;
-            ENDIF
+          ENDIF
         ENDFOR
       IF(isprime)
        PRINT number is a prime number         
@@ -43,13 +43,16 @@ INIT primeNumber = FUNCTION(number)
 **code**
 ```javascript
 "use strict"
+// check if a number is prime or not
+
+
 let isPrime = true;
 let output;
-
+//const number = 23;
 const primeNumber = function (number){
 // check if number is equal to 1
-if (number === 1) {
-    output = "1 is neither prime nor composite number.";
+if (number === 1 || typeof number === "string"|| number < 1) {
+    output = "Enter the valid value";
 }
 
 // check if number is greater than 1
@@ -76,17 +79,16 @@ else {
 }
 return output;
 }
-console.log(primeNumber(2));
-console.log(primeNumber(2));
+console.log(primeNumber("two"));
 console.log(primeNumber(1));
 console.log(primeNumber(25));
 ```
 
 *Output:*
 ```console
-console.log(primeNumber(2));
-console.log(primeNumber(1));
-console.log(primeNumber(25));
+Enter the valid value
+Enter the valid value
+25 is a not prime number
 ```
 
 
@@ -257,6 +259,7 @@ hello world
 BEGIN
 "use strict"
 FUNCTION checkPalindrome(str)
+IF (typeof str === 'string')
      SET len = str.length;
      FOR (let i = 0; i < len / 2; i++) DO
        IF str[i] !== str[len - 1 - i]) 
@@ -264,6 +267,9 @@ FUNCTION checkPalindrome(str)
         ENDIF
        ENDFOR
      RETURN  It is a palindrome
+ELSE
+  RETURN str,"Not a string";
+ENDIF  
 PRINT (checkPalindrome("redivider")
 PRINT (checkPalindrome("redivide")
 ```
@@ -273,7 +279,7 @@ PRINT (checkPalindrome("redivide")
 "use strict"
 
 function checkPalindrome(str) {
-
+    if (typeof str === 'string'){
     // find the length of a string
     const len = str.length;
 
@@ -286,19 +292,21 @@ function checkPalindrome(str) {
         }
     }
     return 'It is a palindrome';
+}else{
+   return str,"Not a string";
+}
 }
 
 
 // call the function
-
 console.log(checkPalindrome("redivider"));
-console.log(checkPalindrome("redivide"));
+console.log(checkPalindrome(5));
 ```
 
 *Output*
 ```console
 It is a palindrome
-It is not a palindrome
+Not a string
 ```
 
 **6. Write your own program to explain the difference between forEach and map?**

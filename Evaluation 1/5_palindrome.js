@@ -1,7 +1,7 @@
 "use strict"
 
 function checkPalindrome(str) {
-
+    if (typeof str === 'string'){
     // find the length of a string
     const len = str.length;
 
@@ -14,9 +14,12 @@ function checkPalindrome(str) {
         }
     }
     return 'It is a palindrome';
+}else{
+   return str,"Not a string";
+}
 }
 
 
 // call the function
 console.log(checkPalindrome("redivider"));
-console.log(checkPalindrome("redivide"));
+console.log(checkPalindrome(5));

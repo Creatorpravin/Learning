@@ -7,8 +7,8 @@ let output;
 //const number = 23;
 const primeNumber = function (number){
 // check if number is equal to 1
-if (number === 1) {
-    output = "1 is neither prime nor composite number.";
+if (number === 1 || typeof number === "string"|| number < 1) {
+    output = "Enter the valid value";
 }
 
 // check if number is greater than 1
@@ -35,6 +35,6 @@ else {
 }
 return output;
 }
-console.log(primeNumber(2));
+console.log(primeNumber("two"));
 console.log(primeNumber(1));
 console.log(primeNumber(25));
