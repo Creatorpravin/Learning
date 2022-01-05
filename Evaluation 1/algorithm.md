@@ -485,12 +485,17 @@ console.log(unique);
 ```markdown
 BEGIN
   FUNCTION sum(number)
-  INIT sum = 0, i = 1;
-  WHILE (i <= number) DO
-  SET sum += i;
-  SET i++;
-  PRINT ('The sum of 10 natural numbers:', sum);
+  IF (!isNaN(number)
+    INIT sum = 0, i = 1;
+    WHILE (i <= number) DO
+    SET sum += i;
+    SET i++;
+    PRINT ('The sum of 10 natural numbers:', sum);
+  ELSE
+    PRINT Not a valid number;
+  ENDIF  
   ENDFUNCTION
+  sum('loop');
   sum(10);
 ```
   
@@ -499,20 +504,27 @@ BEGIN
 "use strict"
 
 function sum(number){
+    if (!isNaN(number)){
 let sum = 0, i = 1;
 while(i <= number) {
     sum += i;
     i++;
 }
-
+   
 console.log('The sum of 10 natural numbers:', sum);
+}else{
+    console.log('Not a valid number');
 }
+
+}
+sum('loop');
 sum(10);
 ```
 
 *Output*
 
 ```console
+Not a valid number
 The sum of 10 natural numbers: 55
 ```
 
