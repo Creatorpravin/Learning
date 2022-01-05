@@ -3808,21 +3808,21 @@ parameters or returns a function (or both.)
   - Here is one way of visually thinking about the pattern of a high-order function. It
 exists as a higher level th**inking.
 **14.0.4 Iterators**
- - The Array.map method is one of the most common higher-order functions. It
+ - The Array.map method is one of the most common higher-order functions.  It
 takes a function to run on every item in the array. Then it returns a modified copy
 of the original array:
-Here is a rather abstract way of thinking about the problem: ”Add 1 to each item
+ - Here is a rather abstract way of thinking about the problem: ”Add 1 to each item
 in the array.” Simple logic which is defined in add one function.
 The Array.map method does not expose its loop implementation. The idea is not
 to make the iterator merely more efficient either (although, that would help) but
 hide it completely. We are only concerned with supplying a first-order function to
 the map method. Internally, it will run the function on each value in the array.
-This is a very powerful technique that can apply to many problems. But the
+ - This is a very powerful technique that can apply to many problems. But the
 greatest advantage of using a higher-order function is that it abstracts problem
 solving. It helps us focus on the key: running the function on each individual item
 in the array, while abstracting away the for-loop (or while loop).
-Let’s create the function that will modify the values. The body of the function
+ - Let’s create the function that will modify the values. The body of the function
 depends on what type of modifications you’re looking to apply to each array item.
-We will create a first-order function called add one, which simply adds 1 to the
+ - We will create a first-order function called add one, which simply adds 1 to the
 value. This is just a helper function that will work together with a higher-order
 function (first-order and higher-order functions are often used together.)
