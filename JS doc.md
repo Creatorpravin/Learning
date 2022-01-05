@@ -3804,9 +3804,12 @@ Event-based setTimeout is a higher-order function, and so is addEventListener.
 **14.0.2 Definition**
   - A higher-order function is a function that either takes a function as one of its
 parameters or returns a function (or both.)
+
 **14.0.3 Abstract**
+
   - Here is one way of visually thinking about the pattern of a high-order function. It
-exists as a higher level th**inking.
+exists as a higher level thinking.
+
 **14.0.4 Iterators**
  - The Array.map method is one of the most common higher-order functions.  It
 takes a function to run on every item in the array. Then it returns a modified copy
