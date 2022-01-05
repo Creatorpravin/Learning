@@ -1162,12 +1162,6 @@ function Person(firstName, lastName) {
    |  2	     |    'Bala'    |'Subramani' 
 
 
-│ (index) │ firstName │  lastName   │
-| -----   | -------   |  --------- | 
-│    0    │  'Arun'   │  'Pandian'  │
-│    1    │ 'Dinesh'  │   'Kumar'   │
-│    2    │  'Bala'   │ 'Subramani' │
-
 **e. console.time/timeLog/timeEnd**
   - The console.timeLog() method logs the current value of a timer that was previously started by calling console.time() to the console.
   - **console.time/console.timeEnd**You can track the amount of time between function calls. This can be helpful
