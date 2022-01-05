@@ -1009,9 +1009,10 @@ console.log(number);
  - Step 2. Declare n variable at public with number 1 and a empty string.
  - Step 3. Run for loop nth times do spaces then run the nested for loop 2*i-1 times for print stars.
  - Step 4. Add /n at the end of nested loop.
- - Step 5. Again run for loop nth - 1 times do spaces then run the nested for loop 2*(n-1) times for print stars.
- - Step 6. Add /n at the end of nested loop.
- - Step 7. Stop.
+ - Step 5. Again run loops to print reverse prymid.
+ - Step 6. for loop nth - 1 times do spaces then run the nested for loop 2*(n-1) times for print stars.
+ - Step 7. Add /n at the end of nested loop.
+ - Step 8. Stop.
 
 **psuedocode**
 ```markdown
@@ -1035,6 +1036,7 @@ FOR (let i = 1; i <= n; i++) DO
     FOR (let k = 1; k <= 2 * (n - i) - 1; k++)
       SET string += "*"; 
    SET string += "\n";
+  ENDFOR
 PRINT (string);
 ```
 
@@ -1153,15 +1155,15 @@ function Person(firstName, lastName) {
 
 ```
 *Output*
-_____________________________________
+
 │ (index) │ firstName │  lastName   │
-_____________________________________
+| :-----: | :-------: | :---------: | 
 │    0    │  'Arun'   │  'Pandian'  │
-
+| :-----: | :-------: | :---------: | 
 │    1    │ 'Dinesh'  │   'Kumar'   │
-
+| :-----: | :-------: | :---------: | 
 │    2    │  'Bala'   │ 'Subramani' │
-  ___________________________________
+| :-----: | :-------: | :---------: | 
 
 **e. console.time/timeLog/timeEnd**
   - The console.timeLog() method logs the current value of a timer that was previously started by calling console.time() to the console.
