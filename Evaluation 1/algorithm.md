@@ -1157,13 +1157,10 @@ function Person(firstName, lastName) {
 *Output*
 
 │ (index) │ firstName │  lastName   │
-| :-----: | :-------: | :---------: | 
+| -----   | -------   |  --------- | 
 │    0    │  'Arun'   │  'Pandian'  │
-| :-----: | :-------: | :---------: | 
 │    1    │ 'Dinesh'  │   'Kumar'   │
-| :-----: | :-------: | :---------: | 
 │    2    │  'Bala'   │ 'Subramani' │
-| :-----: | :-------: | :---------: | 
 
 **e. console.time/timeLog/timeEnd**
   - The console.timeLog() method logs the current value of a timer that was previously started by calling console.time() to the console.
