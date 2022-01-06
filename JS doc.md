@@ -3829,3 +3829,129 @@ depends on what type of modifications you’re looking to apply to each array it
  - We will create a first-order function called add one, which simply adds 1 to the
 value. This is just a helper function that will work together with a higher-order
 function (first-order and higher-order functions are often used together.)
+```javascript
+function addOne(value){return value + 1;}
+
+```
+ -For a function to qualify as a higher-order function it either needs to take a function
+as one of its parameters, or return a function. As long as one of those conditions
+is met we are creating a higher-order function.
+ - The map function will take an array to work on. It will return a copy of that array
+with each item modified by the add one function we have written earlier, which
+will be passed as the second parameter.
+ - Let’s write our own version of map which will be similar to what Array.map does:
+
+```javascript
+function maap(num, f){
+    for (let index = 0; index < num.length; index++) {
+        const original = num[index];
+        let modify = f(original);
+        copy[index] = modify;
+        
+    }
+    return copy;
+}
+```
+
+**Line-by-line explanation of map() function**
+  - The function map takes two parameters: an arbitrary array of values and the
+function which we want to apply to each item in the array.
+```javascript
+function map(array, f){}
+```
+ - First, copy array was created and assigned to an empty array literal: []. This array
+will store a modified copy of the original array that was passed into the function.
+```javascript
+let copy = [];
+```
+  - Then a for-loop iterates through the array we received as first parameter. This
+is the part we want to make abstract. When using the function we won’t even
+have to think about the for-loop
+
+```javascript
+for (let index = 0; index < num.length; index++) {
+```
+  - Inside the loop, let’s copy the value at current index in the original array to a
+temporary variable original.
+
+```javascript
+let original = num[index];
+```
+
+ - Now let’s pass the value in original variable to the first-order function that was
+passed to this function:
+```javascript
+let modify = f(original);
+```
+  - The f function will do the magic (in our example, add 1 to the original value, but
+it can be anything) and return the modified value. So let’s copy the modified value
+into our copy array which is a placeholder for the entire modified array.
+```javascript
+copy[index] = modify;
+        
+```
+ - Finally, a copy of the modified array is returned:
+
+ ```javascript
+ return copy
+ ```
+ - Once all items have been copied and processed by add one function, they will be
+stored in copy array which will then be used as the return value of the function.
+  - Side note: The reduce method – which is also a higher-order function – uses
+something known as an accumulator. The accumulator in Array.reduce serves
+a similar purpose as the copy array in this example. In reduce, however, the
+accumulator is not an array – it is a single value that cumulatively gathers together
+all items from the array and combines them into a single return value. That’s why
+reducers are a better solution when you need to combine values.
+
+**Calling our custom map function**
+To see how it all works, first, let’s define an initial set of values to work with:
+
+```javascript
+let array=[0,1,2];
+```
+Let’s try out our map function in action:
+```javascript
+array = map(array,add_one);
+```
+  - Here add one is the function from earlier in this chapter. It simply adds 1 to the
+value that was passed to it and returns it.
+  - The result? The original array [0,1,2] is now [1,2,3]. All items in the array
+were incremented by 1.
+  - We’ve just written our own map method that internally does exactly the same
+thing as the built-in method Array.map. This operation is so common that it was
+added as a native method on the Array object.
+
+**Calling Array.map function**
+  - Yes, we can do exactly the same thing using a built-in Array method map. It does
+exactly (or relatively) the same thing:
+```javascript
+array.map(addOne);
+```
+ - Sounds easy. We could have used this method from the very start. But by writing
+our own map method we now actually understand how it works internally.
+ - This will help us understand many other higher-order functions that implement
+iteration over a list of items, such as filter, every, reduce, etc. They all use
+similar internal code, with just a few slight differences.
+**What happened to the for-loop?**
+ - As you can see Array.map implements a for-loop internally. This isn’t the issue of
+providing a more efficient for-loop, but rather, hiding it from our sight completely.
+ - All we have to do is supply a function to the Array.map method. By hiding the
+iteration steps, we are left only with writing the actual function that compares,
+adds or filters each value individually.
+ - This helps you to focus on solving the problem, instead of writing and re-writing
+a lot of repetitive code. But it also makes your code look cleaner.
+
+**14.0.5 Dos and Dont’s**
+ - Often beginners use one method instead of another to accomplish relatively the
+same thing. While it ”still works,” this choice shouldn’t be taken lightly.
+ - Do use a high-order method for solving the problems it was intended to solve.
+Understanding the differences between map, filter, reduce matters. This isn’t
+about just the syntax differences, but writing efficient code and avoiding antipatterns. Try to find a proper method for the given task.
+ - Do not use filter if you can get away with using reduce to accomplish the same
+action with more efficiency. Different high-order functions are designed to deal
+with problems specific to their implementation.
+
+# **Chapter 15**
+## **Arrow Functions**
+
