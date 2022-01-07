@@ -4117,4 +4117,42 @@ Hello, I am arrow function
   - What happens here is that arrow function took the Window context with it, instead
 of giving you the object that refers to the clicked element.
 
-
+**Inherited this Context**
+  - But wait, how did the arrow function inherit Window context in the first place? Is
+that because it was defined in global scope (same as the object of type Window)?
+  - Not exactly.
+  - The arrow function inherits the lexical scope based on where it was used, not
+where it was defined. Here it so happens that the arrow function was both defined
+and called in global scope context (Window object.)
+  - To truly understand this, let’s draw another example, where I will attach arrow
+function B() to a click event.
+But this time, I will execute addEventListener function from another class called
+  - Classic instead of Window like in the previous example.
+  - Remember that when you use new operator, you execute the function as though
+it was an object constructor. This means that every statement inside it will be
+executed from the context of its own instantiated object: object, not window.
+```javascript
+function classic(){
+    let b = () => {
+        console.log("Hello, I am arrow functionB()");
+        console.log(this);
+    }
+    document.addEventListener("click",b);
+}
+let object = new classic();
+```
+ - A new context is created when using new operator to instantiate an object. Anything called from within that object will have its own context.
+ - After running this code and clicking on document, we get following console output:
+```console
+Hello, I am an arrow funciton
+[object classic]
+```
+ - The object instance delimited by [] brackets is of type Classic. And that’s exactly
+what happens here.
+ - Event was attached from context of Classic constructor and not from the context
+of global scope object Window like in the previous examples.
+ - The event has literally ”taken the context it was executed from” with it into its
+own scope via the this property.
+ - This type of context chaining is common to JavaScript programming. We’ll see
+it once again when we explore prototype-based inheritance in more depth later in
+the book. The idea of execution context may start to become more clear by now.
