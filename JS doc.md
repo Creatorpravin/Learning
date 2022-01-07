@@ -3955,3 +3955,166 @@ with problems specific to their implementation.
 # **Chapter 15**
 ## **Arrow Functions**
 
+ - Arrow functions do not have array-like arguments object. They also cannot be
+used as constructors. The this keyword points to the same value this points to in
+the scope just outside of the arrow function.
+
+```javascript
+let fun_1 = ()=> {};
+```
+
+**Arguments**
+  - You can pass arguments to an arrow function via parameters.
+
+```javascript
+let x = (arg1, arg2) => {console.log(arg1,arg2);};
+x(1,2);//1,2
+
+```  
+**Returning From An Arrow Function**
+  - Arrow functions are primarily designed as expressions, so you might want to spend
+extra time on learning how they return values
+
+```javascript
+let boomerang = a => "returns";
+let karma = a => {return "returns";}
+//let prayer = a => {return random()>=0.5};
+let time = a => {"won't return";}
+console.log(boomerang(1));//"returns"
+console.log(karma(1));//"returns"
+console.log(time(1));//[undefined]
+//]
+ let a = [1];
+ console.log(a.map(boomerang));//"returns"
+ console.log(a.map(karma));//"returns"
+ console.log(a.map(time));//[undefined]
+   console.log(x);
+   console.log(y);
+ console.log(z);
+prayer("Make me understand JavaScript")
+```
+  - Takeaway: time arrow function is the only function that does not return a value
+at all. Be careful not to use this syntax with higher-order functions.
+
+**Similarities Between ES-style Functions**
+ - There are some similarities between arrows and classic functions. Most of the time
+you can use arrow functions as a replacement to standard ES5 functions without
+a hitch!
+Let’s try this example to get started with our discussion about arrow functions.
+I defined two classic ES5 functions classic one and classic two, followed by
+definition of arrow – an ES6-style arrow function:
+
+```javascript
+function classic_one(){
+    console.log("classic function one.");
+    console.log(this);
+}
+var classic_two = function(){
+    console.log("classic function two.");
+    console.log(this);
+}
+let arrow = ()=>{
+    console.log("arrow function");
+    console.log(this);
+}
+```
+ - I added console.log(this); statement to the scope of each function, simply
+to see the outcome.
+Let’s call all 3 functions i
+
+```javascript
+//call the first function
+classic_one();
+//call the second function
+classic_two();
+//call third function
+arrow();
+```
+Console output:
+
+
+```console
+VM10:2 classic function one.
+> Window
+VM10:6 classic function two.
+> Window
+VM10:10 arrow function
+> Window
+```
+ - When defined in global scope, it only seems like there is no difference between
+classic and arrow functions, in terms of this binding.
+
+**No this binding**
+  - Arrow functions do not bind this keyword. They look it up from whatever this
+equals in the outer scope, just like any other variable. Hence, you can say arrow
+functions have a ”transparent” scope.
+
+**No arguments object**
+
+  - The arguments object does not exist in arrow function scope, you will get a
+reference error if you try to access it:
+
+```javascript
+let a = ()=>{
+  console.log(arguments);//undefined
+
+}
+```
+ - Just as a reminder here, the arguments object does exist on classic ES5 functions:
+```javascript
+function f(){
+   console.log(arguments);
+ }
+```
+
+**No Constructor**
+  - ES5-style functions are object constructors. You can create and call a function
+but you can also use same function as an object constructor – together with new
+operator – to instantiate an object.  The function itself becomes class definition.
+ - For this reason you would often hear it said that in JavaScript all functions are
+objects. After ES6 specification introduced arrow functions to the language this
+statement is no longer true. Arrow functions cannot be used as object constructors.
+ - Therefore, arrow functions cannot be used to instantiate objects. They work best
+as event callbacks or function expressions in methods such as Array.filter,
+ - Array.map, Array.reduce and so on... In other words, they are more proper in
+context of Functional Programming style.
+ - Thankfully, modern JavaScript is rarely written using ES5-style functions masquerading as object constructors. It’s probably a good idea to start defining your
+classes using class keyword anyway, instead of using function constructors.
+
+**When classic and arrow functions are used as event callbacks**
+There is a difference between classic ES5 functions and arrows, when they are used
+as event callbacks.
+Here is an example of an arrow function that outputs a string and this property
+to console in the event of a click on the document:
+```javascript
+
+let arrow = (event) =>{
+    console.log("Hello, I am an arrow funciton");
+    console.log(this);
+}
+document.addEventListener("click", arrow);
+```
+ - And here is the same exact event using classic ES5 function syntax:
+
+```javascript
+function classic(event){
+    console.log("Hello, I am a classic ES5 function");
+    console.log(this);
+}
+document.addEventListener("click",classic);
+```
+**So what’s the difference?**
+ - Here is console output after clicking on document in each case:
+ Hello, I am an arrow funciton
+```console
+Hello, I am arrow function 
+3 Window
+8 Hello, I am a classic ES5 function
+9 #document
+```
+ - Inside the arrow function’s scope this property points to Window object.
+  - In classic ES5 function this property points to the target element that was clicked.
+  - What happens here is that arrow function took the Window context with it, instead
+of giving you the object that refers to the clicked element.
+
+
