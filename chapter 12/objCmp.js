@@ -16,7 +16,7 @@ function arrcmp(a,b){
    return false;
    //compare by value
    for(let i=0;i<a.length;i++)
-   if(i[a]!==b[i])
+   if(a[i]!==b[i])
    return false;
    //All test passed: array a and b are equal
 return true;
