@@ -4156,3 +4156,90 @@ own scope via the this property.
  - This type of context chaining is common to JavaScript programming. We’ll see
 it once again when we explore prototype-based inheritance in more depth later in
 the book. The idea of execution context may start to become more clear by now.
+
+# **Chapter 16**
+ 
+ **Creating HTML Elements Dynamically**
+
+ - JavaScript creates a unique object for each HTML tag currently present in your
+*.html document. They are automatically included to DOM (Document Object
+Model) in your application once the page is loaded into browser. But what if we
+want to add new elements without having to touch the HTML file?
+ - Creating and appending another element to an existing element will dynamically
+insert it into the DOM and instantly display it on the screen as if it were directly
+typed into the HTML source code.
+ - However, this element is not typed directly into your HTML document using HTML
+tag syntax. Instead, it is created dynamically by your application.
+The method createElement natively exists on the document object. It can be
+used to create a new element:
+
+```javascript
+let E = document.createElement("div");
+let E1 = document.createElement("span");
+let E2 = document.createElement("p");
+let E3 = document.createElement("img");
+let E4 = document.createElement("input");
+
+```
+
+ - At this point none of the created elements are attached to DOM yet.
+
+**16.0.1 Setting CSS Style**
+
+  - So far we created an empty element without dimensions, background color or
+border. At this point all of its CSS properties are set to defaults. We can assign
+a value to any standard CSS property via style property.
+
+```javascript
+let div = document.createElement("div");
+//set ID of the element
+div.setAttribute("id","element");
+//set class attribute of the element
+div.setAttribute("class","box");
+
+div.style.position = "absolute";
+div.style.display = "block";
+div.style.width = "100px";//px is requried
+div.style.height = "100px";//px is requried
+div.style.top = 0; //px is not required
+div.style.left = 0;//px is not required
+div.style.zIndex = 1000; // z-index of > zIndex
+div.style.borderStyle = "solid";
+div.style.borderColor = "gray";
+div.style.borderWidth = "1px";
+div.style.backgroundColor = "white";
+div.style.color = "black"; 
+
+```
+
+ - In CSS dash (-) is a legal property name character. But in JavaScript it is always
+interpreted as the minus sign. Using it as part of a JavaScript identifier name will
+cause an error. For this reason, single-word CSS property names remain the same
+– style.position and style.display for example. Multi-word property names are
+changed to camel-case format, where the second word is capitalized. For example
+z-index becomes .zIndex, and border-style becomes .borderStyle.
+
+**16.0.2 Adding Elements To DOM with .appendChild method**
+
+  - Method element. appendChild(object ) inserts an element object into DOM.
+  - Here element can be any other element that currently exists in the DOM.
+  - This method exists on all DOM element objects, including document.body.
+
+**document.body**
+ - Insert the element into the body tag using appendChild method:
+
+```javascript
+document.body.appendChild(div);
+```
+ - Although very common the body tag is not the only place you can add the newly
+created element.
+
+**getElementById**
+  - Insert element into another element by id:
+```javascript
+document.getElementById("id-1").appendChild(div);
+```
+
+**querySelector**
+ - Insert element to any element selected using a valid CSS selector:
+ 
