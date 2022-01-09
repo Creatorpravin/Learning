@@ -20,3 +20,6 @@ div.style.color = "black";
 document.body.appendChild(div);
 //Insert element into another element by id:
 document.getElementById("id-1").appendChild(div);
+
+let selector = "#parent .inner .target";
+document.querySelector(selector).appendChild(div);
