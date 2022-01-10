@@ -4242,4 +4242,38 @@ document.getElementById("id-1").appendChild(div);
 
 **querySelector**
  - Insert element to any element selected using a valid CSS selector:
+
+```javascript
+ //Insert element into another element with id = "id-1"
+let selector = "#parent .inner .target";
+document.querySelector(selector).appendChild(div);
+```
+
+**16.0.3 Writing A Function To Create Elements**
+  - Writing your own functions is fun. And sometimes necessary. In this section we will
+write our own function that makes it easy to create HTML elements dynamically.
+Before writing the function body, let’s take a closer look at its parameters.
+
+**Function Parameters**
+  - To accommodate for most cases, we don’t need to include all CSS properties, just
+ones that have most impact on element’s visual appearance
+
+```javascript
+let element = (id,type,l,t,w,h,z,r,b)=>{};
+```
+ - Most of the parameters are optional. If you skip them, either default values will
+be used – defined using const keyword inside the function body (see next page)
+– or not assigned (if you pass null, for example.)
+ - Last parameters on the argument list: r and b (right and bottom) will override
+standard placement in top and left corner of the parent element.
+ - Using this function we can create basic HTML elements with one line of code:
+
+```javascript
+let a = element("id-1","static",0,0,100,25,"unset");
+let b = element("id-2","relative",0,0,50,25,1);
+let c = element("id-3","absolute",10,10,50,25,20);
+```
+
+
+
  
