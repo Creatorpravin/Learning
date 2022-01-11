@@ -4407,3 +4407,34 @@ copy of the same exact method.
  - The answer is yes. For example, native function .toString() you may have used
 before as Array.toString() or Number.toString() exists in memory at a single
 location, but it can be called on all built-in objects! How does JavaScript do it?
+
+
+# **Chapter 17**
+
+**Prototype**
+
+ - When a function is defined two things happen: the function object is created,
+because functions are objects. Then, a completely separate prototype object is
+created. The prototype property of the defined function will point to it.
+ - Let’s say we defined a new function Human:
+
+```javascript
+ function Human(name){}
+```
+ - You can verify that prototype object is created at the same time:
+```javascript
+typeof Human.prototype;//"object"
+```
+ - Human.prototype will point to the prototype object. This object has another
+property called constructor, which points back to the Human function:
+ - Human is a constructor function, used to create objects of type Human. Its
+prototype property points to a separate entity in memory: prototype object.
+ - There is one separate prototype object per each unique object type (class).
+Some will argue that there are no classes in JavaScript. But technically, Human
+is a unique object type, and basically that’s what a class is.
+ - If you come from C++ background, you can probably refer to Human as a class.
+ - A class is an abstract representation of an object. It’s what determines its type.
+ - Note, prototype property is not available on an instance of an object, only on the
+constructor function. On an instance, you can still access prototype via proto ,
+but should probably use static method Object.getPrototypeOf(instance) which
+returns the same prototype object as proto (in fact proto () is a getter.)
