@@ -1,5 +1,5 @@
 //create a generic HTML element
-let element =(id,type,l,t,w,h,z,r,b,value)=>{
+export let element =(id,type,l,t,w,h,z,r,b,value,color)=>{
     //default-used to replace missing arguments
     const position=0;
     const size=10;
@@ -13,6 +13,7 @@ let element =(id,type,l,t,w,h,z,r,b,value)=>{
     //set abosolute behavior
     div.style.position=type;
     div.style.display="block";
+    div.style.color = color;
     if(r)//if right is provided,reposition element
         div.style.right=r?r:position+"px";
     else
@@ -30,4 +31,4 @@ let element =(id,type,l,t,w,h,z,r,b,value)=>{
     //return the element object we just created
     return div;
 };
-document.body.appendChild(element("id1","button",10,10,200,10,10,10,10,"created by function"));
+document.body.appendChild(element("id1","button",10,10,200,10,10,10,10,"created by function","blue"));

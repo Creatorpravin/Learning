@@ -4274,6 +4274,136 @@ let b = element("id-2","relative",0,0,50,25,1);
 let c = element("id-3","absolute",10,10,50,25,20);
 ```
 
+**Function Body**
+  - Let’s take a look at the body of the element-creation function:
+
+ ```javascript
+ //create a generic HTML element
+let element =(id,type,l,t,w,h,z,r,b,value,color)=>{
+    //default-used to replace missing arguments
+    const position=0;
+    const size=10;
+    const Z=1;
+
+    //create a <div> element dynamically
+    let div=document.createElement("div");
+    //inner html
+    div.innerHTML=value;
+    //set ID of the element
+    div.setAttribute("id",id);
+    //set abosolute behavior
+    div.style.position=type;
+    div.style.display="block";
+    div.style.color = color;
+    if(r)//if right is provided,reposition element
+        div.style.right=r?r:position+"px";
+    else
+        div.style.left=l?l:position+"px";
+
+    if(b)//if bottom is provided,reposition element
+        div.style.bottom=b?b:position+"px";
+    else
+        div.style.left=t?t:position+"px";
+
+    div.style.width=w?w:size+"px";
+    div.style.height=h?h:size+"px";
+    div.style.zIndex=z?z:Z;
+    
+    //return the element object we just created
+    return div;
+};
+document.body.appendChild(element("id1","button",10,10,200,10,10,10,10,"created by function","blue"));
+ ```
+  - Place this function into separate file common-styles.js
+
+ -  create HTML file to run the javascript.
+
+```html
+<html>
+    <head>
+        <title>example</title>
+        <script src="functionBody.js" defer></script>
+    </head>
+    <body>
+        <h2>Example for create element using function</h2>
+    </body>
+</html>
+
+```
+
+ - Creating UI elements often requires pixel-perfect precision. This function will create a position:absolute element (unless otherwise specified) with default size
+of 10px in each direction, unless replacement values are supplied via its arguments:
+w and h parameters.
+ - As a quick reminder here is the behavior of HTML elements with position set
+to absolute based on point of attachment.
+ - Note that the element can be attached to the logical coordinate position within
+the parent. For example top:0; right:0 attaches the element to the upper right
+corner of the parent.
+ - The direction in which the attached element will move, when its coordinates are
+provided using negative values are displayed in the following diagram.
+
+**Importing And Using element() Function**
+ - Let’s import the function we created above into our project.
+To import a module type attribute on script tag must be set to "module".
+
+```javascript
+<html>
+  <head>
+    <title>use element</title>
+    <script type = "module">
+    import {absolute} from "./functionBody.js";
+    let a = absolute("id-1",0,0,100,50,1);
+    let b = absolute("id-2",null,null,25,25,1,10,5);
+    b.addElement(a);
+    document.body.addElement(a);
+    </script>
+</head>
+<body></body>
+</html>
+
+```
+
+ - We can now create an HTML element using just one line of code.
+ - In this example we created two elements A and B. Then we nested element B in
+element A, and attached element A to the body container.
 
 
+**16.0.4 Creating objects using function constructors**
+ - Let’s create a function called Season:
+```javascript
+ function season(name){
+    this.name = name;
+    this.getName = function(){
+        return this.name;
+    }
+}
+
+```
+ - To instantiate four seasons:
+ let winter = new season("winter");
+let summer = new season("summer");
+let spring = new season("spring");
+let autumn = new season("autumn");
+```javascript
+let winter = new season("winter");
+let summer = new season("summer");
+let spring = new season("spring");
+let autumn = new season("autumn");
  
+```
+ - We just created 4 instances of the same type:
+```javascript
+ console.log(winter.getName());
+console.log(summer.getName());
+console.log(spring.getName());
+console.log(autumn.getName());
+```
+ - This creates a problem, because function getName is copied 4 times in memory,
+but its body contains exactly the same code.
+ - In JavaScript programs Objects and Arrays are created all the time. Imagine if
+you instantiated 10000 or even 100000 objects of a particular type, each storing a
+copy of the same exact method.
+ - This is rather wasteful. Could we somehow have a single getName function?
+ - The answer is yes. For example, native function .toString() you may have used
+before as Array.toString() or Number.toString() exists in memory at a single
+location, but it can be called on all built-in objects! How does JavaScript do it?
