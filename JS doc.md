@@ -4438,3 +4438,50 @@ is a unique object type, and basically that’s what a class is.
 constructor function. On an instance, you can still access prototype via proto ,
 but should probably use static method Object.getPrototypeOf(instance) which
 returns the same prototype object as proto (in fact proto () is a getter.)
+
+**17.0.2 Prototype on Object Literal**
+ - To draw a simple example, let’s create an object literal:
+
+```javascript
+ let literals = {
+    prop:123,
+    meth: function(){}
+};
+```
+ - Internally it is wired into prototype as an object of type Object, even though it
+wasn’t created using the new operator.
+```javascript
+literals.__proto__;  //object{}
+literals.__proto__.constructor; //ƒ Object() { [native code] }
+literals.constructor; //ƒ Object() { [native code] }
+```
+  - When literal was created, literal. proto was wired to point to Object.prototype:
+
+   - Object.prototype was already created internally by JavaScript. Whenever a new
+object type is defined, a secondary object to serve as its prototype is created.
+
+**17.0.3 Prototype Link**
+
+ - When an object is instantiated using new keyword, the constructor function executes to build the instance of that object.
+
+```javascript
+let instance = new Object();
+instance.prop = 123;
+instance.meth = function(){};
+//instance={prop: 123, meth: ƒ}
+```
+ - In this case Object constructor function is executed and we get a constructed
+link, that looks like this:
+
+ - The .prototype property points to a separate object: the built-in prototype object.
+ - In this case it’s Object.prototype. It is similar to Human.prototype from the
+earlier example: in this case we just don’t control how Object was created, because,
+ - Object is a preexisting built-in type.
+
+**17.0.4 Prototype Chain**
+ - It can be argued that Array is a child of its parent type Object.
+ Object.prototype is Object, but not because Object is inherited from Object.
+ - This is simply because the prototype itself is just an object: they co-exist.
+ - You can think of this as Object’s prototype being null, because it’s the top-level
+object on the prototype chain. In other words Object does not have an abstract
+prototype. Object does have a ”ghost” prototype object just like any other type.
