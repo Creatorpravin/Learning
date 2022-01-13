@@ -4485,3 +4485,4 @@ earlier example: in this case we just don’t control how Object was created, be
  - You can think of this as Object’s prototype being null, because it’s the top-level
 object on the prototype chain. In other words Object does not have an abstract
 prototype. Object does have a ”ghost” prototype object just like any other type.
+ 
