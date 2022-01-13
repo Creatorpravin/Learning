@@ -349,10 +349,6 @@ console.log(resultTwice);
 ```
 
 **reduce**
-<<<<<<< HEAD
-=======
-
->>>>>>> 44219ace9636f6a845d8b9c254736df173e40d69
  - The reduce() method reduces an array of values down to just one value. To get the output value, it runs a reducer function on each element of the array. 
 
 **Algorithm**
