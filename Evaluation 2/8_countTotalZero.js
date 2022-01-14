@@ -1,5 +1,5 @@
 "use strict";
-////give input range find number of zero
+//give input range find number of zero
 const start = 1;
 const end = 50;
 //convert input value to string

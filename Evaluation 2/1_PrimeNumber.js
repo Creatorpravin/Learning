@@ -1,7 +1,7 @@
 
 "use strict"
 function primeNumber(value){
- if(typeof value === "number" && value > 2 ){
+ if(typeof value === "number" && value > 2){
       for (let counter = 0; counter <= value; counter++) {
 
     var notPrime = false;
