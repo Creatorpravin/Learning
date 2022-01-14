@@ -10,9 +10,11 @@
 **Code**
 
 ```javascript
+
 "use strict"
 function primeNumber(value){
- if(typeof value === "number" && value > 2 ){
+    const numberToString= value + "";
+ if(typeof value === "number" && value > 2 && numberToString.indexOf(".") === -1 ){
       for (let counter = 0; counter <= value; counter++) {
 
     var notPrime = false;
@@ -32,6 +34,9 @@ function primeNumber(value){
     console.log("Enter the valid value");
 
 }
+
+primeNumber(200);
+
 
 ```
 primeNumber(200);
@@ -395,7 +400,98 @@ console.log(result);
 ```console
 [ 'exuberant', 'destruction', 'present' ]
 ```
-8. Count Total number of zeros from 1 up to 50
+## 8. Count Total number of zeros from 1 up to 50
+**Algorithm**
+
+
+**Psuedocode**
+
+**code**
+```javascript
+"use strict";
+//give input range find number of zero
+const start = 1;
+const end = 50;
+//convert input value to string
+const startConvertToString = start + "" ;
+const endConvertToString = end + "" ;
+// check if type of value is number or not 
+if(typeof start === "number" && typeof end === "number" ){
+   if(startConvertToString.indexOf(".") === -1 && endConvertToString.indexOf(".") === -1){
+        let count = 0;
+        for(let i = start ; i <= end ; i++ ){
+            let numberToString = i + "" ;
+            count += numberToString.split("0").length - 1;
+        }
+        console.log(count);
+    }
+    else{
+        console.log("The float value not accepted"); 
+    }
+}
+else{
+    console.log("The string value not accepted");
+}
+```
+
+*Output:*
+```console
+5
+```
+
+## 9. The following array of numbers show the missing number? ([1,2,3,5,6])
+
+**Algorithm**
+
+
+**Psuedocode**
+
+**code**
+```javascript
+var a = [1,2,3,5,6], count = Math.max(...a);
+var missing = [];
+for ( var i = 1; i <= count; i++ ) {
+	if (a.indexOf(i) == -1) {
+		missing.push(i);
+	}
+}
+console.log(missing);
+```
+
+
+*Output:*
+
+```console
+[ 4 ]
+```
+## 10. Write a program for calculating age using Date of birth? (1990)
+
+**Algorithm**
+
+
+**Psuedocode**
+
+**code**
+```javascript
+"use strict"
+function calAge(birthYear){
+    const convertToString = birthYear + "";
+if(typeof birthYear === "number" && convertToString.indexOf(".") === -1)    {
+    const year = new Date();
+    const currentYear = year.getFullYear();
+    const age = currentYear - birthYear;
+    console.log(age);
+}else
+ console.log("enter the valid value");
+}
+calAge(1990);
+```
+*Output:*
+```console
+32
+
+```
+## 11. In the Javascript function, what are the differences between call by value and reference?
 **Algorithm**
 
 
@@ -405,37 +501,7 @@ console.log(result);
 
 *Output:*
 
-9. The following array of numbers show the missing number? ([1,2,3,5,6])
-
-**Algorithm**
-
-
-**Psuedocode**
-
-**code**
-
-*Output:*
-10. Write a program for calculating age using Date of birth? (1990)
-
-**Algorithm**
-
-
-**Psuedocode**
-
-**code**
-
-*Output:*
-11. In the Javascript function, what are the differences between call by value and reference?
-**Algorithm**
-
-
-**Psuedocode**
-
-**code**
-
-*Output:*
-
-12. What is Arity in Javascript? 
+## 12. What is Arity in Javascript? 
 Explain with a real time example.
 **Algorithm**
 
@@ -446,7 +512,7 @@ Explain with a real time example.
 
 *Output:*
 
-13. What is Currying in Javascript? Explain with a real time example.
+## 13. What is Currying in Javascript? Explain with a real time example.
 **Algorithm**
 
 
@@ -456,7 +522,7 @@ Explain with a real time example.
 
 *Output:*
 
-14. What is ES6?
+## 14. What is ES6?
 **Algorithm**
 
 
@@ -466,7 +532,7 @@ Explain with a real time example.
 
 *Output:*
 
-15. What is an anonymous function? Where do we use it? Why do we need it?
+## 15. What is an anonymous function? Where do we use it? Why do we need it?
 **Algorithm**
 
 
@@ -476,7 +542,7 @@ Explain with a real time example.
 
 *Output:*
 
-16. List the differences between named function and assigning functions to variable with
+## 16. List the differences between named function and assigning functions to variable with
 examples
 **Algorithm**
 
