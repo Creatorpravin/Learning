@@ -100,20 +100,21 @@ primeNumber(200);
 **code**
 ```javascript
 "use strict";
-const array1 = [1,2,3,4,5];
-const array2 = [2,4,8,10,15];
-function commonNumber(array1, array2) {
+"use strict";
+const arr1 = [2001,2002,2003,2004,2005];
+const arr2 = [2003,2005,2006,2007];
+function commonNumber(arr1, arr2) {
     let common = []; 
-    for (let i = 0; i < array1.length; i++) {
-      for (let j = 0; j < array2.length; j++) {
-        if (array1[i] === array2[j]) { 
-          common.push(array1[i]); 
+    for (let i in arr1) {
+      for (let j in arr2) {
+        if (arr1[i] === arr2[j]) { 
+          common.push(arr2[j]); 
         }
       }
     }
    console.log(common); 
 }
-commonNumber(array1, array2); 
+commonNumber(arr1, arr2); 
 ```
 
 
@@ -492,47 +493,201 @@ calAge(1990);
 
 ```
 ## 11. In the Javascript function, what are the differences between call by value and reference?
+
+**Call by value**
+ - Function arguments are always passed by value.
+ - It copies the value of a variable passed in a function to a local variable.
+ - Both these variables occupy separate locations in memory. Thus, if changes are made in a particular variable it does not affect the other one.
 **Algorithm**
 
 
 **Psuedocode**
 
 **code**
+```javascript
+"use strict"
+let a = 5;
+let b;
+b = a;
+//diffrent memory location
+a = 3;
+console.log(a);
+console.log(b);
+```
 
 *Output:*
+
+```console
+3
+5
+```
+
+**Call by referance**
+
+ - In JavaScript, all objects interact by reference.
+ - If an object is stored in a variable and that variable is made equal to another variable then both of them occupy the same location in memory.
+ - Changes in one object variable affect the other object variable.
+
+**Algorithm**
+
+
+**Psuedocode**
+
+**code**
+```Javascript
+ "use strict"
+ // By reference (all objects (including functions))
+ var c = { greeting : 'YAVAR' };
+ var d;
+ d = c;
+ c.greeting = 'Yavar Tech Works';
+ console.log(c);
+ console.log(d);
+
+```
+
+
+*Output:*
+```console
+{ greeting: 'Yavar Tech Works' }
+{ greeting: 'Yavar Tech Works' }
+```
 
 ## 12. What is Arity in Javascript? 
 Explain with a real time example.
+
+ - The arity property used to return the number of arguments expected by the function.
+ - You can access function’s arity via Function.length property.
+
 **Algorithm**
 
 
 **Psuedocode**
 
 **code**
+```javascript
+"use strict";
+function Details(age,name,location){
 
+}
+let arity=Details.length;
+console.log(arity);
+```
 *Output:*
 
+```console
+3
+```
+
 ## 13. What is Currying in Javascript? Explain with a real time example.
+
+ - Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+ - Currying doesn’t call a function. It just transforms it.
+
+
+
 **Algorithm**
 
 
 **Psuedocode**
 
 **code**
+```javascript
+"use strict";
+const volume=function(a) {
+    return function(b) {
+       return function(c) {
+          return a * b * c;
+       };
+    };
+}
+ console.log(volume(2)(4)(6));
+const h=volume(2)(4);
+ console.log(h(6));
+const w=volume(2);
+ const y = w(4);
+console.log(h(6));
+```
 
 *Output:*
 
 ## 14. What is ES6?
-**Algorithm**
 
+ - ECMAScript 2015 is also known as ES6 and ECMAScript 6.
+ - It brought several new features like, let and const keyword, rest and spread operators, template literals, classes, modules and many other enhancements to make JavaScript programming easier.
+ - iterators and for...of loops
+ - arrow function expression (() => {...})
+ - let keyword for local declarations
+ - const keyword for constant local declarations
+ - Multi-line Strings
+ - binary data
+ - typed arrays
+ - new collections (maps, sets and WeakMap)
+ - promises
+ - number and math enhancements
+ - reflection
+ - proxies (metaprogramming for virtual objects and wrappers)
+ - template literals for strings.
 
-**Psuedocode**
-
-**code**
-
-*Output:*
 
 ## 15. What is an anonymous function? Where do we use it? Why do we need it?
+**Anonymous function :**
+
+- Anonymous functions are functions without names.
+- This anonymous function is used in an assigned expression. This combination is called an "anonymous function expression"
+- Anonymous functions can be used as an argument to other functions or as an immediately invoked function execution.
+- An anonymous function is not accessible after its initial creation
+
+**Algorithm**
+
+
+**Psuedocode**
+
+**code**
+```javascript
+"use strict"
+let total;
+(function(x,y){
+    total = x + y;
+    console.log(total);
+})(12,45);
+```
+
+## 16. List the differences between named function and assigning functions to variable with examples
+
+**named function**
+- A function is a sequence of instructions within a larger program.
+- We call the function with parameters anywhere in the program.
+
+**Algorithm**
+
+
+
+**Psuedocode**
+
+**code**
+```javascript
+"use strict"
+add(12,45);
+function add(x,y){
+    const total = x + y;
+    console.log(total);
+}
+add(12,45);
+```
+
+*Output:* 
+```console
+57
+```
+
+**assigning functions to variable**
+ - The function call after the function assigned to the variable.if it is call before the function assign to variable it throw the typeError like multiply is not function.
+
+ - Use methods after declaration
+
+ - Assigning function to variable may be syntactically lighter than using a named function.
+
 **Algorithm**
 
 
@@ -540,15 +695,17 @@ Explain with a real time example.
 
 **code**
 
-*Output:*
+```javascript
+"use strict"
+const sub = function(x,y){
+    const total = x - y;
+    console.log(total);
+}
+sub(45,12);
+```
 
-## 16. List the differences between named function and assigning functions to variable with
-examples
-**Algorithm**
+*Output:* 
 
-
-**Psuedocode**
-
-**code**
-
-*Output:*
+```console
+33
+```
