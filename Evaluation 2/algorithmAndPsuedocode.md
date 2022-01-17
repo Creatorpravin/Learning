@@ -4,8 +4,36 @@
 
 **Algorithm**
 - Step 1. Use strict mode as public. Declare the function with partameter.
-- 
+- Step 2. Check the validation of parameter value.
+- Step 3. Assign false to a variable. Use for loop to increase the count.
+- Step 4. Check the value of boolean with help of if condition.
+- Step 5. Then print the value in console.
+- Step 6. call the function with parameters
+
 **Psuedocode**
+```markdown
+BEGIN
+"use strict"
+FUNCTION primeNumber(value)
+   INIT numberToString= value + "";
+  IF (typeof value === "number" && value > 2 && numberToString.indexOf(".") === -1 ) THEN
+   FOR (let counter = 0; counter <= value; counter++) DO 
+      INIT notPrime = false;
+      FOR (var i = 2; i <= counter; i++) DO
+        IF (counter%i===0 && i!==counter) THEN
+          SET notPrime = true;
+         ENDIF
+        IF (counter >= 2) THEN
+        IF (notPrime === false) THEN
+          PRINT counteR
+          ENDIF
+        ENDIF
+      ENDFOR
+    ENDFOR
+    ELSE
+      PRINT "Enter the valid value"
+FUNCTION CALL primeNumber(200);
+```
 
 **Code**
 
@@ -39,7 +67,7 @@ primeNumber(200);
 
 
 ```
-primeNumber(200);
+
 
 *output*
 ```console
@@ -92,14 +120,41 @@ primeNumber(200);
 ```
 
 ## 2. From two sorted arrays, how would you find the common numbers?
-**Algorithm**
 
+**Algorithm**
+- Step 1. Use strict mode globally. create two set of array.
+- Step 2. Write a function commonNumber with parameters.
+- Step 3. Declare an empty array.
+- Step 4. Create for loop and nested for loop to iterate all the values in array.
+- Step 5. Check the iterated values with if condition.
+- Step 6. Then print the values.
+- Step 7. Call the function with parameters.
 
 **Psuedocode**
+```markdown
+BEGIN
+"use strict"
+INIT arr1 = [2001,2002,2003,2004,2005];
+INIT arr2 = [2003,2005,2006,2007];
+FUNCTION commonNumber(arr1, arr2) 
+   INIT common = []; 
+   FOR (let i in arr1) DO 
+    FOR (let j in arr2) DO
+     IF (arr1[i] === arr2[j]) THEN
+      SET common.push(arr2[j])
+     ENDIF
+    ENDFOR
+   ENDFOR   
+ PRINT common
+ END FUNCTION
+FUNCTION CALL commonNumber(arr1, arr2)
+  
+```
+
 
 **code**
 ```javascript
-"use strict";
+
 "use strict";
 const arr1 = [2001,2002,2003,2004,2005];
 const arr2 = [2003,2005,2006,2007];
@@ -135,10 +190,24 @@ commonNumber(arr1, arr2);
  - The return statement ends function execution and specifies a value to be returned to the function caller.
 
 **Algorithm**
-
-
+- Step 1. Use strict mode as global.
+- Step 2. Declare a function and print some integer values.
+- Step 3. return some values and again print some integer values.
+- Step 4. Then call the function outside the scope.
 
 **Psuedocode**
+```markdown
+"use strict"
+FUNCTION countSheep() 
+    PRINT (1)
+    PRINT (2)
+    PRINT (3)
+    RETURN "ZZZzzzzz...";
+    PRINT (4)
+    PRINT (5)
+FUNCTION END
+FUNCTION CALL countSheep()
+```
 
 **code**
 ```javascript
@@ -168,9 +237,20 @@ ZZZzzzzz...
 - Anonymous functions can be used as an argument to other functions or as an immediately invoked function execution.
 
 **Algorithm**
-
+- Step 1. Use strict mode as global.
+- Step 2. Declare a function without name within the setTimeout.
+- Step 3. Print some statement in function.
+- Step 4. Run the program.
 
 **Psuedocode**
+
+```markdown
+BEGIN
+"use strict"
+FUNCTION setTimeout(function () 
+    PRINT ("I am anonymous function")
+, 2000);
+```
 
 **code**
 ```javascript
@@ -191,12 +271,24 @@ I am anonymous function
  - It can only be accessed by a variable it is stored in as a function as a value.
 
 **Algorithm**
+- Step 1. Use Strict mode as global. Declare a function with parameter.
+- Step 2. Assign function to a variable.
+- Step 3. return the multiplication of values.
+- Step 4. call the funciton  with varibale name and print it.
 
 
 **Psuedocode**
-
+```markdown
+BEGIN 
+"use strict"
+INIT x = FUNCTION (a, b)
+ RETURN a * b
+ FUNCTION END 
+PRINT(x(2,4))
+```
 **code**
 ```javascript
+"use strict"
 const x = function (a, b) {return a * b};
 console.log(x(2,4));
 ```
@@ -204,11 +296,12 @@ console.log(x(2,4));
 ```console
 8
 ```
-## 4. Show an example ofSafegrounding function parameters?
+## 4. Show an example of Safegrounding function parameters?
 
  - The solution is to safeguard the value by checking its type.  
   - JavaScript has a built-in directive typeof that we can use before calling the function.
 **Algorithm**
+- Step 1. Use Strict mode as global. Declare a function and assingn to variable.
 
 
 **Psuedocode**

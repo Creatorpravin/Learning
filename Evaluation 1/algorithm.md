@@ -25,7 +25,7 @@ INIT primeNumber = FUNCTION(number)
    ELSEIF(number > 1)
        FOR (2<100) DO
          IF(number % i == 0)THEN
-            sPrime = false;
+            SET sPrime = false;
             BREAK;
           ENDIF
         ENDFOR
