@@ -4486,3 +4486,12 @@ earlier example: in this case we just don’t control how Object was created, be
 object on the prototype chain. In other words Object does not have an abstract
 prototype. Object does have a ”ghost” prototype object just like any other type.
  
+ **17.0.5 Method look-up**
+ - When you call Array.toString() what actually happens is, JavaScript will first
+look for method toString on the prototype of Array object. But it does not find
+it there.
+ - Next, JavaScript decides to look for toString method on the prototype
+property of Array’s parent class: Object.
+ - It finally finds Object.prototype.toString() and executes it.
+ 
+
