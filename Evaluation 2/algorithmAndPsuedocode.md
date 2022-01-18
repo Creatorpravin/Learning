@@ -299,23 +299,39 @@ console.log(x(2,4));
 ## 4. Show an example of Safegrounding function parameters?
 
  - The solution is to safeguard the value by checking its type.  
-  - JavaScript has a built-in directive typeof that we can use before calling the function.
+ - JavaScript has a built-in directive typeof that we can use before calling the function.
+
 **Algorithm**
 - Step 1. Use Strict mode as global. Declare a function and assingn to variable.
-
+- Step 2. Then check the validation fo value using typeOf method using tenary operator.
+- Step 3. Then call function with diffrent parameter values.
 
 **Psuedocode**
 
+```markdown
+BEGIN
+"use strict";
+INIT obj = {};
+INIT f = FUNCTION function()
+              RETURN "This is function"
+FUNCTION myFunction(func)
+    TENARY(typeof func == "function")?console.log(func()):console.log("This is not function");
+FUNCTION END    
+   
+FUNCTION CALL myFunction(obj)
+FUNCTION CALL  myFunction(f)
+```
+
 **code**
 ```javascript
-"use strict";
 let obj = {};
 let f = function(){return "This is function";}
-(typeof func == "function")?console.log(func()):console.log("This is not function");
-function myFunction(func){     
+
+function myFunction(func){  
+    (typeof func == "function")?console.log(func()):console.log("This is not function");   
 }   
 myFunction(obj);     //pass object instead of function 
-myFunction(f); //pass function 
+myFunction(f);
 ```
 *Output:*
 ```console
@@ -324,17 +340,38 @@ This is function
 ```
 
 ## 5. Explain `this` keyword with an example?
+ 
  - The JavaScript this keyword refers to the object it belongs to. It refers to current object.
  - In a method, this refers to the owner object.
  - Alone, this refers to the global object.
  - In a function, this refers to the global object.
 
 **Algorithm**
-
-
-
+ - Step 1. Use Strict mode as global.
+ - Step 2. Declare two functions one within primitive data and another within object.
+ - Step 3. Print the variables with this keyword.
+ - Step 4. Call the function 
 
 **Psuedocode**
+
+```markdown
+BEGIN
+INIT x = 25
+FUNCTION y()
+    INIT a = 35;
+    PRINT(a)
+    PRINT(this.a)
+FUNCTION END
+FUNCTION CALL y()
+PRINT (this);
+INIT test = {
+          prop: 42,
+          func: FUNCTION () 
+                   RETURN this.prop;
+          };
+  PRINT FUNCTION CALL test.func()
+
+```
 
 **code**
 ```javascript
@@ -369,14 +406,28 @@ undefined
 
 **‘this’ inside the function**
  - In a function, this refers to the global object.
-
+ - It is reuse functions in different execution contexts. It means, a function once defined can be invoked for different objects using the this keyword.
  - In a function, in strict mode, this is undefined.
 
 
 **Algorithm**
+ - Step 1. Use Strict mode as global.
+ - Step 2. Declare a function and assign to a variable.
+ - Step 3. Return this in function.
+ - Step 4. Create new constructor object for fucntion.
+ - Step 5. Then print the object.
 
 
 **Psuedocode**
+
+```markdown
+BEGIN
+"use strict"
+INIT thisFunction = FUNCTION () 
+    RETURN this
+INIT obj = new thisFunction()
+PRINT(obj)
+```
 
 **code**
 ```javascript
@@ -387,19 +438,39 @@ var thisFunction = function () {
 };
 var obj = new thisFunction();
 console.log(obj);
+
 ```
 
 *Output:*
-```console
+```consol.e
 thisFunction {}
 ```
 
 **‘this’ inside the class**
+
  - This keyword is used inside of a class and refers to the current instance.
+
 **Algorithm**
+
+- Step 1. Use Strict mode as global.
+- Step 2. Create a class and create a object constructor in class.
+- Step 3. Then return this.
+- Step 4. Create a new object constructor to the class.
+- Step 5. Call the object constructor.
+
 
 
 **Psuedocode**
+
+```markdown
+BEGIN
+"use strict";
+CLASS thisClass
+    constructor() 
+        RETURN this 
+INIT obj = new thisClass()
+PRINT(obj)
+```
 
 **code**
 ```javascript
@@ -430,11 +501,24 @@ thisClass {}
  - map() does not change the original array.
 **Algorithm**
 
+- Step 1. Use Strict mode as global.
+- Step 2. Create a array.
+- Step 3. Use arrow function to work with map.
+- Step 4. Do something with array and store in variable.
+- Step 5. print the value.
 
 **Psuedocode**
+```markdown
+BEGIN
+"use strict"
+INIT twice = [1,2,3,4,5,6]
+INIT resultTwice = twice.map(value => value * 2)
+PRINT(resultTwice);
+```
 
 **code**
-```javascript.
+```javascript
+
 "use strict";
 let twice = [1,2,3,4,5,6];
 let resultTwice = twice.map(value => value * 2);
@@ -451,10 +535,20 @@ console.log(resultTwice);
  - The reduce() method reduces an array of values down to just one value. To get the output value, it runs a reducer function on each element of the array. 
 
 **Algorithm**
-
+- Step 1. Use Strict mode as global.
+- Step 2. Create a array assign to variable.
+- Step 3. create arrow function for work with reduce.
+- Step 4. Do something with previous value and converted to single value.
+- Step 5. Print the value.
 
 **Psuedocode**
-
+```markdown
+BEGIN
+"use strict";
+INIT total = [1,2,3,4,5,6,7,8];
+INIT count = total.reduce((previous,current) => previous + current);
+PTINT(count);
+```
 **code**
 ```javascript
 "use strict";
@@ -475,12 +569,27 @@ console.log(count);
 
 
 **Algorithm**
-
+- Step 1. Use Strict mode as global.
+- Step 2. Create a array assign to variable.
+- Step 3. Create arrow function for work with filter.
+- Step 4. Do some conditon to filter the values.
+- Step 5. Print the value.
 
 
 **Psuedocode**
 
+```markdown
+BEGIN
+"use strict"
+INIT words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
+
+INIT result = words.filter(word => word.length > 6)
+
+PRINT(result)
+```
+
 **code**
+
 ```javascript
 "use strict"
 const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
@@ -495,10 +604,40 @@ console.log(result);
 [ 'exuberant', 'destruction', 'present' ]
 ```
 ## 8. Count Total number of zeros from 1 up to 50
+
 **Algorithm**
 
+- Step 1. Use Strict mode as global.
+- Step 2. Create two variables globally. Then convert it to string for validation of float
+- Step 3. Validate it of number and float. Create a variable with 0.
+- Step 4. Use for loop to iterate the number and convert it to string.
+- Step 5. Split the number by 0 then make it count to a varibale.
+- Step 6. Then print the value.
 
 **Psuedocode**
+```markdown
+BEGIN
+"use strict";
+INIT start = 1;
+INIT end = 50;
+INIT startConvertToString = start + "" ;
+INIT endConvertToString = end + "" ;
+IF(typeof start === "number" && typeof end === "number" )THEN
+   IF(startConvertToString.indexOf(".") === -1 && endConvertToString.indexOf(".") === -1)THEN
+        INIT count = 0;
+        FOR (let i = start ; i <= end ; i++ ) DO
+            INIT numberToString = i + "" ;
+            SET count += numberToString.split("0").length - 1;
+        ENDFOR
+        PRINT(count);
+    ELSE
+        PRINT("The float value not accepted"); 
+    ENDIF
+ELSE
+    PRINT("The string value not accepted");
+ENDIF
+
+```
 
 **code**
 ```javascript
@@ -515,6 +654,7 @@ if(typeof start === "number" && typeof end === "number" ){
         let count = 0;
         for(let i = start ; i <= end ; i++ ){
             let numberToString = i + "" ;
+            //split the number by 0 and add length - 1 to count
             count += numberToString.split("0").length - 1;
         }
         console.log(count);
@@ -537,10 +677,27 @@ else{
 
 **Algorithm**
 
+- Step 1. Use Strict mode as global.
+- Step 2. Create a array and use max method to get the max value in arrray.
+- Step 3. Use math to generate numbers in array.
+- Step 4. Use for loop to iterate the values in array.
+- Step 5. Check the condition if it already exists or not.
+- Step 6. Then push into new one and print it.
+
 
 **Psuedocode**
-
+```markdown
+BEGIN
+"use strict"
+INIT a = [1,2,3,5,6], count = Math.max(...a);
+INIT missing = [];
+FOR ( var i = 1; i <= count; i++ ) DO
+	IF (a.indexOf(i) == -1) 
+		SET missing.push(i);
+PRINT(missing)
+```
 **code**
+
 ```javascript
 var a = [1,2,3,5,6], count = Math.max(...a);
 var missing = [];
@@ -558,12 +715,34 @@ console.log(missing);
 ```console
 [ 4 ]
 ```
+
 ## 10. Write a program for calculating age using Date of birth? (1990)
 
 **Algorithm**
-
+- Step 1. Use Strict mode as global.
+- Step 2. Create a function with a parameter of age.
+- Step 3. Check the validation of the input.
+- Step 4. Get today date by Date() and get the year from date.
+- Step 5. Subract current year from birth year.
+- Step 6. Call the function.
 
 **Psuedocode**
+```markdown
+BEGIN
+"use strict"
+FUNCTION calAge(birthYear)
+  INIT convertToString = birthYear + "";
+IF(typeof birthYear === "number" && convertToString.indexOf(".") === -1)THEN
+    INIT year = new Date();
+    INIT currentYear = year.getFullYear();
+    INIT age = currentYear - birthYear;
+    PRINT(age);
+ELSE
+ PRINT("enter the valid value");
+ENDIF 
+FUNCTION END
+FUNCTION CALL calAge(1990);
+```
 
 **code**
 ```javascript

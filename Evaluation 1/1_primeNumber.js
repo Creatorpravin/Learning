@@ -2,10 +2,11 @@
 // check if a number is prime or not
 
 
-let isPrime = true;
+
 let output;
 //const number = 23;
 const primeNumber = function (number){
+    let isPrime = true;
 // check if number is equal to 1
 if (number === 1 || typeof number === "string"|| number < 1) {
     output = "Enter the valid value";
@@ -37,4 +38,8 @@ return output;
 }
 console.log(primeNumber("two"));
 console.log(primeNumber(1));
-console.log(primeNumber(25));
+console.log(primeNumber(2));
+console.log(primeNumber(3));
+console.log(primeNumber(4));
+console.log(primeNumber(5));
+console.log(primeNumber(6));
