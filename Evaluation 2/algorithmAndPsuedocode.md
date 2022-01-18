@@ -767,13 +767,29 @@ calAge(1990);
 ## 11. In the Javascript function, what are the differences between call by value and reference?
 
 **Call by value**
+
  - Function arguments are always passed by value.
  - It copies the value of a variable passed in a function to a local variable.
  - Both these variables occupy separate locations in memory. Thus, if changes are made in a particular variable it does not affect the other one.
-**Algorithm**
 
+**Algorithm**
+- Step 1. Use Strict mode as global.
+- Step 2. Create two variable A with a primitive value and another B not assigned.
+- Step 3. Assign B = A after this change the value of A.
+- Step 4. Print the both variables.
 
 **Psuedocode**
+
+```console
+BEGIN
+"use strict"
+INIT a = 5;
+INIT b;
+SET b = a;
+SET a = 3;
+PRINT(a);
+PRINT(b);
+```
 
 **code**
 ```javascript
@@ -801,9 +817,24 @@ console.log(b);
  - Changes in one object variable affect the other object variable.
 
 **Algorithm**
+- Step 1. Use Strict mode as global.
+- Step 2. Create two variable A with a object and another B not assigned.
+- Step 3. Assign B = A after this change object property of A.
+- Step 4. Print the both variables.
 
 
 **Psuedocode**
+
+```console
+BEGIN
+ "use strict"
+ INIT c = { greeting : 'YAVAR' };
+ INIT d;
+ SET d = c;
+ SET c.greeting = 'Yavar Tech Works';
+ PRINT(c);
+ PRINT(d);
+```
 
 **code**
 ```Javascript
@@ -825,16 +856,27 @@ console.log(b);
 { greeting: 'Yavar Tech Works' }
 ```
 
-## 12. What is Arity in Javascript? 
-Explain with a real time example.
+## 12. What is Arity in Javascript? Explain with a real time example.
 
  - The arity property used to return the number of arguments expected by the function.
  - You can access function’s arity via Function.length property.
 
 **Algorithm**
 
+- Step 1. Use Strict mode as global. 
+- Step 2. Create a funciton with 3 parameters.
+- Step 3. Get the length of details and assign to a variable.
+- Step 4. Print the variable.
 
 **Psuedocode**
+```console
+BEGIN
+"use strict";
+FUNCTION Details(age,name,location)
+FUNCTION END
+INIT arity=Details.length
+PRINT(arity);
+```
 
 **code**
 ```javascript
@@ -856,12 +898,29 @@ console.log(arity);
  - Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
  - Currying doesn’t call a function. It just transforms it.
 
-
-
 **Algorithm**
-
+- Step 1. Use Strict mode as global. 
+- Step 2. Create a function with parameter and assign to a variable.
+- Step 3. Return a the function inside the return function return another function with parameter.
+- Step 4. Then do something inside with all parameters and return it.
+- Step 5. Call the funciton with parameters f(a, b, c).
 
 **Psuedocode**
+```console
+BEGIN
+"use strict";
+INIT volume = function(a) 
+    RETURN function(b) 
+    RETURN function(c) 
+          RETURN a * b * c
+    FUNCITON END
+ PRINT(volume(2)(4)(6));
+ INIT h=volume(2)(4);
+ PRINT(h(6));
+ INIT w=volume(2);
+ INIT y = w(4);
+ PRINT(h(6));
+```
 
 **code**
 ```javascript
@@ -882,11 +941,16 @@ console.log(h(6));
 ```
 
 *Output:*
+```console
+48
+48
+48
+```
 
 ## 14. What is ES6?
 
  - ECMAScript 2015 is also known as ES6 and ECMAScript 6.
- - It brought several new features like, let and const keyword, rest and spread operators, template literals, classes, modules and many other enhancements to make JavaScript programming easier.
+ - It brought several new features like, let and const keyword, rest and spread operators, template     literals,  classes, modules and many other enhancements to make JavaScript programming easier.
  - iterators and for...of loops
  - arrow function expression (() => {...})
  - let keyword for local declarations
@@ -911,9 +975,22 @@ console.log(h(6));
 - An anonymous function is not accessible after its initial creation
 
 **Algorithm**
-
+- Step 1. Use Strict mode as global. 
+- Step 2. Create a variable as public.
+- Step 3. Create anonymous function and do something inside the function.
+- Step 4. Then call the function.
 
 **Psuedocode**
+
+```markdown
+BEGIN
+"use strict"
+INIT total;
+FUNCTION(x,y)
+    SET total = x + y;
+    PRINT(total);
+})FUNCTION CALL(12,45);
+```
 
 **code**
 ```javascript
@@ -932,10 +1009,23 @@ let total;
 - We call the function with parameters anywhere in the program.
 
 **Algorithm**
-
+- Step 1. Use Strict mode as global. 
+- Step 2. Create a funciton with name and parameters.
+- Step 3. declare a variable inside the function and do some operation.
+- Step 4. Print the value and call the function.
 
 
 **Psuedocode**
+
+```markdown
+BEGIN
+"use strict"
+FUNCTION CALL add(12,45)
+FUNCTION add(x,y)
+    INIT total = x + y
+    PRINT(total)
+FUNCITON CALL add(12,45)
+```
 
 **code**
 ```javascript
@@ -961,9 +1051,22 @@ add(12,45);
  - Assigning function to variable may be syntactically lighter than using a named function.
 
 **Algorithm**
-
+- Step 1. Use Strict mode as global. 
+- Step 2. Create a function and assign to a variable with two parameters.
+- Step 3. Inside the function do something.
+- Step 4. Print the funciton.
+- Step 5. Call the function by it's variable name.
 
 **Psuedocode**
+
+```markdown
+BEGIN
+"use strict"
+INIT sub = FUNCTION(x,y)
+    INIT total = x - y
+    PRINT(total)
+FUCNTION CALL sub(45,12)
+```
 
 **code**
 
