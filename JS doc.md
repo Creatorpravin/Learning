@@ -5008,4 +5008,4 @@ tom.wakeup();
 tom.sleep();
 ```
  - In the next section we will take this concept further to design an entire application using OOP: Polymorphism with examples via Inheritance and Object
-Composition and just a bit of Functional Programming sty
+Composition and just a bit of Functional Programming style.
