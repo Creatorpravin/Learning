@@ -4494,4 +4494,104 @@ it there.
 property of Array’s parent class: Object.
  - It finally finds Object.prototype.toString() and executes it.
  
+**17.0.6 Array methods**
+ - In previous section we’ve taken a look at prototype chain and how .toString
+method is found by traversing the prototype chain. But .toString is available on
+all objects that stem from the Object type (which is most built-in types.)
+ - The same is true for Number, String and Boolean built-in types. You can call
+toString method on each one of them, and yet it exists only in one place in
+memory on Object.prototype property.
+ - Methods native to Array type should exist on Array.prototype object.
+ - It is obvious that there isn’t much use in having higher-order functions like .map,
+.filter and .reduce attached to  
+ - Number or Boolean types.
+The fact is, every single Array method already exists on Array.prototype:
+   ```javascript
+   [1, 2, 3]
+   3
+   1
+   0: 1
+   1: 2
+   2: 3
+   length: 3
+   [[Prototype]]: Array(0)
+   at: ƒ at()
+   concat: ƒ concat()
+   constructor: ƒ Array()
+   copyWithin: ƒ copyWithin()
+   entries: ƒ entries()
+   every: ƒ every()
+   fill: ƒ fill()
+   filter: ƒ filter()
+   find: ƒ find()
+   findIndex: ƒ findIndex()
+   flat: ƒ flat()
+   flatMap: ƒ flatMap()
+   forEach: ƒ forEach()
+   includes: ƒ includes()
+   indexOf: ƒ indexOf()
+   join: ƒ join()
+   keys: ƒ keys()
+   lastIndexOf: ƒ lastIndexOf()
+   length: 0
+   map: ƒ map()
+   pop: ƒ pop()
+   push: ƒ push()
+   reduce: ƒ reduce()
+   reduceRight: ƒ reduceRight()
+   reverse: ƒ reverse()
+   shift: ƒ shift()
+   slice: ƒ slice()
+   some: ƒ some()
+   sort: ƒ sort()
+   splice: ƒ splice()
+   toLocaleString: ƒ toLocaleString()
+   toString: ƒ toString()
+   unshift: ƒ unshift()
+   values: ƒ values()
+   Symbol(Symbol.iterator): ƒ values()
+   Symbol(Symbol.unscopables): {copyWithin: true, entries: true, fill: true, find: true, findIndex: true, …}
+   [[Prototype]]: Object
+   constructor: ƒ Object()
+   hasOwnProperty: ƒ hasOwnProperty()
+   isPrototypeOf: ƒ isPrototypeOf()
+   propertyIsEnumerable: ƒ propertyIsEnumerable()
+   toLocaleString: ƒ toLocaleString()
+   toString: ƒ toString()
+   valueOf: ƒ valueOf()
+   __defineGetter__: ƒ __defineGetter__()
+   __defineSetter__: ƒ __defineSetter__()
+   __lookupGetter__: ƒ __lookupGetter__()
+   __lookupSetter__: ƒ __lookupSetter__()
+   get __proto__: ƒ __proto__()
+   set __proto__: ƒ __proto__()
+   1,2,3
+   1
+   2
+   30mpg
+   ```
+   - Looks like our favorite methods .map, .filter and .reduce live on
+   Array.prototype object.
 
+  - If you want to extend functionality of the Array method specifically, attach a
+method to Array.prototype.my method.
+
+**17.1.1 Extending Your Own Objects**
+ - Number’s and Array’s parent is Object. This is great, but what if we want to
+extend our own object from another object?
+ - As we saw from the preceding diagrams proto getter is part of internal prototype implementation. It’s crucial for establishing the link, but we shouldn’t mess
+with it directly. For the same reason.
+ - JavaScript is a dynamically typed language, so you can try to create some object
+constructors and rewire the proto property on their prototype object to the
+”parent”, but this is often considered to be a hack. In practical coding situation,
+you will actually never need to do anything like this. There is literally no software
+you would possibly be writing that modifies the internal function of prototype.
+ - After EcmaScript 6 you are encouraged to create and extend classes using class
+and extends keywords and let JavaScript worry about prototype links.
+
+**17.1.2 constructor property**
+ - The constructor property of Object class points to Function:
+ - The constructor property of Function class points to Function:
+ - This creates a circular dependency around the Function class:
+ - Function.constructor is Function (circular.) But Object.constructor is also Function. This can imply that a class is constructed using a function. Yet, Function
+itself is a class. This is circular dependency.
