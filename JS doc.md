@@ -5009,3 +5009,61 @@ tom.sleep();
 ```
  - In the next section we will take this concept further to design an entire application using OOP: Polymorphism with examples via Inheritance and Object
 Composition and just a bit of Functional Programming style.
+
+# **Chapter 18**
+
+**Object Oriented Programming**
+
+ - In this chapter we will exemplify OOP by building a cooking range with stove.
+ - The best example of Object Oriented Programming would be based on many
+different types of objects. We will define a class for each abstract type: Fridge,Ingredient, Vessel, Range, Burner, and Oven.
+ - We will take a look at two key OOP principles: inheritance and polymorphism
+in the sense of how it actually relates to JavaScript code.
+
+**18.1 Ingredient**
+ - The Ingredient class will be our generic class for instantiating ingredients from.
+ - It will have properties: name, type and calories which will be enough to describe
+pretty much any ingredient we might need.
+ - Here’s a list of the common ingredients we will create: water, olive oil, broth,
+red wine, bay leaf, peppercorn, beef, chicken, bacon, pineapple, apple, blueberry,
+mushroom, carrot, potato, egg, cheese, sauce, oatmeal, rice, brown rice, cheese.
+ - I think it’s enough to make several interesting meals! Ingredient class itself will
+have static properties to describe the type of the ingredient. We’ll take a look at
+how this works when we get to source code. (eg: Ingredient.vegetable)
+
+**818.2 FoodFactory**
+
+ - FoodFactory will be a class that will create a completely new instance of an
+ingredient. This way we don’t end up reusing the same Ingredient object instance
+in different cooking vessels at the same time! Because, as you may know, in
+ - JavaScript variable names are only references (links) to the same object instance.
+
+**18.3 Vessel**
+ - Classes Pot, Pan and Tray demonstrate inheritance because they are derived from
+the same abstract class Vessel (as in cooking vessel.)
+ - Vessel class will have an add() method for adding ingredients. This way we can
+choose which ingredients to place inside each created vessel for baking, boiling or
+baking (depending on which vessel type was chosen.)
+
+**18.4 Burner**
+ - There will be four burners on the range surface, each represented by a unique
+instance of the class Burner. You can turn burners on() or off().
+
+```javascript
+let burner = new Burner(BurnerIndex.UpperLeft);
+let skillet = new Pan("cast iron");
+burner.place(skillet);//place skillet on burner
+burner.on(); //switch burner on
+range.run(); //run range for 1 minute
+```
+ - Vessels loaded with ingredients can be placed on each of the four burners.
+ - Once a burner is turned on, whatever is in the vessel placed on a burner whose
+state is ”on”, will be considered to be cooking, but only when the range is running
+for a period of time by calling: Range.run(minutes).
+
+**18.5 Range Type and The Polymorphic Oven**
+ - RangeType.Gas and RangeType.Electric represent a different internal implementation for generating heat.
+ - We won’t go into deep detail on implementing gas or electric range, we’ll simply
+write a heat generator function that converts an energy source into a heat unit.
+ - The main idea is that, even though RangeType implementation can change from
+ - Gas to Electric our range API code will still work without additional modification.
