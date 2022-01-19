@@ -4595,3 +4595,128 @@ and extends keywords and let JavaScript worry about prototype links.
  - This creates a circular dependency around the Function class:
  - Function.constructor is Function (circular.) But Object.constructor is also Function. This can imply that a class is constructed using a function. Yet, Function
 itself is a class. This is circular dependency.
+
+**17.1.3 Function**
+ - Function is the constructor of all object types.
+
+**17.2 Prototype In Practice**
+ - Understanding how prototype works is a gradual process. It might be a difficult
+task, considering JavaScript language has evolved over the years. To get a better
+idea of how it all works, we’ll start from the very beginning.
+ - We’ve already covered the theory behind prototype in the previous section of this
+chapter. In this section we will finally arrive at prototype in terms of how fits into
+the big picture when it comes to actually writing code.
+ - This section is a thorough walk-through that demonstrate different ways of working
+with objects. And what’s a better place to start than the object literal?
+
+**17.2.1 Object Literal**
+ - In this example cat object was defined using a simple object literal syntax. In
+some ways, under the hood JavaScript wires up all the prototype linking.
+ - Throughout the following sections of this chapter we will gradually update this
+example and build on it to finally arrive at how prototype can be useful to you as
+a JavaScript programmer.
+
+```javascript
+let cat = {};
+cat.name = "Felix";
+cat.hunger = 0;
+cat.energy = 1;
+cat.sate = "idle";
+```
+ - We named our cat specimen Felix, gave him 0 level of hunger and 1 unit of energy.
+Currently Felix is in idle state. Just where we want him to be!
+
+```javascript
+//Sleep to restore energy
+cat.sleep = function(amount){
+    this.state = "sleeping";
+    console.log(`${this.name} is ${this.state}.`);
+    this.energy += 1;
+    this.hunger += 1;
+    }
+
+//wake up
+cat.wakeup = function(){
+    this.state = "idle";
+    console.log(`${this.name} woke up`);
+}
+
+//Eat until hunger is quenched
+cat.eat = function(amount){
+    this.state="eating";
+    console.log(`${this.name} is ${this.state} ${amount} unit(s) of food.`);
+    if(this.hunger -= amount <=0)
+       this.energy += amount;
+    else 
+       this.wakeup();
+}
+
+//Wandering depletes energy
+//If necessary, sleep for 5 hours to restore energy
+cat.wander = function(){
+    this.state = "wandering";
+    console.log(`${this.name} is ${this.state}.`);
+    if(--this.energy<1)
+     this.sleep(5);
+}
+
+cat.sleep();
+cat.wakeup();
+cat.eat(5);
+cat.wander();
+```
+
+ - Methods sleep, wakeup, eat and wander were added directly to the instance
+of the cat object. 
+ - Each method has basic implementation that either restores or
+depletes cats energy.
+
+**817.2.2 Using Function Constructor**
+ - Even after some sleep Felix feels a bit of melancholy. He needs a friend.
+ - But instead of creating a new object literal, we can place the same code inside a
+function called Cat to represent a global Cat class: 
+
+```javascript
+console.log(typeof Object.prototype); 
+function cat(name, hunger, energy, state){
+    let cat = {};
+    cat.name = name;
+    cat.hunger = hunger;
+    cat.energy = energy;
+    cat.state = state;
+cat.sleep = function(){
+    this.state = "sleeping";
+    console.log(`${this.name} is ${this.state}`);
+    this.energy += 1;
+    this.hunger += 1;
+}
+
+cat.wakeup = function (){
+    this.state = "idle";
+    console.log(`${this.name} woke up. `);
+}
+cat.eat = function (){}
+cat.wander = function (){}
+ return cat;
+}
+```
+ - Note that all that was done here is we moved the exact same code we wrote in the
+previous section into a function and returned the object using the return keyword.
+ - The methods implementation remained the same too. I simply used the comment
+markers /* implement */ to avoid repeating the same code again
+
+```javascript
+let sam = cat("sam",5,1,"sleeping");
+sam.wakeup();
+sam.sleep();
+let tom = cat("tom",5,1,"sleeping");
+tom.sleep();
+```
+
+**17.2.3 Prototype**
+ - Branching out from previous example, we see a problem.
+ - All of the methods of Felix and Luna take twice as much space in memory. This
+is because we are still creating two object literals for each cat.
+ - And this is the problem prototype tries to solve.
+Why don’t we take all of our methods and place them at a single location in
+memory instead?
