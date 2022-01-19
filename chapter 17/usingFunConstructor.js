@@ -1,4 +1,4 @@
-console.log(typeof Object.prototype); 
+//console.log(typeof Object.prototype); 
 function cat(name, hunger, energy, state){
     let cat = {};
     cat.name = name;

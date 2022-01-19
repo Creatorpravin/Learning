@@ -4720,3 +4720,292 @@ is because we are still creating two object literals for each cat.
  - And this is the problem prototype tries to solve.
 Why don’t we take all of our methods and place them at a single location in
 memory instead?
+
+```javascript
+const prototype = {
+    sleep(amount){
+        this.state = "sleeping";
+        console.log(`${this.name} is ${this.state}`);
+        this.energy += 1;
+        this.hunger += 1;
+    },
+    wakeup(amount){
+        this.state = "idle";
+        console.log(`${this.name} woke up. `);
+    },
+    eat(amount){
+
+    },
+    wander(amount){
+
+    }
+
+}
+```
+ - Now all of our neatly packaged methods share a single place in memory.
+ - Let’s go back to our Cat class implementation, and wire the methods from the
+above prototype object directly into each method on the object:
+
+```javascript
+function cat(name, hunger, energy, state){
+    let cat = {};
+    cat.name = name;
+    cat.hunger = hunger;
+    cat.energy = energy;
+    cat.state = state;
+
+    cat.sleep = prototype.sleep;
+    cat.wakeup = prototype.wakeup;
+    return cat;
+}
+
+let sam = cat("sam",5,1,"sleeping");
+sam.wakeup();
+sam.sleep();
+
+```
+
+ - Before we see how JavaScript does this, let’s take a look at something else.
+
+**17.2.4 Creating objects using Object.create**
+ - In JavaScript we can also create objects using Object.create method, which takes
+a clean slate object as one of its arguments:
+
+```javascript
+const cat = {
+    name: "Tom",
+    state: "idle",
+    hunger: 1,
+}
+const kitten = Object.create(cat);
+kitten.name = "Loki";
+kitten.state = "sleeping";
+```
+
+ - Now let’s take a look at kitten:
+
+```javascript
+console.log(kitten);
+```
+ - Mysteriously, object kitten has only two methods – it is missing hunger property.
+
+```cosole
+{ name: 'Loki', state: 'sleeping' }
+```
+
+ - To explain this, let’s see what will happen if we actually try to output it:
+```javascript
+console.log(kitten.hunger);//1
+```
+ - This behavior is unique to objects created via Object.create method. When we
+try to get kitten.hunger, JavaScript will look at kitten.hunger, but will not find
+it there (because it wasn’t created directly on the instance of the kitten object.)
+ - Then what happens is JavaScript will look at .hunger property in cat object.
+ - Because kitten was created via Object.create(cat), kitten considers cat to be
+its parent so it looks there.
+ - Finally it finds it on cat.hunger and returns 1 in console. Again, property hunger
+is stored only once in memory
+
+**17.2.5 Back To The Future**
+ - Let’s rewind a bit and go back to the earlier example from section called Using
+ - Function Constructor fully equipped with new knowledge about Object.create.
+
+```javascript
+const prototype = {
+    sleep(amount){
+        this.state = "sleeping";
+        console.log(`${this.name} is ${this.state}`);
+        this.energy += 1;
+        this.hunger += 1;
+    },
+    wakeup(amount){
+        this.state = "idle";
+        console.log(`${this.name} woke up. `);
+    },
+    eat(amount){
+
+    },
+    wander(amount){
+
+    }
+
+}
+
+function cat(name, hunger, energy, state){
+    let cat = {};
+    cat.name = name;
+    cat.hunger = hunger;
+    cat.energy = energy;
+    cat.state = state;
+
+    cat.sleep = prototype.sleep;
+    cat.wakeup = prototype.wakeup;
+    return cat;
+}
+```
+ - Let’s delete the part where we wired our own prototype object into the methods
+of Cat class, and instead pass them into the native Object.create method which
+will now reside inside our Cat function (source code listing above.)
+ - Now we can create felix and luna via this new Cat function as follows:
+
+```javascript
+let sam = cat("sam",5,1,"sleeping");
+sam.wakeup();
+sam.sleep();
+```
+ - Now we get the ideal syntax, and sleep() is defined only once in memory. No
+matter how many felixes or lunas you create, we’re no longer wasting memory
+on their methods, because they are defined only once.
+
+**17.2.6 Constructor Function**
+ - Let’s recall that each Object has a prototype property pointing to its ghost prototype object:
+
+```javascript
+console.log(typeof Object.prototype);//"object"
+```
+ - So now what we can do is attach all Cat methods directly to its built-in prototype
+property instead of our own ”prototype” object we created earlier:
+
+```javascript
+function cat(name, hunger, energy, state){
+    let Cat = Object.create(cat.prototype);
+    Cat.name = name;
+    Cat.hunger = hunger;
+    Cat.energy = energy;
+    Cat.state = state;
+
+    return Cat;
+}
+
+ cat.prototype.sleep = function (){
+        this.state = "sleeping";
+        console.log(`${this.name} is ${this.state}`);
+        this.energy += 1;
+        this.hunger += 1;
+    };
+    cat.prototype.wakeup=function(){
+        this.state = "idle";
+        console.log(`${this.name} woke up. `);
+    };
+    cat.prototype.eat=function(){};
+    cat.prototype.wander=function(){};
+
+let sam = cat("sam",5,1,"sleeping");
+sam.wakeup();
+sam.sleep();
+```
+ - In this scenario, JavaScript will look for .sleep on luna object, and will not find
+it there. It will then look for .sleep method on Cat.prototype. It finds it there
+and the method is invoked.
+
+```javascript
+let tom = cat("sam",5,1,"sleeping");
+tom.wakeup();
+tom.sleep();
+```
+ - The same happens here, .wakeup method is executed on Cat.prototype.wakeup,
+not on the instance itself.
+ - Therefore the main purpose of prototype is to serve as a special look up object,
+which will be shared across all instances of objects instantiated with its constructor
+function while preserving memory.
+
+**17.2.7 Along came new operator**
+ - We can wipe out everything we learned up to this point and replace it all with
+new operator – which will automatically do every single thing we’ve just explored
+in the previous sections of this chapter!
+```javascript
+function cat(name, hunger, energy, state){
+    let Cat = Object.create(cat.prototype);
+    Cat.name = name;
+    Cat.hunger = hunger;
+    Cat.energy = energy;
+    Cat.state = state;
+
+    return Cat;
+}
+```
+ - Let’s remove Object.create and return cat from our class definition.
+ - In JavaScript functions defined with function keyword are hoisted. This means
+we can add methods to Cat.prototype before Cat is defined:
+
+```javascript
+
+    cat.prototype.sleep = function (){
+        this.state = "sleeping";
+        console.log(`${this.name} is ${this.state}`);
+        this.energy += 1;
+        this.hunger += 1;
+    };
+    cat.prototype.wakeup=function(){
+        this.state = "idle";
+        console.log(`${this.name} woke up. `);
+    };
+    cat.prototype.eat=function(){};
+    cat.prototype.wander=function(){};
+
+``` 
+
+Followed by Cat definition:
+
+```javascript
+function cat(name, hunger, energy, state){
+    Cat.name = name;
+    Cat.hunger = hunger;
+    Cat.energy = energy;
+    Cat.state = state;
+}
+
+```
+
+ - Now we can instantiate sam as follows:
+```javascript
+ let sam = cat("sam",5,1,"sleeping");
+sam.wakeup();
+sam.sleep();
+
+```
+
+**17.2.8 The class keyword**
+ - Everything we’ve just explored about prototype was converging toward the class
+keyword added in EcmaScript 6.
+ - How prototype works is a common subject during JavaScript interviews. But in
+production environment, you will never (spelling is correct) have to touch it at all
+in your entire career as a front-end software engineer.
+
+```javascript
+class cat{
+    constructor(name, hunger, energy, state){
+        this.name = name;
+        this.hunger = hunger;
+        this.energy = energy;
+        this.state = state;
+    }
+    sleep(amount){
+        this.state = "sleeping";
+        console.log(`${this.name} is ${this.state}`);
+        this.energy += 1;
+        this.hunger += 1;
+    }
+    wakeup(amount){
+        this.state = "idle";
+        console.log(`${this.name} woke up. `);
+    }
+    eat(amount){
+    }
+    wander(amount){
+    }
+}
+```
+
+ - Use class and new keywords. Let JavaScript worry about prototype:
+
+```javascript
+ let sam = new cat("sam",5,1,"sleeping");
+sam.wakeup();
+sam.sleep();
+let tom = new cat("tom",5,1,"sleeping");
+tom.wakeup();
+tom.sleep();
+```
+ - In the next section we will take this concept further to design an entire application using OOP: Polymorphism with examples via Inheritance and Object
+Composition and just a bit of Functional Programming sty
