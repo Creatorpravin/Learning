@@ -16,9 +16,9 @@ students.forEach(function(obj){
 //     b.push(obj.achievements);
  })
  console.log(d);
-// let k = a[0];
+ let k = a[0];
 
-// d[k] = b[0];
-// console.log(d);
+ d = b[0];
+ console.log(d);
 
 
