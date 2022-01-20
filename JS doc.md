@@ -5030,7 +5030,7 @@ in the sense of how it actually relates to JavaScript code.
     - Class declarations
     - Class expressions
 
-[https://www.javatpoint.com/javascript-oops-classes](https://link)
+[Refer from this](https://www.javatpoint.com/javascript-oops-classes)
 
 **Class Declarations**
   - A class can be defined by using a class declaration. A class keyword is used to declare a class with any particular name. According to JavaScript naming conventions, the name of the class always starts with an uppercase letter.
