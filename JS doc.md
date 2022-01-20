@@ -5020,50 +5020,174 @@ different types of objects. We will define a class for each abstract type: Fridg
  - We will take a look at two key OOP principles: inheritance and polymorphism
 in the sense of how it actually relates to JavaScript code.
 
-**18.1 Ingredient**
- - The Ingredient class will be our generic class for instantiating ingredients from.
- - It will have properties: name, type and calories which will be enough to describe
-pretty much any ingredient we might need.
- - Here’s a list of the common ingredients we will create: water, olive oil, broth,
-red wine, bay leaf, peppercorn, beef, chicken, bacon, pineapple, apple, blueberry,
-mushroom, carrot, potato, egg, cheese, sauce, oatmeal, rice, brown rice, cheese.
- - I think it’s enough to make several interesting meals! Ingredient class itself will
-have static properties to describe the type of the ingredient. We’ll take a look at
-how this works when we get to source code. (eg: Ingredient.vegetable)
+**JavaScript Classes**
+ - In JavaScript, classes are the special type of functions. We can define the class just like function declarations and function expressions.
 
-**818.2 FoodFactory**
+ - The JavaScript class contains various class members within a body including methods or constructor. The class is executed in strict mode. So, the code containing the silent error or mistake throws an error.
 
- - FoodFactory will be a class that will create a completely new instance of an
-ingredient. This way we don’t end up reusing the same Ingredient object instance
-in different cooking vessels at the same time! Because, as you may know, in
- - JavaScript variable names are only references (links) to the same object instance.
+ - The class syntax contains two components:
 
-**18.3 Vessel**
- - Classes Pot, Pan and Tray demonstrate inheritance because they are derived from
-the same abstract class Vessel (as in cooking vessel.)
- - Vessel class will have an add() method for adding ingredients. This way we can
-choose which ingredients to place inside each created vessel for baking, boiling or
-baking (depending on which vessel type was chosen.)
+    - Class declarations
+    - Class expressions
 
-**18.4 Burner**
- - There will be four burners on the range surface, each represented by a unique
-instance of the class Burner. You can turn burners on() or off().
+[https://www.javatpoint.com/javascript-oops-classes](https://link)
+
+**Class Declarations**
+  - A class can be defined by using a class declaration. A class keyword is used to declare a class with any particular name. According to JavaScript naming conventions, the name of the class always starts with an uppercase letter.
+
+**Class expressions**
+ - Another way to define a class is by using a class expression. Here, it is not mandatory to assign the name of the class. So, the class expression can be named or unnamed. The class expression allows us to fetch the class name. However, this will not be possible with class declaration.
+```javascript
+var emp = class {  
+  constructor(id, name) {  
+    this.id = id;  
+    this.name = name;  
+  }  
+  console.log(emp.name);
+```
+
+**JavaScript Encapsulation**
+ - The JavaScript Encapsulation is a process of binding the data (i.e. variables) with the functions acting on that data. It allows us to control the data and validate it. To achieve an encapsulation in JavaScript: -
+
+    - Use var keyword to make data members private.
+    - Use setter methods to set the data and getter methods to get that data.
+ - The encapsulation allows us to handle an object using the following properties:
+
+    - Read/Write - Here, we use setter methods to write the data and getter methods read that data.
+
+    - Read Only - In this case, we use getter methods only.
 
 ```javascript
-let burner = new Burner(BurnerIndex.UpperLeft);
-let skillet = new Pan("cast iron");
-burner.place(skillet);//place skillet on burner
-burner.on(); //switch burner on
-range.run(); //run range for 1 minute
-```
- - Vessels loaded with ingredients can be placed on each of the four burners.
- - Once a burner is turned on, whatever is in the vessel placed on a burner whose
-state is ”on”, will be considered to be cooking, but only when the range is running
-for a period of time by calling: Range.run(minutes).
+//Allows us to control data and variable
+//Allows to handle an object read/write
+class Student  
+  {  
+    constructor()  
+    {  
+       var name;  
+       var marks;  
+    }  
+        getName()  
+        {  
+          return this.name;  
+        }  
+      setName(name)  
+      {  
+        this.name=name;  
+      }  
+        
+      getMarks()  
+      {  
+        return this.marks;  
+      }  
+    setMarks(marks)  
+    {  
+        if(marks<0||marks>100)  
+        {  
+          console.log("Invalid Marks");  
+        }  
+      else  
+        {  
+          this.marks=marks;  
+        }  
+    }  
+    }  
+    var stud=new Student();  
+     stud.setName("Praveen");  
+     stud.setMarks(90);//alert() invokes  
+     console.log(stud.getName()+" "+stud.getMarks());  
 
-**18.5 Range Type and The Polymorphic Oven**
- - RangeType.Gas and RangeType.Electric represent a different internal implementation for generating heat.
- - We won’t go into deep detail on implementing gas or electric range, we’ll simply
-write a heat generator function that converts an energy source into a heat unit.
- - The main idea is that, even though RangeType implementation can change from
- - Gas to Electric our range API code will still work without additional modification.
+```
+
+**JavaScript Inheritance**
+ - The JavaScript inheritance is a mechanism that allows us to create new classes on the basis of already existing classes. It provides flexibility to the child class to reuse the methods and variables of a parent class.
+
+ - The JavaScript extends keyword is used to create a child class on the basis of a parent class. It facilitates child class to acquire all the properties and behavior of its parent class.
+
+**Points to remember**
+ - It maintains an IS-A relationship.
+ - The extends keyword is used in class expressions or class declarations.
+ - Using extends keyword, we can acquire all the properties and behavior of the inbuilt object as well as custom classes.
+ - We can also use a prototype-based approach to achieve inheritance.
+
+```javascript
+ class Bike  
+{  
+  constructor()  
+  {  
+    this.company="Honda";  
+  }  
+}  
+class Vehicle extends Bike {  
+  constructor(name,price) {  
+   super();  
+    this.name=name;  
+    this.price=price;  
+  }   
+}  
+var v1 = new Vehicle("Shine","70000");  
+console.log(v1.company+" "+v1.name+" "+v1.price);  
+const v2 = new Vehicle("Trigger", "90000") ;
+console.log(v2.company+" "+v2.name+" "+v2.price);
+```
+
+**JavaScript Polymorphism**
+ - The polymorphism is a core concept of an object-oriented paradigm that provides a way to perform a single action in different forms. It provides an ability to call the same method on different JavaScript objects. As JavaScript is not a type-safe language, we can pass any type of data members with the methods.
+
+```javascript
+ class A  
+  {  
+     display()  
+    {  
+      console.log("A is invoked");  
+    }  
+  }  
+class B extends A  
+  {  
+    display()  
+    {  
+      super.display();//invoke both method 
+      console.log("B is invoked");  
+    }  
+  }  
+  
+// var a=[new A(), new B()]  
+// a.forEach(function(msg)  
+// {  
+// msg.display();  
+// });  
+var b = new B();
+b.display();
+
+```
+
+**JavaScript Abstraction**
+ - An abstraction is a way of hiding the implementation details and showing only the functionality to the users. In other words, it ignores the irrelevant details and shows only the required one.
+
+**Points to remember**
+ - We cannot create an instance of Abstract Class.
+ - It reduces the duplication of code.
+
+```javascript
+class Car{
+    constructor(color,cost,milage){
+        this.color = color;
+        this.cost = cost;
+        this.milage = milage;
+        //this.nextYearPrice = 20000; //data is not hiding here
+        }
+        getdetails(){
+            console.log(this.color);
+            console.log(this.cost);
+            console.log(this.milage);
+        }
+        getNextYearPrice(){
+            let nextYearPrice = 20000;//hide the price of next year
+            console.log(this.cost+nextYearPrice);
+        }
+}
+
+let swift = new Car("red",800000,"25");
+swift.getdetails();
+swift.getNextYearPrice();
+```
