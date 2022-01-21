@@ -23,13 +23,13 @@ class Mouse{
             this.diffrence.y = 0;
             this.inverse.x = 0;
             this.inverse.y = 0;
-                    });
+        });
         document.body.addEventListener("mousemove",(event)=>{
             this.current.x=event.pageX;
             this.current.y = event.pageY;
             if(this.dragging){
                 this.diffrence.x=this.current.x - this.memory.x;
-                this.diffrence.y=this.current.x - this.memory.y;
+                this.diffrence.y=this.curre this.memory.y;
                 if(this.current.x<this.memory.x)
                   this.inverse.x = this.current.x;
                 if(this.current.y<this.memory.y)

@@ -5558,3 +5558,33 @@ export class Mouse{
 **Including And Using Mouse Class**
  - Just store this code in mouse.js and every time you need to work with mouse
 coordinates, instantiate the Mouse class as shown in the next code sample:
+
+```html
+<html>
+    <head>
+        <title>Custom UI Project</title>
+        <script type="module">
+            import { Mouse } from "./mouse.js";
+            let mouse = new Mouse();
+
+            mouse.current.x;
+            mouse.current.y;
+
+            mouse.memory.x;
+            mouse.memory.y;
+
+            mouse.diffrence.x;
+            mouse.diffrence.y;
+
+            mouse.inverse.x;
+            mouse.inverse.y;
+
+            mouse.dragging;
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
+```
+
