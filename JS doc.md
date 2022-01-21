@@ -5256,6 +5256,103 @@ calling the dispatchEvent method.
 document.dispatchEvent(eventPin);
 ```
 
+**Event Capture And Event Bubbling**
+ - The last parameter useCapture is set to false to disable event capture mode.
+ - Basically when it’s set to true it means the parent element will be notified of the
+event first, and only then the element that was actually clicked. If it is set to false,
+”event bubbling” will be used, which means the opposite: first, the clicked element will be notified of the event, and then the event will be dispatched progressively
+to all of its parents.
+ - The story goes way back to implementation in the Netscape Navigator browser
+and initial versions of Internet Explorer.
+ - Long story short, Netscape wanted to enforce event capture. And Internet Explorer wanted to enforce event bubbling. The final consensus was to use both.
+ - Since that time addEventListener function will actually listen to both capture
+and bubbling. But the last parameter useCapture allows the programmer to make
+a choice for which event propagation method should take precedence:
+ - In modern browsers, the useCapture parameter defaults to false if it’s not specified,
+but older browsers require this flag to be set manually. So in modern JavaScript
+it is usually explicitly set to false but only for backwards-compatibility.
+
+**dispatchEvent**
+ - Once addEventListener function is executed, the browser will be continuously
+listening for the ”start” event to occur. But the callback remains dormant until
+event is actually dispatched using the dispatchEvent method:
+
+```javascript
+document.dispatchEvent(startEvent);
+```
+ - The dispatchEvent method actually triggers our custom ”start” event. It usually
+takes one argument: the variable pointing to the actual event object created earlier.
+
+**removeEventListener**
+ - Event listeners take memory and can affect performance of your program if there
+are too many listeners running at the same time. If we no longer need to listen
+for the event it’s a good idea to call removeEventListener method.
+ - Let’s say we started to listen for ”click” event on document:
+
+```javascript
+document.addEventListener("click", callback);
+```
+ - To remove this event listener we must also provide the same callback function that
+was originally passed to the addEventListener method above
+```javascript
+document.removeEventListener("click", callback);
+```
+ - Anonymous functions cannot be used to remove event listeners, so the following
+call will not remove the event listener:
+```javascript
+document.removeEventListener("click", function(){});
+```
+
+ - Whenever you use an anonymous function expression, it will occupy a new location
+in memory. This means removeEventListener will not be able to locate it among
+already existing callbacks.
+ - The original callback function name is required because it is located at a unique
+location in memory. That’s what essentially lets removeEventListener method
+know exactly which listener to unbind.
+ - Note removeEventListener(”click”) will not remove ”all click events”. Again,
+you must specify original function name that was used to attach the event as the
+second argument of removeEventListener to successfully unbind the event.
+
+**CustomEvent Object**
+ - Events can carry additional data, specifying details of the event. For example, if a
+mouse is clicked, we need to know the X and Y location of the mouse pointer at
+that time. If browser was resized, we need to know the size of the new client area.
+ - In order to add detail to the event the CustomEvent object should be used.
+ - But first, let’s create the payload object. This object must have a property named
+detail which will store additional information about our custom event – indicating
+that a pin was placed on a map with position and an info label:
+```javascript
+
+//create event detail payload
+let info = {
+    detail: {position: [125,210],info:"map location"}
+};
+```
+ - Now, let’s create our new custom ”pin” event:
+```javascript
+let eventPin = new CustomEvent("pin", info);
+```
+ - This callback function will be triggered when the event is dispatched:
+
+```javascript
+let callback = function(event){
+    console.log(event);
+}
+```
+ - Finally, start listening for the ”pin” event:
+
+```javascript
+document.addEventListener("pin", callback);
+```
+ - The custom event is dispatched in exactly the same way as a regular event, by
+calling the dispatchEvent method.
+ - Whenever someone clicked a mouse button on the map area, you can dispatch the
+”pin” event using the dispatchEvent method:
+
+```javascript
+document.dispatchEvent(eventPin);
+```
+
 **19.0.3 Event Anatomy**
   - Let’s take a look at the CustomEvent in console. Important parts were highlighted:
 
@@ -5319,4 +5416,145 @@ clearTimeout(timer);
 timer = null;
 ```
 
+**19.0.5 setInterval**
+ - The setInterval function works exactly like setTimeout, except it will continue
+executing the callback function for an indefinite number of times at a time interval
+specified as its second argument:
+```javascript
 
+let a = 0;
+let callback = function(){
+    if(a<=5){
+     console.log(a);
+    a++;
+    }
+    else{
+        clearInterval(interval);
+    }
+  }
+let interval = setInterval(callback, 1000);
+```
+ - *Note: To stop the events, you can use clearInterval function:*
+
+**819.0.6 Intercepting Browser Events**
+ - Many built-in events already have callback functions attached to global window
+object. This means you can override them by providing your own version:
+
+```javascript
+window.onload = funciton(event){ }
+window.onresize = funciton(event){ }
+window.focus = funciton(event){ }
+window.onmousemove = funciton(event){ }
+window.onmouseover = funciton(event){ }
+window.onmouseout = funciton(event){ }
+
+```
+
+ - The events will still take place, but the function you attach to their name will be
+executed in addition to the built-in code.
+ - But window object is not the only place where events can be overwritten. For
+example, it is possible to attach events directly to HTML elements. And if the
+selected element supports a particular event type, it will be overwritten:
+
+```javascript
+document.getElementById("id").onclick = fucntion(event){
+    console.log(event);
+}
+```
+
+**19.0.7 Display Mouse Position**
+ - To display where the mouse pointer is located within an element, or relative to
+the entire page, you can intercept the onmousemove event and output mouse
+position coordinates 1attached to event argument:
+```javascript
+window.onmousemove = function(event){
+    let mouseX = event.pageX;
+    let mouseY = event.pageY;
+    let localX = event.clienntX;
+    let localY = event.clienntY;
+    console.log(localX,mouseX,localY,mouseY);
+    }
+```
+
+ - In the console we will observe similar output to:
+
+```console
+ 8 218
+ 84  113
+ 21  320
+```
+ - The click event, and many others, can be overwritten as follows:
+
+```javascript
+  window.onclick = function(event){
+        let mouseX = event.pageX;
+        let mouseY = event.pageY;
+        let localX = event.clienntX;
+        let localY = event.clienntY;
+        console.log(localX,mouseX,localY,mouseY);
+        }
+```
+
+
+**19.0.8 Universal Mouse Event Class**
+ - I can’t count how many times I had to write mouse code all over again every time
+a new project required custom UI functionality. While simply intercepting common
+mouse movement and click events is enough to track when buttons are clicked,
+common UI projects require calculations not provided by built-in mouse events.
+ - Custom modules you might want to write require knowing things like: ”Is the user
+currently dragging an object with a mouse?” If you are working on a slider UI, you
+will most definitely need to answer the question: ”What is the distance between
+last mouse click and current mouse position?”
+ - In this section we will write a reusable Mouse class that will put an end on ever
+having to write mouse code again in your future JavaScript projects: just export
+ - Mouse class from mouse.js file, and you’re ready to go.
+
+```javascript
+export class Mouse{
+    constructor(){
+        this.current = {x:0, y:0};
+        this.memory = {x:0, y:0};
+        this.diffrence = {x:0, y:0};
+        this.dragging = false;
+        document.body.addEventListener("mousedown",()=>{
+            if(this.deagging == false){
+                this.dragging = true;
+                this.memory.x = this.current.x;
+                this.memory.y = this.current.y;
+                this.inverse.x = this.memory.x;
+                this.enverse.y = this.memory.y;
+            }
+        });
+        document.body.addEventListener("mouseup",()=>{
+            this.dragging = false;
+            this.current.x = 0;
+            this.current.y = 0;
+            this.memory.x = 0;
+            this.memory.y = 0;
+            this.diffrence.x = 0;
+            this.diffrence.y = 0;
+            this.inverse.x = 0;
+            this.inverse.y = 0;
+                    });
+        document.body.addEventListener("mousemove",(event)=>{
+            this.current.x=event.pageX;
+            this.current.y = event.pageY;
+            if(this.dragging){
+                this.diffrence.x=this.current.x - this.memory.x;
+                this.diffrence.y=this.current.x - this.memory.y;
+                if(this.current.x<this.memory.x)
+                  this.inverse.x = this.current.x;
+                if(this.current.y<this.memory.y)
+                  this.inverse.y = this.current.y;
+                }
+
+        });
+        
+    }
+
+}
+```
+
+**Including And Using Mouse Class**
+ - Just store this code in mouse.js and every time you need to work with mouse
+coordinates, instantiate the Mouse class as shown in the next code sample:
