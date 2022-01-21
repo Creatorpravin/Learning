@@ -29,7 +29,7 @@ class Mouse{
             this.current.y = event.pageY;
             if(this.dragging){
                 this.diffrence.x=this.current.x - this.memory.x;
-                this.diffrence.y=this.curre this.memory.y;
+                this.diffrence.y=this.curre - this.memory.y;
                 if(this.current.x<this.memory.x)
                   this.inverse.x = this.current.x;
                 if(this.current.y<this.memory.y)

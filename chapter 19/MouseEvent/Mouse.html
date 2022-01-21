@@ -1,14 +1,14 @@
 <html>
     <head>
         <title>Custom UI Project</title>
-        <script type="module">
+        <script type="type/script">
             import { Mouse } from "./mouse.js";
             let mouse = new Mouse();
 
             mouse.current.x;
             mouse.current.y;
 
-            mouse.memory.x;
+            console.log(mouse.memory.x);
             mouse.memory.y;
 
             mouse.diffrence.x;
@@ -17,10 +17,19 @@
             mouse.inverse.x;
             mouse.inverse.y;
 
-            mouse.dragging;
+            console.log(mouse.dragging);
         </script>
     </head>
-    <body>
-        
+    <body style="background: rgb(51, 51, 51);;">
+        <p style="
+            color: rgb(255, 255, 255);
+background: rgb(51, 51, 51);
+text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px, rgb(255, 255, 255) 0px 0px 15px, rgb(255, 45, 149) 0px 0px 20px, rgb(255, 45, 149) 0px 0px 30px, rgb(255, 45, 149) 0px 0px 40px, rgb(255, 45, 149) 0px 0px 50px, rgb(255, 45, 149) 0px 0px 75px;
+--darkreader-inline-color:#e8e6e3;
+--darkreader-inline-bgimage: initial;
+--darkreader-inline-bgcolor:#262a2b;
+text-align: center;
+position: relative;
+          ">Mouse Event Class </p>
     </body>
 </html>

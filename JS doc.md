@@ -5588,3 +5588,5 @@ coordinates, instantiate the Mouse class as shown in the next code sample:
 </html>
 ```
 
+**Mouse Class Explained**
+ - From now on, all coordinates we might need are automatically calculated and available on the instance of the Mouse class.
