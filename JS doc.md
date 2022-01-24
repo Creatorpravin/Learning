@@ -5951,3 +5951,271 @@ npm  install  axios  --save
  - As you can see Axios follows the same Promise pattern we explored in previous section. Surprisingly, there isn’t much more to it. You can use Axios to provide an elegant solution for talking to an API.
 
  - The complete Axios documentation is available at https://github.com/axios/axios
+
+**20.0.13 Fetch API**
+ - The built-in fetch API offers another Promise-based interface for talking to a web
+server:
+
+```javascript
+let loading_animation = true;
+fetch(request).then(function(response){
+    var type = response.headers.get("content-type");
+    if(type && type.includes("application/json"))
+        return response.json();
+    throw new TypeError("content is not in JSON format.");    
+})
+.then(function(json){ console.log("handle json here"+json); })
+.catch(function(error){ console.log(error); })
+.finally(function(){ loading_animation = false; });
+```
+**20.0.14 Fetch POST Payload**
+ - When an application requires talking to a database server, you will find yourself
+sending and receiving data from an endpoint. An endpoint is simply a URL
+location that performs specific action. What it does is determined by the API
+server. It is often part of entire API that contains multiple endpoints.
+For example: /get/messages can be an endpoint that returns a JSON object
+containing messages.
+But requests come in two common flavors: POST and GET. And when using
+POST, we can attach a payload object to communicate detail. Let’s form POST
+request that grabs messages but only for user ”Felix” whose user ID is 12:
+
+
+```javascript
+let loading_animation = true;
+fetch(request).then(function(response){
+    var type = response.headers.get("content-type");
+    if(type && type.includes("application/json"))
+        return response.json();
+    throw new TypeError("content is not in JSON format.");    
+})
+.then(function(json){ console.log("handle json here"+json); })
+.catch(function(error){ console.log(error); })
+.finally(function(){ loading_animation = false; });
+```
+
+**20.1 async / await**
+ - Invoking the function now returns a promise. This is one of the traits of async functions — their return values are guaranteed to be converted to promises.
+ - Promise-based code suffers from similar issues as regular callbacks. After all then,
+catch and finally are still basically callback functions. Promises just make code
+cleaner by segmenting the callbacks into generalized predictable results!
+This means that there is still potential to end up in Promise Hell rather than
+Callback Hell by stacking callbacks. Promises provide a nice attempt at making
+the situation better. But code can be even more elegant than this with async.
+
+**The Basics Of async Keyword**
+ - First, let’s take a look at what exactly happens when we call two functions:
+```javascript
+ function x(){
+    console.log("I am x");
+}
+function y(){
+    console.log("I am y");
+}
+x();
+y();
+```
+ - Function y() will be executed soon as function x() returns:
+
+  - This is exactly what you would expect from asynchronous code, which means
+code executes in a sequence after a previous command finishes executing, instead
+of two functions executing simultaneously at the same time.
+ - Now let’s take a look at what happens when we use async keyword.
+ - First, the async keyword can be used only on functions. To do so, simply prepend
+async to the function definition:
+```javascript
+async function a() {return 1;}
+```
+ - I know that we are trying to get away from the Promise pattern we saw in an earlier
+section. This is true, but the async function now actually returns a promise object.
+ - We’re just breaking away from the Promise Hell pattern here in pursuit of cleaner
+code. But we still can call .then method on the function:
+
+```javascript
+a().then(console.log);//1
+```
+Remember that first argument of .then method is the resolve (success) function,
+and the second argument is reject. So when we pass console.log as the first
+argument, it treats it as the function that will be executed to display the result.
+Essentially, the two examples below are exactly the same except the text in the
+string return value:
+```javascript
+async function a() {return "first";}
+async function b() {return Promise.resolve("second");}
+```
+ - They both return a promise. Even if function a() doesn’t explicitly specify it!
+Let’s call both functions and then call then on the return value:
+
+```javascript
+a().then(console.log);
+b().then(console.log);
+//first
+//second
+```
+ - **To actually consume the value returned when the promise fulfills, since it is returning a promise, we could use a .then() block:**
+
+**20.1.1 await**
+ - So where does await fit in? The async and await keywords are usually used in
+combination with each other. The await keyword is prepended to any statement
+within an async function:
+
+```javascript
+async function a() { await Math.sqrt(1);
+return "first";
+}
+
+async function b(){
+    return "second";
+}
+```
+
+ - Note: Using await outside of async function will generate an error.
+Here we added await to a simple math operation that calculates square root of
+ - But the important thing here is the fact that now function b() will return first,
+even though it is second in the execution order:
+
+```javascript
+a().then(console.log);
+b().then(console.log);
+// second
+// first
+```
+ - Prepending await to a statement will execute it as if it were a promise. The
+execution flow in the async function will pause on that statement until it is fulfilled.
+ - This means that return ”first” does not return immediately like b() function.
+ - This is just a simple example to demonstrate a point. 
+- In reality, await is used primarily as the most elegant solution for dealing with
+multiple API endpoints.
+ - The most important thing about async/await is that it allows you to run synchronous code while it is still written in asynchronous form in your program. This
+solves all of the problems with  -  Callback Hell, keeps your code clean while providing
+maximum efficiency for executing multiple API requests.
+ - The best way to demonstrate it is to put await in the context of a try / catch
+statement. Let’s take a look at that in the following section.
+
+**20.1.2 async / await with try-catch**
+
+ - Let’s take a look at the following example where async and await are implemented
+for common purpose of grabbing user info object:
+
+```javascript
+const get = async function(username, password){
+    try {
+        const user = await API.get.user(username, password);
+        const roles = await API.get.roles(user);
+        const status = await API.get.status(user);
+        return user;
+    } catch (error){
+        console.log(error);
+    }
+};
+
+const userinfo = get();
+```
+
+ - We will wait until API.get.user produces a value and stores it in user variable.
+ - Until then none of the following await statements will be executed. This is ideal,
+because the two await statements that follow require user object, which will become available only if user was authenticated.
+
+ - Let’s assume if API.get.user fails, API.get.roles and API.get.status will fail
+silently and a null object will be returned:
+
+
+```javascript
+const userinfo = get();
+
+if(getinfo != null){
+    let roles = getinfo.roles;
+}else{
+    //wrong username or password
+}
+```
+
+**20.1.3 Final Words**
+ - async / await syntax is the epitome of synchronous programming in JavaScript.
+ - Functions decorated with async conveniently return a promise object.
+Here we get both of both worlds. Our functions take on the asynchronous order,
+but execute synchronously, just like callbacks, promises or fetch API requests.
+ - We’ve finally escaped from both Callback Hell and Promise Hell without sacrificing clean code.
+ - Does it mean you have to abandon using the Promise object with new operator?
+Of course not. All of the techniques mentioned in this chapter can be used to
+write successful applications. It depends on design choices you make.
+ - The async / await keywords help us execute code synchronously, without ever having to directly use callbacks or promises, and without modifying the asynchronous
+nature of code.
+
+**20.2 Generators**
+ - Generators are similar to async. They came out prior to async keyword, but they
+share a similar pattern. The reason I wanted to mention them here is because it
+is still common to see them in JavaScript code.
+ - A generator is defined by adding the star (*) character to the function definition:
+ 
+```javascript
+function* generator(){}
+```
+
+ - You can also create it via anonymous function definition assignment:
+
+```javascript
+let generator = function*(){}
+```
+**20.2.1 yield**
+ - Just like async works together with await, generators work together with yield
+producing exactly the same effect.
+```javascript
+let generator = function*(){
+    yield 1;
+    yield 2;
+    yield 3;
+    yield "hello";
+    return "Done.";
+}
+```
+ - But we can’t call generator() function directly. Because every time we do, it will
+be reset to first yield statement.  - 
+ - Also, a single generator is designed to be used
+only once. After it returns, you can not call it again.
+ - For this reason, proper way to initialize new generator is by variable assignment:
+ 
+ ``` javascript
+ let gen = generator();
+ ```
+ - In a similar way to then method on a Promise object, generators have next
+method. Whenever you call next on a generator, the next yield statement from
+the generator’s function body will be executed:
+
+
+```javascript
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+```
+
+ - Generators don’t require a return value, but if there is one it will be treated as
+the final value. Note that next produces an object like {value: 1, done: false},
+instead of a single return value. Last statement returns done: true
+ - After this, generator cannot be rewound and repeated again and should be discarded. To create a new one re-assign generator() function to a variable again.
+
+**20.2.2 Catching Errors**
+  - To catch an error using a generator you can use throw method:
+
+```javascript
+  function* generator(){
+   try
+   {
+    yield 1;
+    yield 2;
+    yield 3;
+   }catch(error){
+    console.log("error caught", error);
+}
+}
+let gen = generator();
+
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+
+gen.throw(new Error('Something went worng'));
+```
+ - Within the generator function, make sure to branch out with try-catch statement.
+ - An error should be thrown if at least one yield statement has been already executed. Of course, yield 1, yield 2 and yield 3 would be something more meaningful in a real-case scenario, such as an API call.
