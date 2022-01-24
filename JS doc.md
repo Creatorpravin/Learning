@@ -5590,3 +5590,364 @@ coordinates, instantiate the Mouse class as shown in the next code sample:
 
 **Mouse Class Explained**
  - From now on, all coordinates we might need are automatically calculated and available on the instance of the Mouse class.
+
+ - The mouse.memory property holds the position where the mouse was clicked last
+time. If user is still holding the mouse button down, which is tracked by the boolean
+mouse.dragging variable, then mouse.difference property will contain distance
+between the previous click and where the mouse pointer is currently located.
+ - This is useful for tracking distance of a custom scrollbar, or similar slider UIs. If
+the mouse is hovering over the slider handle area and user clicks the mouse button,
+and the mouse button remains pressed down, then the slider should move the same
+amount of distance specified in difference.x or difference.y property, depending
+on whether the slider is horizontal or vertical.
+ - When mouse button is released, all properties are reset to 0 again.
+ - A bit more can be said about mouse.difference property when it’s negative. If
+the mouse is used to ”draw” a rectangle on the screen, but the vector cast from
+previous click location is negative, then mouse.inverse property will contain the
+upper left corner of the rectangle.  
+- If the distance vector is positive, then the upper
+left corner will be naturally stored in mouse.memory.
+
+
+
+# **Chapter 20**
+
+**Network Requests**
+ - Applications dealing with back-end code often communicate via HTTP requests.
+ - In this section we will explore several different methods.
+One of the first and simplest ways of initiating an HTTP request is by creating an
+instance of the XMLHttpRequest object:
+
+```javascript
+const Http = new XMLHttpReauest();
+```
+ - This object has methods open and send. But before calling them, we need to
+define an endpoint URL. In this example, let’s simply download the source code
+of jQuery library from a CDN location. But it can be any other type of file:
+
+```javascript
+const url = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+```
+ - Now we can call the URL with either ”GET” or ”POST” method:
+
+```javascript
+Http.open("GET", url);
+Http.send();
+```
+ - To get the actual value returned from the URL endpoint, we need to listen to
+”state change” event which will be executed soon as the content is returned:
+
+```javascript
+//http request response callback
+Http.onreadystatechange = function(event){
+    console.log(Http.respondText);
+}
+
+```
+
+ - You can create an HTTP request to fetch almost any type of data. It doesn’t
+have to be jQuery library. Usually an API you are connecting to will pack the
+return value into a JSON object containing a list of items, ready for parsing by
+your application and displaying in the UI view.
+This is usually done in production code as shown in next example:
+
+
+```javascript
+const Http = new XMLHttpRequest();
+const url = "object.js";
+
+Http.onreadystatechange =  function(){
+    //check for successful request status:
+    if(this.readyState == 4 && this.status == 200){
+       //Read content in json forma
+       let json = JSON.parse(Http.responseText);
+
+       //Extract properties from object 
+       let id = json.id;
+       let name = json.name;
+
+       //Update application view with received data
+       let userId = document.getElementById("id");
+       if(userId) userId.innerHTML = id;
+
+       let userName = document.getElementById("name");
+       if (userName) userName.innerHTML = name;
+
+    }
+
+};
+
+Http.open("GET", url);
+Http.send();
+```
+
+ - Here are the contents of object.js file – it is simply an object represented by JSON
+notation. Notice [] brackets:
+
+```json
+[{"id":10, "name":"pravin"}]
+```
+ - When an HTTP request is executed using open and send methods, the onreadystatechange event will actually be fired 4 times, each with state changing from 1 to
+2 to 3 and finally to 4. We are only concerned with final stage 4, at which point
+the request will be considered completed and return 200 status.
+ - It is important to check for this.status == 200. Because this is the only place
+where we can be sure that the event completed successfully.
+Next, we retrieve contents of object.js file, which is the JSON object shown
+above, in string format. But we need to convert it to an actual JavaScript object.
+ - This is done via JSON.parse method.
+We then store individual properties json.id and json.name in variables id and
+name respectively.
+ - Finally, the id and name are displayed in the UI of the app. This could be two div
+containers prepared to store this data.
+ - If multiple JSON objects are received, you should probably convert them to an
+array (using Object.entries method) and iterate through them using .forEach,
+.map or other higher-order functions.
+ - In this case object.js could include multiple objects separated by comma:
+
+```json
+[
+    {
+        "id":7,
+        "name":"dhoni"
+    },
+    {
+        "id":10,
+        "name":"sachin"
+    },
+    {
+        "id":18,
+        "name":"kohli"
+    }
+]
+```
+
+
+**What are APIs?**
+ - Application Programming Interfaces (APIs) are constructs made available in programming languages to allow developers to create complex functionality more easily. They abstract more complex code away from you, providing some easier syntax to use in its place.
+ - As a real-world example, think about the electricity supply in your house, apartment, or other dwellings. If you want to use an appliance in your house, you plug it into a plug socket and it works. You don't try to wire it directly into the power supply — to do so would be really inefficient and, if you are not an electrician, difficult and dangerous to attempt.
+
+
+**APIs in client-side JavaScript**
+ - Client-side JavaScript, in particular, has many APIs available to it — these are not part of the JavaScript language itself, rather they are built on top of the core JavaScript language, providing you with extra superpowers to use in your JavaScript code. They generally fall into two categories:
+
+ **Browser APIs** are built into your web browser and are able to expose data from the browser and surrounding computer environment and do useful complex things with it. For example, the Web Audio API provides JavaScript constructs for manipulating audio in the browser — taking an audio track, altering its volume, applying effects to it, etc. In the background, the browser is actually using some complex lower-level code (e.g. C++ or Rust) to do the actual audio processing. But again, this complexity is abstracted away from you by the API.
+
+**Third-party APIs** are not built into the browser by default, and you generally have to retrieve their code and information from somewhere on the Web. For example, the Twitter API allows you to do things like displaying your latest tweets on your website. It provides a special set of constructs you can use to query the Twitter service and return specific information.
+
+**20.0.1 Callback Hell**
+ - Callbacks are functions that return after an event is executed. This way we can
+write in our custom code, wrap up loading animations, and do clean up.
+ - For a long time, before EcmaScript 6, callbacks were extensively used as a tool to
+execute asynchronous calls. As applications grew more complex, multiple callbacks
+were chained up together because each call relied on completion of a previous task:
+
+**Sailor API**
+ - You can’t build a boat until you fetch some wood. You can’t sail the ocean
+until the boat is built. You can’t discover an island until you can sail the ocean.
+Certainly, you can’t dig for treasure without exploring an island!
+ - Let’s take a look at how imaginary Sailor API could be used to achieve a series of
+actions that depend on each other.
+
+```javascript
+SailorAPI("/get/wood",(result) =>{
+    SailorAPI("/build/boat/",(result) =>{
+        SailorAPI("/sail/ocean",(result) =>{
+            SailorAPI("/explore/island",(result) =>{
+                SailorAPI("/treasure/dig",(result) =>{
+                   //asynchronous code 
+                   //with dependencies is ugly!
+                });
+            });
+        });
+    });
+});
+```
+
+ - A series of calls written this way share the problem of dependency. In addition,
+a large gap of time can be created between each call, if at least one of the API
+calls lags, significantly slowing down the entire process. Wasn’t asynchronous code
+supposed to happen at the same time?
+ - Besides, inside each callback we must manually check whether the previous request
+returned successfully. This produces code that looks complicated and hard to read.
+ - This ugly code is often referred to as Callback Hell. How can we escape from it?
+
+```javascript
+let password = "felixx";
+let p = new Promise((resolve, reject)=>{
+ if(password != "felix")
+     return reject("Invalid password");
+ resolve();
+});
+console.log(p);
+```
+
+ - The internal logic of a promise is entirely up to you.
+ - If you are validating a password, as in above example, you will determine whether to
+call the resolve or reject command.   
+- Let’s take at resolve and reject individually
+before putting together a complete promise.
+
+**20.0.3 Promise.resolve**
+ - The resolve method indicates that the promise has been successfully fulfilled and
+contains the return value. For example, it can be a string:
+
+```javascript
+//resolve to "message"
+let promise = Promise.resolve("message");
+```
+
+ - In the same way, the following promise is resolved to ”resolve value”, which technically can be a string, number, or even another promise:
+
+```javascript
+ let promise = Promise.resolve("resolve value")
+```
+ - The then method intercepts the value in the event of successful outcome as
+a response to resolve method. In the next example then method is used to
+intercept ”resolve value” message.
+
+**20.0.4 .then**
+ - The then method receives the resolve value:
+```javascript
+ let promise = Promise.resolve("resolve value");
+promise.then(function(resolved){
+ console.log("then:" + resolved);
+});
+
+//Output => then:resolve value
+```
+
+**20.0.5 .catch**
+ - The catch method responds only to reject method. In this example, it will not
+even be executed because all we did was call resolve method by itself. But it’s
+possible to attach a callback to it to catch errors later:
+
+```javascript
+let promise = Promise.reject("reject value");
+
+promise.catch(function(error){
+    console.log("catch:" + error);
+})
+```
+**20.0.6 .finally**
+ - The finally method is executed regardless of whether event succeeded with resolve
+method or failed with reject method.  - It is a good place for cleaning up the code or update the UI view (for example hide the loading animation):
+
+```javascript
+let promise = Promise.reject("reject value");
+
+promise.finally(function(msg){
+    console.log("finally: hide loading animation.");
+})
+```
+**20.0.7 Promise.reject**
+ - But what happens in cases when a condition isn’t met and the promise is rejected?
+
+```javascript
+let promise = Promise.reject("request rejected");
+
+promise.catch(function(error){
+    console.log("catch:" + error);
+});
+```
+ 
+ - Here we paired a reject method with catch. The then method is never called on
+reject action. But the finally method will be called to wrap things up:
+```javascript
+promise.finally(function(msg){
+    console.log("finally: hide loading animation");
+})
+```
+
+**20.0.8 Putting It All Together**
+ - Because a promise returns a promise object, we can write everything in a single
+statement:
+
+```javascript
+let promise = new Promise(function(resolve, reject){
+   let condition = false;
+   if(condition)
+     resolve("message");
+    else 
+      reject("error details")
+}).then(function(msg){
+    console.log("promise resolved to " + msg)
+    }).catch(function(error){
+        console.log("promise rejected with " + error)
+    }).finally(()=> console.log("finally"));
+```
+
+ - Here is another similar but slightly different pattern. If it makes the code cleaner,
+you might want to separate the promise call from then and catch calls:
+
+```javascript
+let takeTheTrashOut = new Promise((resolve, reject) => {
+    let trash_is_out = take_trash_out();
+    if(!trash_is_out)
+     reject("No");
+    else 
+      resolve("Yes");
+});
+
+takeTheTrashOut.then(function(fromResolve){
+    console.log("Is the trash out? Answer=" + fromResolve);
+}).catch(function(fromReject){
+    console.log("Is the trash out? Answer=" + fromReject);
+});
+```
+**20.0.9 Promise.all**
+ - Unlike an HTTP request, promises can resolve any statement – including simple
+variable values. Having said this, we can resolve multiple promises at once using
+a single call to the Promise.all method as shown in the following example:
+
+```javascript
+let promise = "promise";
+let threat = "threat";
+let wish = Promise.resolve("I wish");
+
+let array = [promise, threat, wish];
+
+Promise.all(array).then(function(values){
+    console.log(values);
+});
+```
+**20.0.11 Final Words**
+ - In many traditional cases, the following pattern is usually used:
+
+```javascript
+new  Promise ((resolve, reject)=>{resolve("resolved.");})
+.then((msg)=>{console.log(msg)})
+.catch((error)=>{console.log("error");})
+.finally(()=>{console.log("finally.")});
+
+```
+**20.0.12 Axios**
+ - Axios is a popular Promise-based library for talking to the database.
+
+```console
+npm  install  axios  --save
+```
+ - Use the command above to install it on your Node server.
+
+ - Then, to include Axios directly into your JavaScript file:
+
+ ```console
+  import axios from 'axios';
+ ```
+ - Or to embed it directly into your HTML page:
+
+```html
+   <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+
+```
+
+ - Now let’s say we have an endpoint /get/posts/:
+
+ ```javascript
+ const url = 'http://example.com/endpoint/get/posts';
+  axios.get(url)
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+ ```
+ - As you can see Axios follows the same Promise pattern we explored in previous section. Surprisingly, there isn’t much more to it. You can use Axios to provide an elegant solution for talking to an API.
+
+ - The complete Axios documentation is available at https://github.com/axios/axios
