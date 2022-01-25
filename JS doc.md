@@ -6422,3 +6422,174 @@ other functions, the stack grows.
  - As you can see the context carries over to the newly created stack and remains
 accessible via the this keyword. This process repeats while maintaining a chain of
 execution contexts all the way up to the currently executing context:
+ - Calling multiple functions from within each other’s scope will build a
+tower of function calls on the call stack. Note that this would happen only one at
+a time for each function if all functions were called from global scope context.
+ - Note that each function carries with it its own execution context EC0 – EC3.
+ - There is always one current executing context. This is the context on the very top
+of the stack. While all of the previous stacks remain below, until execution returns
+from the current context (function ran it’s course and returned, so JavaScript
+removes the context from memory and we no longer need it...)
+
+ - After the function is finished executing the stack is removed from the top and
+the code flow returns to the remaining previous / uppermost execution context.
+ - Contexts are constantly pushed and popped from the call stack.
+Stacking only occurs if you call a function from another function. It won’t happen
+if all functions are executed consequently from the same execution context.
+ - In which case... you will have one function pushed to the stack, popped from the
+stack, and then the next function will be pushed onto the empty stack again...
+and so on.
+
+**22.2.3 .call(), .bind(), .apply()**
+
+ - These three functions can be used to call a function and choose what this keyword
+should point to within the scope of that function, overriding its default behavior.
+
+**call() Method:**
+
+ - The call() method is a predefined JavaScript method.
+
+ - It can be used to invoke (call) a method with an owner object as an argument (parameter).
+
+ - With call(), an object can use a method belonging to another object.
+
+```javascript
+const person = {
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
+    }
+    const person1 = {
+    firstName:"John",
+    lastName: "Doe"
+    }
+    const person2 = {
+    firstName:"Mary",
+    lastName: "Doe"
+    }
+ 
+    // This will return "John Doe":
+    let result = person.fullName.call(person1);
+    console.log(result);   			//John Doe
+```
+
+**The call() Method with Arguments**
+
+The call() method can accept arguments:
+```javascript
+const persons = {
+    fullName: function(city, country) {
+    return this.firstName + " " + this.lastName + "," + city + "," + country;
+    }
+}
+const persons1 = {
+    firstName:"John",
+    lastName: "Doe"
+}
+let result = persons.fullName.call(persons1, "Oslo", "Norway");
+console.log(result);		//John Doe,Oslo,Norway
+```
+**apply() method:**
+
+ - The apply() method is similar to the call() method (previous chapter).
+
+ - In this example the fullName method of person is applied on person1:
+
+```javascript
+  const person = {
+     fullName: function() {
+     return this.firstName + " " + this.lastName;
+     }
+ }
+ const person1 = {
+     firstName:"John",
+     lastName: "Doe"
+ }
+ const person2 = {
+     firstName:"Mary",
+     lastName: "Doe"
+ }
+ let result = person.fullName.apply(person1);
+ console.log(result);            //John Doe
+```
+**The Difference Between call() and apply()**
+
+ - The difference is:
+
+ - The call() method takes arguments separately.
+
+ - The apply() method takes arguments as an array.
+
+ - The apply() method is very handy if you want to use an array instead of an argument list.
+
+ **The apply() Method with Arguments**
+
+ - The apply() method accepts arguments in an array:
+ ```javascript
+  //The apply() Method with Arguments
+ const persons = {
+     fullName: function(city, country) {
+     return this.firstName + " " + this.lastName + "," + city + "," + country;
+     }
+ }
+ const persons1 = {
+     firstName:"John",
+     lastName: "Doe"
+ }
+ let result = persons.fullName.apply(persons1, ["Oslo", "Norway"]);
+ console.log(result);     //John Doe,Oslo,Norway
+ ```
+
+**bind() method :**
+
+The bind() method creates a new function, when invoked, has the this sets to a provided value.
+
+The bind() method allows an object to borrow a method from another object without making a copy of that method. This is known as function borrowing in JavaScript.
+
+```javascript
+ const person = {
+      fullName: function() {
+      return this.firstName + " " + this.lastName;
+      }
+  }
+  const person1 = {
+      firstName:"John",
+      lastName: "Doe"
+  }
+  const person2 = {
+      firstName:"Mary",
+      lastName: "Doe"
+  }
+  let result = person.fullName.bind(person1);
+  console.log(result());            //John Doe
+```
+
+**Stack Overflow:**
+ - The call stack has a maximum size assigned. Stack Overflow occurs when the number of function calls added to the stack increases the stack’s maximum limit (the call stack has a maximum size). A classic example to cause such a situation is Recursion. Recursion is a process in which a function calls itself until a terminating condition is found.
+
+ - In real time example like when you pour your favorite soda into a tall glass, it will lose its carbonation and given enough amount and pace it will fizz over the rim.
+
+ - You can think of stack overflow in a similar way. The glass is the call stack’s memory address space. The foam above rim is memory that could not be allocated.
+
+```javascript
+  function recursion(){ 
+       recursion();      //a function calling itself
+   }
+   recursion();
+```
+
+**console output**
+
+```console
+   Uncaught RangeError: Maximum call stack size exceeded
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+       at recursion (<anonymous>:2:5)
+```
