@@ -6219,3 +6219,206 @@ gen.throw(new Error('Something went worng'));
 ```
  - Within the generator function, make sure to branch out with try-catch statement.
  - An error should be thrown if at least one yield statement has been already executed. Of course, yield 1, yield 2 and yield 3 would be something more meaningful in a real-case scenario, such as an API call.
+
+
+# **Chapter 21**
+
+**Event Loop**
+
+ - An event loop is something that pulls stuff out of the queue and places it onto the function execution stack whenever the function stack becomes empty.
+
+ - As a JavaScript programmer, you don’t need to understand actual implementation
+of the event loop. But understanding how the Event Loop works is important for
+at least two reasons:
+ - First, questions related to the event loop are often asked at job interviews.
+ - The second reason is a bit more practical. By developing an awareness of how
+it works, you will be able to understand the order of events as they occur, for
+example, when working with callbacks and timers such as setTimeout function.
+ - In the previous section we’ve seen how when functions are executed they are
+placed on the Call Stack. We can even use the stack trace to track which function
+was originally called to produce an error. This makes sense when working with a
+deterministic set of events (one statement will proceed to be executed immediately
+after the previous one is finished executing.)
+ - But writing JavaScript code is often based on listening to events: timers, mouse
+clicks, HTTP requests, etc. Events assume there will be a period of waiting time
+until they return after accomplishing whatever task they were set to perform. But
+while events are doing their work, we don’t want to halt our main program.
+For this reason, whenever an event occurs, it is handed over to the Event Loop.
+
+ - In abstract terms, the Event Loop can be thought of as just what it sounds like.
+It’s a loop, with a process that keeps running in circles.
+
+ - Whenever an event occurs, which can be thought of as a task, it is delegated to
+the Event Loop, which ”goes out of its way” to pick up the task.
+
+ - But it’s not that simple. The event loop handles events such as mouse clicks, and
+timeouts. But it also needs to take care of updating the browser view:
+
+ - The process in the event loop will continue to make rounds, sometimes spending
+time processing tasks or updating the view.
+ - The whole experience of how users interact with your front-end application will
+often depend on how optimized your code is for the event loop.
+ - To create smooth user experience,  your code should be written in such way, that
+balances task processing with screen updates.
+ - In modern browsers updating the view usually consists of 4 steps: checking for
+requestAnimationFrame, CSS style calculations, determining layout position,
+and rendering the view (actually drawing the pixels.)
+ - Choosing the right time to update the browser is tricky. After all setTimeout
+or setInterval were never meant to be used together with rendering the browser
+view. In fact if you’ve tried to use them to animate elements, you may have
+experienced choppy performance.
+ - This is because setInterval hijacks the event loop, by executing the callback (in
+which many place their animation code) as fast as possible. For this reason many
+have moved animations that can be done in CSS to their respective CSS style
+definitions, instead of performing them in JavaScript.
+ - However, choppy performance can be fixed with requestAnimationFrame. What
+happens is that event loop will actually sync to your monitor’s refresh rate, rather
+than execute each time setInterval fires its callback function.
+
+```javascript
+console.log("Before delay");
+  
+function delayBySeconds(sec) {
+   let start = now = Date.now()
+   while(now-start < (sec*1000)) {
+     now = Date.now();
+   }
+}
+  
+delayBySeconds(2);
+  
+// Executes after delay of 5 seconds
+console.log("After delay");
+```
+
+# **Chapter 22**
+ 
+ **Call Stack**
+ - The call stack is a place to keep track of currently executing functions. As your
+code executes, each call is placed on the call stack in order in which it appears in
+your program. Once the function returns it is removed from the call stack.
+ - Placing a function call onto the stack is called pushing and removing it from the
+call stack is called popping. Same idea behind Array.push and .pop methods.
+  - The console.log prints 1 to the console and returns. It is then popped
+from the stack. Main function continues to run until it returns. This usually will
+happen when browser is closed.
+
+**How does this apply to writing code?**
+ - The call stack is a fundamental building block of computer language design. Most
+languages implement a call stack in one way or another. But how does this apply
+to those who are simply writing code and not designing computer languages?
+
+**Call Stack Example**
+ - Complex tasks have priorities. Many things require to be done in a logical order.
+When writing software you will often call one function from the body of another
+function. You can’t mop the floor until you fill the bucket with water. You have
+no reason to fill the bucket with water until you decide to clean the house first:
+
+```javascript
+console.log("Before delay");
+  
+function delayBySeconds(sec) {
+   let start = now = Date.now()
+   while(now-start < (sec*1000)) {
+     now = Date.now();
+   }
+}
+  
+delayBySeconds(2);
+  
+// Executes after delay of 5 seconds
+console.log("After delay");
+```
+
+ - Our last function mop floor throws an error. When this happens a stack trace is
+shown in the console.
+```console
+cleanHouse();
+Cleaning house.
+Filling bucket with water
+Mop the floor
+Uncaught Error: Ran out of water!
+    at mopFloor   
+    at fillBucket   
+    at cleanHouse 
+    at <anonymous>:16:1
+```
+
+ - Error displays the trace of the call stack history, starting with the most recently
+called function mop floor, in which the error occurred. When debugging this help
+us trace the error all the way back to the original function clean house.
+ 
+ - Most of the time you won’t be concerned with thinking about them when writing
+code. But you might need to understand them when debugging complex large
+scale software.
+
+**22.1 Execution Context**
+ - The call stack is a stack of execution contexts. When discussing one we will
+inevitably run into the other.
+ - You don’t need to understand execution context or the call stack in great detail
+to write JavaScript code. But it might help understand the language better.
+
+**What Is Execution Context?**
+ - As your program continues to run, the statements being executed exist alongside
+something called an execution context. Note that the execution context is
+pointed to by this keyword in each scope. Not only function-scope either. Blockscope also carries with it a link to execution context via this keyword.
+This often creates confusion, because in JavaScript the this keyword is also used
+as a reference to an instance of an object in class definitions, so that we can access its member properties and members.
+But things become clear if we understand that execution context is represented
+by an instance of an object. It is just not used to access its properties or methods.
+Instead, it establishes a link between sections of code flow across multiple scopes.
+
+**Root Execution Context**
+ - When your program opens in a browser, an instance of a window object is created
+automatically. This window object becomes the root execution context, because
+it’s the first object instantiated by the browser’s JavaScript engine itself. The
+window object is the execution context of global scope – they refer to the same
+thing. The window object is an instance of Window class.
+
+**So how does it work?**
+ - If you call a function from global scope, the this keyword inside the function’s
+scope will point to window object – the context from which the function was
+called. The context was carried over into the function’s scope.
+ - It’s like a link was established from current execution context to the previous one.
+ - The execution context is something that is carried over from one scope to another,
+during code execution flow throughout lifetime of your program. You can think of
+it as a tree branch that extends into another scope from the root window object.
+ - In the remaining sections of this chapter we will take a look at one possible interpretation of execution context and the call stack.
+
+**22.2 Execution Context In Code**
+ - There is a difference between the logic of call stack and execution contexts and
+how it manifests itself to the programmer. Obviously, being aware of the call stack
+isn’t required when writing code. In JavaScript, the closest you will get to working
+with execution contexts is via the this keyword.
+ - Execution context is held by this keyword in each scope. The name context
+suggests that it can change. This is true. The this keyword in each scope may
+change or point to another new object in various situations. But where does it all begin?
+
+**22.2.1 Window / Global Scope**
+ - When the window object is created, we get a handful of things happening under the
+hood. A new lexical environment is created: it contains variable environment
+for that scope – a place in memory for storing your local variables. Around this
+time the first ever this binding takes place.
+
+ - A new execution context is created when main window object is
+instantiated. The this keyword points to the window object.
+ - In global scope this keyword points to window object-
+
+**22.2.2 The Call Stack**
+ - The call stack keeps track of function calls. If you call a function from context of
+the global scope, a new entry will be placed ”on top” of the current context. The
+newly created stack will inherit execution context from the previous environment.
+ - To visualize this, let’s take a look at this diagram:
+
+ - Binding of this object across execution contexts on the call stack.
+A new stack is created when function is called. This new context is logically placed
+”on top” of the previous object on the call stack.
+
+**Call Stack & Execution Context Chain**
+
+  - As more functions that depend on each other are called from within
+other functions, the stack grows.
+
+ - As you can see the context carries over to the newly created stack and remains
+accessible via the this keyword. This process repeats while maintaining a chain of
+execution contexts all the way up to the currently executing context:
