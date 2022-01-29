@@ -16,5 +16,3 @@
 
   console.log(generateHashtag("hello world"));
   console.log(generateHashtag("   "));
-  
-  
