@@ -1,14 +1,14 @@
 "use strict";
-var a = 10;
+let a = 10;
 //this inside arrow function
-var b = () => {
+let b = () => {
     console.log(this);
     console.log(this.a);
 }
 b();
 
 //this inside object
-var obj = {
+let obj = {
     myMethod:() => {
         console.log(this);
         console.log(this.a);
