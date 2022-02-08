@@ -56,7 +56,7 @@ def main():
   side = 520
   b = Bitmap(side, side)
   for j in range(0, side):
-    b.setPixel(j, j, (255, 0, 0)) #cross line color and pixel print
+    b.setPixel(j, j, (255, 0, 0)) # cross line color and pixel print
     b.setPixel(j, side-j-1, (0, 0, 102))
     b.setPixel(j, 0, (255, 0, 0))
     b.setPixel(j, side-1, (255, 0, 0))
