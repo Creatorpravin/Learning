@@ -13,7 +13,7 @@
   
   * after closing the connection by either of the client and server, the connection is terminated from both the end. 
 
-![![alt](https://media.geeksforgeeks.org/wp-content/uploads/20191203183648/WebSocket-Connection.png)]
+![alt](https://media.geeksforgeeks.org/wp-content/uploads/20191203183648/WebSocket-Connection.png)
 
 # Real time web application
 
