@@ -1,5 +1,5 @@
 "use strict";
-let string="ABC";
+let string="123";
 function permutation( string, result){
     if(string.length === 0){
         count++;

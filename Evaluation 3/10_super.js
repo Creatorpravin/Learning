@@ -2,6 +2,7 @@
 "use strict";
 class Car {
     constructor(brand) {
+      console.log("I am from car constructor 5");
       this.carname = brand;
     }
     show1() {
@@ -10,7 +11,9 @@ class Car {
   }
 class Model extends Car {
     constructor(brand, model) {
+      console.log("I am from model constructor 13");
       super(brand);
+      console.log("I am from model constructor 15");
       this.model = model;
     }
     show2() {
