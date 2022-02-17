@@ -19,3 +19,5 @@
 * scp origin_file_path hostname@ip:remote_filepath - Trafer file in secure copy 
 * scp hostname@ip:remote_filePath origin_filePath - download the file through secure copy
 * sudo tcpdump -i eno1 - Check the data packets flow
+* ls -lh - Check the file permission
+* chmod +x script-name-here.sh - Give execution permission to the files

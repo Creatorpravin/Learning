@@ -1,12 +1,12 @@
 #!/bin/bash
+#shell script
+IF=$1 #getting first argument interface
+STATUS=$2 #getting second argument status
 
-IF=$1
-STATUS=$2
-
-WAN1_INTERFACE_NAME="enp1s0"
+WAN1_INTERFACE_NAME="enp1s0" 
 WAN2_INTERFACE_NAME="enp2s0"
 
-WAN1_RT_TABLE_NAME="enp1s0_rt"
+WAN1_RT_TABLE_NAME="enp1s0_rt" 
 WAN2_RT_TABLE_NAME="enp2s0_rt"
 
 if [ "$IF" == "$WAN1_INTERFACE_NAME" ];

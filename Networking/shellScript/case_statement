@@ -1,0 +1,7 @@
+#!/bin/bash
+ip="192.168.10.11"
+case "$ip" in 
+    "192.168.10.11") echo "ip of client pc" ;;
+    "192.168.10.10") echo "ip of gateway" ;;
+    "192.168.10.13") echo "ip of interface 2" ;;
+esac 
