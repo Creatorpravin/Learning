@@ -1,0 +1,54 @@
+#!/bin/bash
+
+IF=$1
+STATUS=$2
+
+WAN1_INTERFACE_NAME="enp1s0"
+WAN2_INTERFACE_NAME="enp2s0"
+
+WAN1_RT_TABLE_NAME="enp1s0_rt"
+WAN2_RT_TABLE_NAME="enp2s0_rt"
+
+if [ "$IF" == "$WAN1_INTERFACE_NAME" ];
+then
+  case "$STATUS" in
+    up|dhcp4-change)
+      logger -s "$IF up triggered"
+      ip rule add fwmark 0x00000001/0x000000FF lookup $WAN1_RT_TABLE_NAME priority 1
+      ip route add default via ${IP4_GATEWAY} dev $WAN1_INTERFACE_NAME table $WAN1_RT_TABLE_NAME
+      source /var/SDWAN/ConfigurationFiles/qos-configuration.sh
+      logger -s "$IF successfully triggered up"
+      ;;
+    down)
+      logger -s "$IF  down triggered"
+      ip rule del table $WAN1_RT_TABLE_NAME
+      tc qdisc del dev $WAN1_INTERFACE_NAME root handle 1:0 hfsc
+      logger -s "$IF successfully triggered down"
+      ;;
+    *)
+      ;;
+  esac
+fi
+
+if [ "$IF" == "$WAN2_INTERFACE_NAME" ];
+then
+  case "$STATUS" in
+    up|dhcp4-change)
+      logger -s "$IF up triggered"
+      ip rule add fwmark 0x00000002/0x000000FF lookup $WAN2_RT_TABLE_NAME priority 2
+      ip route add default via ${IP4_GATEWAY} dev $WAN2_INTERFACE_NAME table $WAN2_RT_TABLE_NAME
+      source /var/SDWAN/ConfigurationFiles/qos-configuration.sh
+      logger -s "$IF successfully triggered up"
+      ;;
+    down)
+      logger -s "$IF down triggered"
+      ip rule del table $WAN2_RT_TABLE_NAME
+      tc qdisc del dev $WAN2_INTERFACE_NAME root handle 1:0 hfsc
+      logger -s "$IF successfully triggered down"
+      ;;
+    *)
+      ;;
+  esac
+fi
+
+./etc/netplan/chiefnet-custom-route-script $IF $STATUS
