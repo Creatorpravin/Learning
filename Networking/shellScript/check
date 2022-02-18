@@ -1,0 +1,22 @@
+#!/bin/bash
+# touch sample.txt
+# echo "First argument is $1"
+# echo "Second argument is $2"
+# echo "Second argument is $3"
+# ip a s eno1
+touch interface.txt
+echo "I Executed">>demo.txt
+IF1="Link detected: yes"
+IF2=$(sudo ethtool $1 | grep -i 'Link det')
+details=$(ip a s $1)
+echo "$IF2"
+if [ "$IF2" == "$IF1" ]
+then 
+    echo "The interface status id UP"
+else 
+    echo "The interface status is DOWN"
+    echo "$IF2 $details">>interface.txt
+fi
+# echo "ip a $1 $ip">>sample.txt
+# cat sample.txt
+# ip a s eno1

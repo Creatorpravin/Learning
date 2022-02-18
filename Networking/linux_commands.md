@@ -21,3 +21,7 @@
 * sudo tcpdump -i eno1 - Check the data packets flow
 * ls -lh - Check the file permission
 * chmod +x script-name-here.sh - Give execution permission to the files
+* nmcli connection - Check the interface connection
+* nmcli device status - Check all interface status
+* ip a s eno1 - Status of particular link
+* sudo ethtool wlp2s0 | grep -i 'Link det' - Link detected status

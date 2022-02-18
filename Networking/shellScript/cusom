@@ -1,0 +1,35 @@
+#!/bin/bash
+#shell script
+IF=$1 #getting first argument interface
+STATUS=$2 #getting second argument status
+
+WAN1_INTERFACE_NAME="eno1" 
+WAN2_INTERFACE_NAME="wlp2s0"
+echo "I Executed">>demo.txt
+if [ "$IF" == "$WAN1_INTERFACE_NAME" ];
+then
+  case "$STATUS" in
+    up|dhcp4-change)
+     echo "Triggred up $IF">>demo.txt
+      ;;
+    down)
+      echo "Triggred down $IF">>demo.txt
+      ;;
+    *)
+      ;;
+  esac
+fi
+
+if [ "$IF" == "$WAN2_INTERFACE_NAME" ];
+then
+  case "$STATUS" in
+    up|dhcp4-change)
+     echo "Triggred up $IF">>demo.txt
+      ;;
+    down)
+   echo "Triggred up $IF">>demo.txt
+      ;;
+    *)
+      ;;
+  esac
+fi
