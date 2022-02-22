@@ -25,3 +25,4 @@
 * nmcli device status - Check all interface status
 * ip a s eno1 - Status of particular link
 * sudo ethtool wlp2s0 | grep -i 'Link det' - Link detected status
+* ip -json route show - view command output in JSON format
