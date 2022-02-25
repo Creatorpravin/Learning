@@ -28,3 +28,4 @@
 * ip -json route show - view command output in JSON format
 * sudo su - change to root user
 * hostnamectl - get os and version details
+* journalctl -u chiefnet-sdwan -f - monitering the chiefnet running 
