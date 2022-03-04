@@ -8,7 +8,7 @@ var students = [{
     name: 'Ramon',
     achievements: 55
     }];
-let a = [],b=[];
+//let a = [],b=[];
 let d = {}
 students.forEach(function(obj){
     d[obj.name] = obj.achievements;
@@ -16,9 +16,9 @@ students.forEach(function(obj){
 //     b.push(obj.achievements);
  })
  console.log(d);
- let k = a[0];
+ //let k = a[0];
 
- d = b[0];
- console.log(d);
+ //d = b[0];
+// console.log(d);
 
 

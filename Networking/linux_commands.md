@@ -29,3 +29,5 @@
 * sudo su - change to root user
 * hostnamectl - get os and version details
 * journalctl -u chiefnet-sdwan -f - monitering the chiefnet running 
+
+64.225.87.219
