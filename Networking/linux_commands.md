@@ -14,7 +14,6 @@
 * sudo apt-get install netplan.io - install netplan 
 * sudo netplan generate - Generte the netplan 
 * sudo netplan apply - Apply netplan 
-* sudo iptables -t nat -A POSTROUTING -j MASQUERADE - enable routing 
 * ssh hostname@domain(or)ip - Make SSH connection
 * scp origin_file_path hostname@ip:remote_filepath - Trafer file in secure copy 
 * scp hostname@ip:remote_filePath origin_filePath - download the file through secure copy
@@ -28,6 +27,6 @@
 * ip -json route show - view command output in JSON format
 * sudo su - change to root user
 * hostnamectl - get os and version details
-* journalctl -u chiefnet-sdwan -f - monitering the chiefnet running 
-
-64.225.87.219
+* journalctl -u chiefnet-sdwan -f - monitering the chiefne t running 
+* ip rule - to check the iptable rule
+* sudo iptables -t nat -A POSTROUTING -j MASQUERADE - enable routing
