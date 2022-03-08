@@ -30,3 +30,4 @@
 * journalctl -u chiefnet-sdwan -f - monitering the chiefne t running 
 * ip rule - to check the iptable rule
 * sudo iptables -t nat -A POSTROUTING -j MASQUERADE - enable routing
+* sudo vtysh - to check the version
