@@ -9,15 +9,23 @@
 * sudo ip link set down dev eno1 - Set the link down on that link
 * ip a - get the ip of interfaces
 * ip r - get the server gateway or ip 
-* sudo traceroute 8.8.8.8 - Trace the route of packets 
-* ping 192.128.10.1 - Check the pinging 
+* ping 192.128.10.1 - Check the pinging
+* sudo watch -n 1 ("commends") - continuesoly run the command 
+* sudo vtysh - to check the version  
+
+# **Netplan**
 * sudo apt-get install netplan.io - install netplan 
 * sudo netplan generate - Generte the netplan 
 * sudo netplan apply - Apply netplan 
+
+# **SSH**
 * ssh hostname@domain(or)ip - Make SSH connection
 * scp origin_file_path hostname@ip:remote_filepath - Trafer file in secure copy 
 * scp hostname@ip:remote_filePath origin_filePath - download the file through secure copy
+* sudo traceroute 8.8.8.8 - Trace the route of packets 
 * sudo tcpdump -i eno1 - Check the data packets flow
+
+# **File permission**
 * ls -lh - Check the file permission
 * chmod +x script-name-here.sh - Give execution permission to the files
 * nmcli connection - Check the interface connection
@@ -28,6 +36,14 @@
 * sudo su - change to root user
 * hostnamectl - get os and version details
 * journalctl -u chiefnet-sdwan -f - monitering the chiefne t running 
+
+# **IP Table**
 * ip rule - to check the iptable rule
 * sudo iptables -t nat -A POSTROUTING -j MASQUERADE - enable routing
-* sudo vtysh - to check the version
+* sudo iptables -F - Delete all table (flush)
+* sudo iptables-save>test.txt - get the current iptable
+* sudo iptables-restore<test.txt - set and run the iptable
+* sudo iptables -A INPUT -s 192.168.1.198 -j DROP - to block particular ip
+* sudo iptables -F - to delete all iptables (flush)
+* sudo iptables -t "table_name" -L -n -v - view particular table by table name.
+* sudo iptables -L -n -v - check the iptables packs hits
