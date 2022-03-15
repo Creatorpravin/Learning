@@ -7,7 +7,7 @@
 * sudo mv 01.ethernet-configuration.yaml 01-ethernet-configuration.yaml - change the filename
 * sudo ip link set up dev eno1 - Set the link up on that interface
 * sudo ip link set down dev eno1 - Set the link down on that link
-* ip a - get the ip of interfaces
+* ip a - get the ip of interfaces 
 * ip r - get the server gateway or ip 
 * ping 192.128.10.1 - Check the pinging
 * sudo watch -n 1 ("commends") - continuesoly run the command 
@@ -44,6 +44,8 @@
 * sudo iptables-save>test.txt - get the current iptable
 * sudo iptables-restore<test.txt - set and run the iptable
 * sudo iptables -A INPUT -s 192.168.1.198 -j DROP - to block particular ip
+* iptables -A OUTPUT -p tcp -m string --string "amazon.com" --algo kmp -j REJECT - To block a site
 * sudo iptables -F - to delete all iptables (flush)
 * sudo iptables -t "table_name" -L -n -v - view particular table by table name.
 * sudo iptables -L -n -v - check the iptables packs hits
+* host -t a main.com - get the ip of domain
