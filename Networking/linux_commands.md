@@ -52,5 +52,6 @@
 * sudo ip route add 157.240.23.35 via 192.168.10.10 dev enp0s8 - (Traffic steering) add route to particular ip 
 # Traffic steering
 * sudo iptables -t mangle -A PREROUTING -i enp0s10 -d 8.8.8.8 -j MARK –set-mark 0x00010001 => Set fwmark value for incoming packets from LAN interface in Mangle table.
-* Ip rule add fwmark 0x00000001/0x000000ff tables wan_table_5 => Create and add fwmark in ip rule  table
-* Ip route add default via 10.0.2.2 dev enp0s3 table wable_5 => Add route to respective WAN interface by ip rule table
+* ip rule add fwmark 0x00000001/0x000000ff tables wan_table_5 => Create and add fwmark in ip rule  table
+* ip route add default via 10.0.2.2 dev enp0s3 table wable_5 => Add route to respective WAN interface by ip rule table
+* ip route show table wan_table_5 => To view the table 
