@@ -49,3 +49,4 @@
 * sudo iptables -t "table_name" -L -n -v - view particular table by table name.
 * sudo iptables -L -n -v - check the iptables packs hits
 * host -t a main.com - get the ip of domain
+* sudo ip route add 157.240.23.35 via 192.168.10.10 dev enp0s8 - (Traffic steering) add route to particular ip 
