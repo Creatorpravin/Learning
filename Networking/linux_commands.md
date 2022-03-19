@@ -55,3 +55,18 @@
 * ip rule add fwmark 0x00000001/0x000000ff tables wan_table_5 => Create and add fwmark in ip rule  table
 * ip route add default via 10.0.2.2 dev enp0s3 table wable_5 => Add route to respective WAN interface by ip rule table
 * ip route show table wan_table_5 => To view the table 
+* ip route add 102.102.166.224 via 192.168.10.10 dev enps03 => send particular ip to one interface
+
+# ipset 
+ 
+* ipset -N myset-ip iphash => create a myset-ip hash table
+* ipset add myset-ip 1.1.1.1 => add ip to hash table
+* ipset add myset-ip 2.2.2.2=> add ip to hash table
+* iptables -I INPUT -m set --match-set myset-ip src -j DROP=> Finally, configure iptables to block any address in that set.
+* ipset -L => to view hash table of ipset
+* ipset -N myset nethash =>  create a myset hash table block a network
+* ipset add myset 14.144.0.0/12 => add network to hash table
+* ipset add myset 27.8.0.0/13 => add network to hash table
+* iptables -I INPUT -m set --match-set myset src -j DROP => drop the network
+* ipset destroy myset => delete particular table
+* ipset -F => delete all hash tables
