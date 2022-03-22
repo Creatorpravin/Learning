@@ -50,6 +50,7 @@
 * sudo iptables -L -n -v - check the iptables packs hits
 * host -t a main.com - get the ip of domain
 * sudo ip route add 157.240.23.35 via 192.168.10.10 dev enp0s8 - (Traffic steering) add route to particular ip 
+
 # Traffic steering
 * sudo iptables -t mangle -A PREROUTING -i enp0s10 -d 8.8.8.8 -j MARK –set-mark 0x00010001 => Set fwmark value for incoming packets from LAN interface in Mangle table.
 * ip rule add fwmark 0x00000001/0x000000ff tables wan_table_5 => Create and add fwmark in ip rule  table
