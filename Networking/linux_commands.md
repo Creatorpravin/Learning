@@ -71,3 +71,4 @@
 * iptables -I INPUT -m set --match-set myset src -j DROP => drop the network
 * ipset destroy myset => delete particular table
 * ipset -F => delete all hash tables
+* add 
