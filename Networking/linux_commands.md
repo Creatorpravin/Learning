@@ -14,6 +14,7 @@
 * sudo vtysh - to check the version  
 
 # **Netplan**
+
 * sudo apt-get install netplan.io - install netplan 
 * sudo netplan generate - Generte the netplan 
 * sudo netplan apply - Apply netplan 
