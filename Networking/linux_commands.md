@@ -51,6 +51,8 @@
 * sudo iptables -L -n -v - check the iptables packs hits
 * host -t a main.com - get the ip of domain
 * sudo ip route add 157.240.23.35 via 192.168.10.10 dev enp0s8 - (Traffic steering) add route to particular ip 
+* sudo iptables -A INPUT -m mac --mac-source 00:00:00:00:00:00 -j DROP -  Block access to your system from specific MAC address by using:
+
 
 # Traffic steering
 * sudo iptables -t mangle -A PREROUTING -i enp0s10 -d 8.8.8.8 -j MARK –set-mark 0x00010001 => Set fwmark value for incoming packets from LAN interface in Mangle table.
@@ -72,3 +74,4 @@
 * iptables -I INPUT -m set --match-set myset src -j DROP => drop the network
 * ipset destroy myset => delete particular table
 * ipset -F => delete all hash tables
+* sudo watch --interval=5 'iptables -nvL | grep -v "0     0"' => Monitor what's going on iptables
