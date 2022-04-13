@@ -74,4 +74,4 @@
 * iptables -I INPUT -m set --match-set myset src -j DROP => drop the network
 * ipset destroy myset => delete particular table
 * ipset -F => delete all hash tables
-* sudo watch --interval=5 'iptables -nvL | grep -v "0     0"' => Monitor what's going on iptables
+* sudo watch --interval=5 'iptables -nvL | grep -v "0     0"' => Monitor what's going on iptables.
