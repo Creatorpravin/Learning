@@ -16,7 +16,7 @@ def captureCamera(left=False):
     """
     cap = cv2.VideoCapture(0)
 
-    outerRectangleXIni = 300
+    outerRectangleXIni = 300 
     outerRectangleYIni = 50
     outerRectangleXFin = 550
     outerRectangleYFin = 300
