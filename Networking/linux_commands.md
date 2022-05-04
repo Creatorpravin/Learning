@@ -12,7 +12,7 @@
 * ping 192.128.10.1 - Check the pinging
 * sudo watch -n 1 ("commends") - continuesoly run the command 
 * sudo vtysh - to check the version  
-
+* watch -n 1 "command" - command automatically refresh  
 # **Netplan**
 
 * sudo apt-get install netplan.io - install netplan 
