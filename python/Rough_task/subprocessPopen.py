@@ -7,7 +7,7 @@ out, err = p1.communicate()
 
 
 
-if p1.returncode == 0:
+if p1.returncode == 0: #used to get return value in shell 'echo $?' if == 0 means success if == other than 0 means fail 
     print("out: {0}". format(out))
     print("command : success")
 else:
