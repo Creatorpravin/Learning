@@ -5,12 +5,13 @@ cmd = "ip a"
 p1 = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 out, err = p1.communicate()
 
-print("out: {0}". format(out))
-print("error: {0}". format(err))
+
 
 if p1.returncode == 0:
+    print("out: {0}". format(out))
     print("command : success")
 else:
+    print("error: {0}". format(err))
     print("command : failure")
 
 
