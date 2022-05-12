@@ -16,8 +16,9 @@ file_list=[]
 # file_list=[]
 #file_list = [f"{root}/{file}" for root, directories, file in os.walk(path) if file.endswith(".sh")]
 # #[f"/home/nithin/Desktop/_python/{file}" for file in os.listdir("./") if file.endswith(".ipynb")]
+
 for root, directories, file in os.walk(path):
-        
+      
     file_list  += [f"{root}/{f}" for f in file if f.endswith(".py")]
 #         # file_list.extend(li)
 #         # if(file.endswith(".py")):

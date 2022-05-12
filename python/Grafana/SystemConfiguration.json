@@ -1,0 +1,13 @@
+{
+    "system_information" : 
+    {
+    "uuid": "08:00:27:AC:96:0D",
+    "os_version": "20.04",
+    "mac_address": "08:00:27:ac:96:0d",
+    "model": "Virtual CPE",
+    "lan_interfaces": ["enp0s9", "enp0s10"],
+    "wan_interfaces": ["enp0s3", "enp0s8", "tun0", "tun1", "tun2", "tun3", "tun4", "tap0",  "tap1",  "tap2",  "tap3",  "tap4"]
+    },
+    "provisioning_server_uri": "https://chiefnet-dev-api.yavar.in/v1/devices/provision"
+    }
+    
