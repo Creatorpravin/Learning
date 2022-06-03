@@ -1,101 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.80 scan initiated Fri Jun  3 13:48:38 2022 as: nmap -sn -PR -oX data.xml 192.168.10.32/24 -->
-<nmaprun scanner="nmap" args="nmap -sn -PR -oX data.xml 192.168.10.32/24" start="1654244318" startstr="Fri Jun  3 13:48:38 2022" version="7.80" xmloutputversion="1.04">
+<!-- Nmap 7.80 scan initiated Fri Jun  3 16:33:57 2022 as: nmap -sn -PR -oX data.xml 192.168.10.32/24 -->
+<nmaprun scanner="nmap" args="nmap -sn -PR -oX data.xml 192.168.10.32/24" start="1654254237" startstr="Fri Jun  3 16:33:57 2022" version="7.80" xmloutputversion="1.04">
 <verbose level="0"/>
 <debugging level="0"/>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.10" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="3565" rttvar="5000" to="100000"/>
+<times srtt="21265" rttvar="21265" to="106325"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.11" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="53357" rttvar="53357" to="266785"/>
+<times srtt="73325" rttvar="73325" to="366625"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.32" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="616" rttvar="5000" to="100000"/>
+<times srtt="297" rttvar="5000" to="100000"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.46" addrtype="ipv4"/>
+<address addr="192.168.10.36" addrtype="ipv4"/>
 <hostnames>
-<hostname name="ubuntu" type="PTR"/>
 </hostnames>
-<times srtt="30770" rttvar="30770" to="153850"/>
+<times srtt="4276" rttvar="5000" to="100000"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.60" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="6227" rttvar="6227" to="100000"/>
+<times srtt="2890" rttvar="5000" to="100000"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.61" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="3941" rttvar="5000" to="100000"/>
+<times srtt="97495" rttvar="97495" to="487475"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.64" addrtype="ipv4"/>
+<address addr="192.168.10.69" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="35383" rttvar="35383" to="176915"/>
-</host>
-<host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.72" addrtype="ipv4"/>
-<hostnames>
-</hostnames>
-<times srtt="10578" rttvar="10578" to="100000"/>
-</host>
-<host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.91" addrtype="ipv4"/>
-<hostnames>
-</hostnames>
-<times srtt="48684" rttvar="48684" to="243420"/>
+<times srtt="147962" rttvar="147962" to="739810"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.114" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="34164" rttvar="34164" to="170820"/>
-</host>
-<host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.116" addrtype="ipv4"/>
-<hostnames>
-</hostnames>
-<times srtt="83000" rttvar="83000" to="415000"/>
+<times srtt="121956" rttvar="91343" to="487328"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.130" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="84882" rttvar="84882" to="424410"/>
+<times srtt="93701" rttvar="93701" to="468505"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.153" addrtype="ipv4"/>
+<address addr="192.168.10.172" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="30878" rttvar="30878" to="154390"/>
-</host>
-<host><status state="up" reason="conn-refused" reason_ttl="0"/>
-<address addr="192.168.10.167" addrtype="ipv4"/>
-<hostnames>
-</hostnames>
-<times srtt="46751" rttvar="60406" to="288375"/>
+<times srtt="151120" rttvar="151120" to="755600"/>
 </host>
 <host><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.10.198" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<times srtt="245544" rttvar="196763" to="1032596"/>
+<times srtt="93253" rttvar="93253" to="466265"/>
 </host>
-<runstats><finished time="1654244340" timestr="Fri Jun  3 13:49:00 2022" elapsed="21.84" summary="Nmap done at Fri Jun  3 13:49:00 2022; 256 IP addresses (15 hosts up) scanned in 21.84 seconds" exit="success"/><hosts up="15" down="241" total="256"/>
+<runstats><finished time="1654254244" timestr="Fri Jun  3 16:34:04 2022" elapsed="7.14" summary="Nmap done at Fri Jun  3 16:34:04 2022; 256 IP addresses (11 hosts up) scanned in 7.14 seconds" exit="success"/><hosts up="11" down="245" total="256"/>
 </runstats>
 </nmaprun>

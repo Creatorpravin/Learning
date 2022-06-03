@@ -20,13 +20,16 @@ else:
     print("error: {0}". format(err))
     print("command : failure")
 
+with open("data.xml") as xml_file:
+    data_dict = xmltodict.parse(xml_file.read())
+    xml_file.close()
 
-# data_dict = xmltodict.parse(out)
+#data_dict = xmltodict.parse(out)
 
-# json_data = json.dumps(data_dict)
+json_data = json.dumps(data_dict)
 
-# print(format(json_data))
+#print(json_data)
 
-# with open("nmap.json", "w") as json_file:
-#     json_file.write(json_data)
-#     json_file.close()
+with open("nmap.json", "w") as json_file:
+    json_file.write(json_data)
+    json_file.close()
