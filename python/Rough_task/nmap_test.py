@@ -115,7 +115,7 @@ def format_json_file(interface_list, json_file):
                                                      ]["nmaprun"]["runstats"]["hosts"]["@up"]
                 interface2_total_host_range = nmap_json[1][interface_list[1]
                                                        ]["nmaprun"]["runstats"]["hosts"]["@up"]
-                if int(interface1_total_host_range) <= 1 and int(interface2_total_host_range) <= 1:
+                if int(interface1_total_host_range) <= 1 and int(interface2_total_host_range) <= 1: 
                     with open("json_out.json", "w") as json_file:
                         json_file.write('[')
                         print('[')
@@ -134,7 +134,7 @@ def format_json_file(interface_list, json_file):
                         for interface2_host_count in range(int(interface2_total_host_range)):
                             interface2_nmap_dict = {}
                             # [enp4s0_host_count]
-                            enp4s0_data_json = nmap_json[1][interface_list[1]
+                            interface2_data_json = nmap_json[1][interface_list[1]
                                                             ]["nmaprun"]["host"]
                             status_json = interface2_data_json['status']['@state']
                             address_json = interface2_data_json['address']['@addr']
@@ -144,6 +144,7 @@ def format_json_file(interface_list, json_file):
                             json_file.write(json.dumps(interface2_nmap_dict))
                             print(json.dumps(interface2_nmap_dict))
                         json_file.write(']')
+                        print("]")
                 elif int(interface2_total_host_range) <= 1:
                     with open("json_out.json", "w") as json_file:
                         json_file.write('[')
