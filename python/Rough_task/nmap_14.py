@@ -28,9 +28,9 @@ def get_lan_interface_list() -> list:
 
 
 def get_interfaces_network(interfaces_list: list) -> dict:
-    """
-    This function get the interface list as the argument and return the interface and its network as dictionary
-    """
+    
+   # This function get the interface list as the argument and return the interface and its network as dictionary
+    
     interface_ip_dict = {}
 
     for interface in interfaces_list:
@@ -51,7 +51,7 @@ def get_interfaces_network(interfaces_list: list) -> dict:
 
 def nmap(interface, network):
 
-    nmap_command = "nmap " + network + " -n -sP -PE -PA -oX " + interface + ".xml"
+    nmap_command = "nmap " + network + " -sn -PR -oX " + interface + ".xml"
     try:
         result = subprocess.run(nmap_command, shell=True, capture_output=True)
 
@@ -73,10 +73,10 @@ for key, value in network_dict.items():
 
 
 def convert_xml_to_json(interface_list):
-    """
-    This function get the interface list as the argument and append .xml to get xml file
-    return output in json format
-    """
+    
+   # This function get the interface list as the argument and append .xml to get xml file
+   # return output in json format
+    
     try:
         if os.path.exists(interface_list[0]+".xml") and os.path.exists(interface_list[1]+".xml") is True:
             with open(interface_list[0]+".xml") as xml_file:
@@ -122,7 +122,7 @@ def format_json_file(interface_list, json_file):
         if os.path.exists(json_file) is True:
             with open(file=json_file, mode="r") as nmap_read:
                 nmap_json = json.loads(nmap_read.read())
-                eno1_total_host_range = nmap_json[0][interface_list[0]
+                interface1_total_host_range = nmap_json[0][interface_list[0]
                                                      ]["nmaprun"]["runstats"]["hosts"]["@up"]
                 enp4s0_total_host_range = nmap_json[1][interface_list[1]
                                                        ]["nmaprun"]["runstats"]["hosts"]["@up"]
@@ -131,17 +131,17 @@ def format_json_file(interface_list, json_file):
                     with open("json_out.json", "w") as json_file:
                         json_file.write('[')
                         print('[')
-                        for eno1_host_count in range(int(eno1_total_host_range)):
-                            eno1_nmap_dict = {}
-                            eno1_data_json = nmap_json[0][interface_list[0]
-                                                          ]["nmaprun"]["host"][eno1_host_count]
-                            status_json = eno1_data_json['status']['@state']
-                            address_json = eno1_data_json['address']['@addr']
-                            eno1_nmap_dict["dev"] = interface_list[0]
-                            eno1_nmap_dict["address"] = address_json
-                            eno1_nmap_dict["status"] = status_json
-                            json_file.write(json.dumps(eno1_nmap_dict)+',')
-                            print(json.dumps(eno1_nmap_dict)+',')
+                        for interface1_host_count in range(int(interface1_total_host_range)):
+                            interface1_nmap_dict = {}
+                            interface1_data_json = nmap_json[0][interface_list[0]
+                                                          ]["nmaprun"]["host"][interface1_host_count]
+                            status_json = interface1_data_json['status']['@state']
+                            address_json = interface1_data_json['address']['@addr']
+                            interface1_nmap_dict["dev"] = interface_list[0]
+                            interface1_nmap_dict["address"] = address_json
+                            interface1_nmap_dict["status"] = status_json
+                            json_file.write(json.dumps(interface1_nmap_dict)+',')
+                            print(json.dumps(interface1_nmap_dict)+',')
 
                         for enp4s0_host_count in range(int(enp4s0_total_host_range)):
                             enp4s0_nmap_dict = {}
@@ -162,17 +162,17 @@ def format_json_file(interface_list, json_file):
                     with open("json_out.json", "w") as json_file:
                         json_file.write('[')
                         print('[')
-                        for eno1_host_count in range(int(eno1_total_host_range)):
-                            eno1_nmap_dict = {}
-                            eno1_data_json = nmap_json[0][interface_list[0]
+                        for interface1_host_count in range(int(interface1_total_host_range)):
+                            interface1_nmap_dict = {}
+                            interface1_data_json = nmap_json[0][interface_list[0]
                                                           ]["nmaprun"]["host"][eno1_host_count]
-                            status_json = eno1_data_json['status']['@state']
-                            address_json = eno1_data_json['address']['@addr']
-                            eno1_nmap_dict["dev"] = interface_list[0]
-                            eno1_nmap_dict["address"] = address_json
-                            eno1_nmap_dict["status"] = status_json
-                            json_file.write(json.dumps(eno1_nmap_dict)+',')
-                            print(json.dumps(eno1_nmap_dict)+',')
+                            status_json = interface1_data_json['status']['@state']
+                            address_json = interface1_data_json['address']['@addr']
+                            interface1_nmap_dict["dev"] = interface_list[0]
+                            interface1_nmap_dict["address"] = address_json
+                            interface1_nmap_dict["status"] = status_json
+                            json_file.write(json.dumps(interface1_nmap_dict)+',')
+                            print(json.dumps(interface1_nmap_dict)+',')
 
                         for enp4s0_host_count in range(int(enp4s0_total_host_range)):
                             enp4s0_nmap_dict = {}
@@ -197,6 +197,3 @@ def format_json_file(interface_list, json_file):
 
     except Exception as exceptions:
         print(exceptions)
-
-
-format_json_file(interface_list=interface_lists, json_file="nmap.json")
