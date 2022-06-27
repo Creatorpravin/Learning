@@ -5,6 +5,7 @@ import os
 import json
 import xmltodict
 import time
+import threading
 
 DEFAULT_SYSTEM_CONFIGURATION_FILE = "/home/chiefnet/ChiefNet/ConfigurationFiles/SystemConfiguration.json"
 
@@ -54,7 +55,8 @@ def get_interfaces_network(interfaces_list: list) -> dict:
 
 def nmap(interface, network):
 
-    nmap_command = "runuser -l chiefnet -c 'nmap " + network + " -sn -PR -oX  " + interface + ".xml'"
+    nmap_command = "runuser -l chiefnet -c 'nmap " + \
+        network + " -sn -PR -oX  " + interface + ".xml'"
     try:
         result = subprocess.run(nmap_command, shell=True, capture_output=True)
 
@@ -65,20 +67,11 @@ def nmap(interface, network):
         print(exceptions)
 
 
-interface_lists = get_lan_interface_list()
-
-network_dict = get_interfaces_network(interface_lists)
-
-for key, value in network_dict.items():
-    nmap(key, value)
-
-
-
 def convert_xml_to_json(interface_list):
 
    # This function get the interface list as the argument and append .xml to get xml file
    # return output in json fols -lh
-   
+
     try:
         with open(interface_list[0]+".xml") as xml_file:
             data_dict_0 = xmltodict.parse(xml_file.read())
@@ -102,9 +95,6 @@ def convert_xml_to_json(interface_list):
     except Exception as exceptions:
         print(exceptions)
 
-convert_xml_to_json(interface_list=interface_lists)
-
-time.sleep(2)
 
 def format_json_file(interface_list, json_file):
 
@@ -256,4 +246,25 @@ def format_json_file(interface_list, json_file):
     except Exception as exceptions:
         print(exceptions)
 
-format_json_file(interface_list=interface_lists, json_file="nmap.json")
+
+def main_task(key, value):
+    t1 = threading.Thread(target=nmap, args=(key, value,))
+    t1.start()
+    t1.join()
+
+
+if __name__ == "__main__":
+
+    interface_lists = get_lan_interface_list()
+
+    network_dict = get_interfaces_network(interface_lists)
+
+    for key, value in network_dict.items():
+        main_task(key, value)
+    
+   
+    convert_xml_to_json(interface_list=interface_lists)
+
+    time.sleep(2)
+
+    format_json_file(interface_list=interface_lists, json_file="nmap.json")
