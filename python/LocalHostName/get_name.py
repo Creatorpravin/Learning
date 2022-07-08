@@ -2,7 +2,7 @@ file = open("dnsmasq.leases","r")
 content = []
 file_content = file.readlines()
 
-for lines in file_content[0:]:
+for lines in file_content[0: ]:
      content.append(lines.split())
 
 #print(content[12][3])
