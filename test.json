@@ -1,0 +1,426 @@
+[
+    {
+        "dst": "192.168.10.47", 'dev': 'enp2s0', 'lladdr': '1c:c1: 0c:f2:f2:dd', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.179', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.42', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.179', 'dev': 'enp1s0', 'lladdr': 'f8: 1a: 2b:e6: 84: 35', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.57', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.149', 'dev': 'eno1', 'lladdr': '1c:c1: 0c: 5c: 28:df', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.12', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.3', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.68', 'dev': 'eno1', 'lladdr': '7c: 7a: 91: 4d:cf: 9c', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.50', 'dev': 'enp1s0', 'lladdr': 'da:a6: 55: 68:e6: 4c', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.32', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.1.121', 'dev': 'enp1s0', 'lladdr': '86:c4: 75:bb:fc: 9f', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.91', 'dev': 'eno1', 'lladdr': '14:c2: 13: 14: 07: 6a', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.55', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.176', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.1.151', 'dev': 'enp1s0', 'lladdr': '90:cc:df: 03: 17:bd', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.135', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.81', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.200', 'dev': 'eno1', 'lladdr': 'e6: 56:e2:bb: 6a:ad', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.1', 'dev': 'enp1s0', 'lladdr': 'd4: 76:a0:a8:f2: 83', 'state': ['REACHABLE'
+        ]
+    },
+    {'dst': '192.168.10.179', 'dev': 'enp2s0', 'lladdr': 'f8: 1a: 2b:e6: 84: 35', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.13', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.1.139', 'dev': 'enp1s0', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.69', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.52', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.198', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.121', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.196', 'dev': 'enp1s0', 'lladdr': '4c: 63: 71: 48: 88: 04', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.11', 'dev': 'eno1', 'state': ['INCOMPLETE'
+        ]
+    },
+    {'dst': '192.168.1.94', 'dev': 'enp1s0', 'lladdr': '84: 1b: 77:ad: 95: 44', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.11', 'dev': 'enp1s0', 'lladdr': '68:ff: 7b: 89: 41:d1', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.76', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.30', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.67', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '64.225.87.219', 'dev': 'tap0', 'state': ['INCOMPLETE'
+        ]
+    },
+    {'dst': '192.168.10.200', 'dev': 'enp2s0', 'lladdr': 'e6: 56:e2:bb: 6a:ad', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.74', 'dev': 'eno1', 'lladdr': '7c: 2a: 31: 1d:d5:bc', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.159', 'dev': 'enp1s0', 'lladdr': '1c:c1: 0c:f2:f4: 54', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.143', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.143', 'dev': 'enp1s0', 'lladdr': 'ee: 0d: 98: 04: 72: 95', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.53', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.69', 'dev': 'enp2s0', 'lladdr': '20:a6: 0c: 89: 73: 94', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.199', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.145', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.8', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.239.1', 'dev': 'tap0', 'lladdr': '2a: 37:1e: 69:f4: 33', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.198', 'dev': 'enp2s0', 'lladdr': 'ec: 89: 14:f7: 19:9e', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.64', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.15.92', 'dev': 'enp4s0', 'lladdr': '00:a0:c9: 4c: 60: 92', 'state': ['REACHABLE'
+        ]
+    },
+    {'dst': '192.168.10.97', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.94', 'dev': 'eno1', 'lladdr': '12:1e: 8a: 50: 53: 4b', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.147', 'dev': 'enp1s0', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.58', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.196', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.143', 'dev': 'enp2s0', 'lladdr': 'ee: 0d: 98: 04: 72: 95', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.198', 'dev': 'enp1s0', 'lladdr': 'ec: 89: 14:f7: 19:9e', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.46', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.69', 'dev': 'enp1s0', 'lladdr': '20:a6: 0c: 89: 73: 94', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.61', 'dev': 'eno1', 'lladdr': '44: 85: 00: 6b: 7c: 8b', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.84', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.1.73', 'dev': 'enp1s0', 'lladdr': '12:1e: 8a: 50: 53: 4b', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.97', 'dev': 'enp2s0', 'lladdr': '56:ea:af: 78: 21: 6a', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.129', 'dev': 'enp1s0', 'lladdr': '1c:c1: 0c:f3:fd:ef', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.239.12', 'dev': 'tap0', 'lladdr': '56: 28: 01:d8: 21:cc', 'state': ['REACHABLE'
+        ], 'protocol': 'zebra'
+    },
+    {'dst': '192.168.10.36', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.95', 'dev': 'eno1', 'lladdr': '18:5e: 0f: 35: 6c: 77', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.146', 'dev': 'enp1s0', 'lladdr': '3c: 91: 80: 47:b4: 83', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.160', 'dev': 'enp1s0', 'lladdr': '1c:c1: 0c:f2:f2:dd', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.78', 'dev': 'enp1s0', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.124', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.196', 'dev': 'enp2s0', 'lladdr': '4c: 63: 71: 48: 88: 04', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.47', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.47', 'dev': 'enp1s0', 'lladdr': '1c:c1: 0c:f2:f2:dd', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.1.1', 'dev': 'enp2s0', 'lladdr': 'd4: 76:a0:a8:f2: 83', 'state': ['REACHABLE'
+        ]
+    },
+    {'dst': '192.168.1.72', 'dev': 'enp1s0', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.122', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.10.191', 'dev': 'eno1', 'lladdr': '44:e5: 17: 95: 80: 17', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.27', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': '192.168.1.113', 'dev': 'enp1s0', 'lladdr': 'ca: 1d: 77: 05: 7f: 87', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.200', 'dev': 'enp1s0', 'lladdr': 'e6: 56:e2:bb: 6a:ad', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.97', 'dev': 'enp1s0', 'lladdr': '56:ea:af: 78: 21: 6a', 'state': ['STALE'
+        ]
+    },
+    {'dst': '192.168.10.181', 'dev': 'eno1', 'state': ['FAILED'
+        ]
+    },
+    {'dst': 'fe80: : 8caf: 72ff:febf:ae9e', 'dev': 'enp1s0', 'lladdr': '8e:af: 72:bf:ae:9e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :d8b7: 79ff:fe86:c5ba', 'dev': 'enp2s0', 'lladdr': 'da:b7: 79: 86:c5:ba', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 66:f119:c546:bad8', 'dev': 'enp1s0', 'lladdr': 'be:8e: 31:ca:fb:d9', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 20c: 29ff:fe5c:a701', 'dev': 'enp1s0', 'lladdr': '00: 0c: 29: 5c:a7: 01', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :e456:e2ff:febb: 6aad', 'dev': 'enp2s0', 'lladdr': 'e6: 56:e2:bb: 6a:ad', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 8e5: 7cfb: 4e15:dafe', 'dev': 'enp2s0', 'lladdr': '94: 08: 53:c3: 76: 3b', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1c05: 4ffa:b0da: 87a4', 'dev': 'enp1s0', 'lladdr': '86:c4: 75:bb:fc: 9f', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 406b: 1725:bd96: 84c1', 'dev': 'enp2s0', 'lladdr': '3c: 91: 80: 5f: 03: 65', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :f826:b8ff:fe75: 7b2e', 'dev': 'enp1s0', 'lladdr': 'fa: 26:b8: 75: 7b:2e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :275e:abe0:fc2c: 2b86', 'dev': 'enp2s0', 'lladdr': 'f8: 1a: 2b:e6: 84: 35', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 22a6:cff:fe89: 7394', 'dev': 'enp1s0', 'lladdr': '20:a6: 0c: 89: 73: 94', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1c7b: 60ff:fe38: 354f', 'dev': 'enp1s0', 'lladdr': '1e: 7b: 60: 38: 35: 4f', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :f815:e3ff:fe31:d092', 'dev': 'enp1s0', 'lladdr': 'fa: 15:e3: 31:d0: 92', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1482:f75c:d585: 720c', 'dev': 'enp1s0', 'lladdr': '42: 3d: 75: 01: 63:2e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1820:ec: 16d2: 1fa8', 'dev': 'enp1s0', 'lladdr': '42: 93: 65:e5:b7:f9', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :e456:e2ff:febb: 6aad', 'dev': 'eno1', 'lladdr': 'e6: 56:e2:bb: 6a:ad', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 478:b3a6: 4d1a:e1fb', 'dev': 'enp1s0', 'lladdr': '3e: 24: 61:a8: 97:ce', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 10f6:a6de: 6acc: 6082', 'dev': 'eno1', 'lladdr': 'da:a6: 55: 68:e6: 4c', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 804b: 9dff:fe89:8ec5', 'dev': 'enp2s0', 'lladdr': '82: 4b: 9d: 89:8e:c5', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 6dd9: 5ce0:ccc3:230e', 'dev': 'enp1s0', 'lladdr': '50:eb: 71:e4:bc: 31', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 9d2: 4cec: 3816: 1e3d', 'dev': 'enp2s0', 'lladdr': '1c:c1: 0c:f2:f2:dd', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :275e:abe0:fc2c: 2b86', 'dev': 'eno1', 'lladdr': 'f8: 1a: 2b:e6: 84: 35', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 20c: 29ff:fe39:7eb2', 'dev': 'enp2s0', 'lladdr': '00: 0c: 29: 39:7e:b2', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :54ea:afff:fe78: 216a', 'dev': 'enp2s0', 'lladdr': '56:ea:af: 78: 21: 6a', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 8caf: 72ff:febf:ae9e', 'dev': 'enp2s0', 'lladdr': '8e:af: 72:bf:ae:9e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 5450:e398:f77e:e91f', 'dev': 'enp1s0', 'lladdr': '54: 14:f3:dc:a4: 60', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 20c: 29ff:fe5c:a701', 'dev': 'enp2s0', 'lladdr': '00: 0c: 29: 5c:a7: 01', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 66:f119:c546:bad8', 'dev': 'enp2s0', 'lladdr': 'be:8e: 31:ca:fb:d9', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :e06d:de9b: 28cd:cb28', 'dev': 'enp1s0', 'lladdr': '94: 39:e5:bf:8e: 75', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1c05: 4ffa:b0da: 87a4', 'dev': 'enp2s0', 'lladdr': '86:c4: 75:bb:fc: 9f', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :f826:b8ff:fe75: 7b2e', 'dev': 'enp2s0', 'lladdr': 'fa: 26:b8: 75: 7b:2e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1c1b: 6b78:cf01:e984', 'dev': 'enp1s0', 'lladdr': '4c: 63: 71: 48: 88: 04', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 9d2: 4cec: 3816: 1e3d', 'dev': 'eno1', 'lladdr': '1c:c1: 0c:f2:f2:dd', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 20c: 29ff:fe17:dd5d', 'dev': 'enp1s0', 'lladdr': '00: 0c: 29: 17:dd: 5d', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 22a6:cff:fe89: 7394', 'dev': 'enp2s0', 'lladdr': '20:a6: 0c: 89: 73: 94', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1c7b: 60ff:fe38: 354f', 'dev': 'enp2s0', 'lladdr': '1e: 7b: 60: 38: 35: 4f', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :f815:e3ff:fe31:d092', 'dev': 'enp2s0', 'lladdr': 'fa: 15:e3: 31:d0: 92', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1482:f75c:d585: 720c', 'dev': 'enp2s0', 'lladdr': '42: 3d: 75: 01: 63:2e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :d8b7: 79ff:fe86:c5ba', 'dev': 'enp1s0', 'lladdr': 'da:b7: 79: 86:c5:ba', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1436: 50d5:b8f8: 87e6', 'dev': 'eno1', 'lladdr': 'b0:be: 83: 3b: 66: 10', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :e456:e2ff:febb: 6aad', 'dev': 'enp1s0', 'lladdr': 'e6: 56:e2:bb: 6a:ad', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 8e5: 7cfb: 4e15:dafe', 'dev': 'enp1s0', 'lladdr': '94: 08: 53:c3: 76: 3b', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1820:ec: 16d2: 1fa8', 'dev': 'enp2s0', 'lladdr': '42: 93: 65:e5:b7:f9', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 478:b3a6: 4d1a:e1fb', 'dev': 'enp2s0', 'lladdr': '3e: 24: 61:a8: 97:ce', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 406b: 1725:bd96: 84c1', 'dev': 'enp1s0', 'lladdr': '3c: 91: 80: 5f: 03: 65', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :275e:abe0:fc2c: 2b86', 'dev': 'enp1s0', 'lladdr': 'f8: 1a: 2b:e6: 84: 35', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 6dd9: 5ce0:ccc3:230e', 'dev': 'enp2s0', 'lladdr': '50:eb: 71:e4:bc: 31', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :f826:b8ff:fe75: 7b2e', 'dev': 'eno1', 'lladdr': 'fa: 26:b8: 75: 7b:2e', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 2a0:c9ff:fe4c: 6092', 'dev': 'enp4s0', 'lladdr': '00:a0:c9: 4c: 60: 92', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 22a6:cff:fe89: 7394', 'dev': 'eno1', 'lladdr': '20:a6: 0c: 89: 73: 94', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 5450:e398:f77e:e91f', 'dev': 'enp2s0', 'lladdr': '54: 14:f3:dc:a4: 60', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 10fa: 7b2d: 46cc: 2a19', 'dev': 'eno1', 'lladdr': '1c:c1: 0c:f2: 8f: 14', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :e06d:de9b: 28cd:cb28', 'dev': 'enp2s0', 'lladdr': '94: 39:e5:bf:8e: 75', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 804b: 9dff:fe89:8ec5', 'dev': 'enp1s0', 'lladdr': '82: 4b: 9d: 89:8e:c5', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 9d2: 4cec: 3816: 1e3d', 'dev': 'enp1s0', 'lladdr': '1c:c1: 0c:f2:f2:dd', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 20c: 29ff:fe39:7eb2', 'dev': 'enp1s0', 'lladdr': '00: 0c: 29: 39:7e:b2', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: :54ea:afff:fe78: 216a', 'dev': 'enp1s0', 'lladdr': '56:ea:af: 78: 21: 6a', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 1c1b: 6b78:cf01:e984', 'dev': 'enp2s0', 'lladdr': '4c: 63: 71: 48: 88: 04', 'state': ['STALE'
+        ]
+    },
+    {'dst': 'fe80: : 20c: 29ff:fe17:dd5d', 'dev': 'enp2s0', 'lladdr': '00: 0c: 29: 17:dd: 5d', 'state': ['STALE'
+        ]
+    }
+]

@@ -31,4 +31,4 @@ for interface in systemconfiguration_json["system_information"]["wan_interfaces"
         output_list.append(output_json)
 
 
-print(output_list)
+print(json.dumps(output_list))
