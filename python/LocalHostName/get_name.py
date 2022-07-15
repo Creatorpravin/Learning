@@ -25,12 +25,13 @@ def get_hostname(file_path):
             if ipneig_data['state'] == reachable:
                 for dnsmasq_data in dnsmasq_contents:
                     if dnsmasq_data[2] == ipneig_data['dst']:
+                        status = str(ipneig_data['state'])
                         if dnsmasq_data[3] != '*':
                             print("active_hosts,interface=" +
-                                  ipneig_data['dev']+",ip_address="+dnsmasq_data[2]+" active_host="+'"'+dnsmasq_data[3]+'"')
+                                  ipneig_data['dev']+",ip_address="+dnsmasq_data[2]+" host_name="+'"'+dnsmasq_data[3]+'",status= "REACHABLE"')
                         else:
                             print("active_hosts,interface=" +
-                                  ipneig_data['dev']+",ip_address="+dnsmasq_data[2]+" active_host=-")
+                                  ipneig_data['dev']+",ip_address="+dnsmasq_data[2]+' host_name=\"-\",status="REACHABLE"')
     except Exception as exceptions:
         print(exceptions)
 
