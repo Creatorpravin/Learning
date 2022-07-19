@@ -18,7 +18,21 @@ def get_hostname(file_path):
         for lines in dnsmasq_contents[0:]:
             dnsmasq_contents.append(lines.split())
     else:
-        print(file_path+"File path is not exist")
+        ipneig_json_1 = json.loads(json_out)
+        for ipneig_data_1 in ipneig_json_1:
+            print(int(ipneig_data_1['dst']))
+            get_nbtscan_1 = nbtscan(ipneig_data_1['dst'])
+
+            if get_nbtscan_1 == False:
+                print("active_hosts,interface=" +
+                      ipneig_data_1['dev']+",ip_address="+ipneig_data_1['dst']+' host_name=\"-\",status="REACHABLE"')
+            elif get_nbtscan_1 == "<unknown>":
+                print("active_hosts,interface=" +
+                      ipneig_data_1['dev']+",ip_address="+ipneig_data_1['dst']+' host_name=\"-\",status="REACHABLE"')
+            else:
+                print("active_hosts,interface=" +
+                      ipneig_data_1['dev']+",ip_address="+ipneig_data_1['dst']+" host_name="+'"'+get_nbtscan_1+'",status="REACHABLE"')
+        return
     try:
         ipneig_json = json.loads(json_out)
         for ipneig_data in ipneig_json:
