@@ -1,0 +1,62 @@
+{
+    "dependency_installation": [
+        {
+            "package": "frr",
+            "dependency": "True"
+        },
+        {
+            "package": "telegraf",
+            "dependency": "True"
+        },
+        {
+            "package": "networkmanager",
+            "dependency": "True"
+        },
+        {
+            "package": "addkey",
+            "dependency": "False"
+        },
+        {
+            "package": "adduser",
+            "dependency": "False"
+        },
+        {
+            "package": "ipset",
+            "dependency": "False"
+        },
+        {
+            "package": "openvpn",
+            "dependency": "False"
+        },
+        {
+            "package": "python",
+            "dependency": "False"
+        },
+        {
+            "package": "system-resolve",
+            "dependency": "False"
+        },
+        {
+            "package": "update",
+            "dependency": "False"
+        }
+    ],
+    "dependency_update": [
+        {
+            "package": "frr",
+            "file_name": "frr.txt",
+            "destination_filepath": "/e"
+        },
+        {
+            "package": "telegraf",
+            "file_name": "telegraf",
+            "destination_filepath": "/etc"
+        },
+        {
+            "package": "networkmanager",
+            "file_name": "NetworkManager",
+            "destination_filepath": "/etc"
+        }
+    ],
+    "chiefnet":["True"]
+}

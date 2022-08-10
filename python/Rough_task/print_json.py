@@ -9,3 +9,4 @@ if p1.returncode == 0: #used to get return value in shell 'echo $?' if == 0 mean
 else:
     print("error: {0}". format(json_err))
     print("command : failure")
+
