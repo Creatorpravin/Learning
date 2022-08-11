@@ -17,10 +17,6 @@
             "dependency": "False"
         },
         {
-            "package": "adduser",
-            "dependency": "False"
-        },
-        {
             "package": "ipset",
             "dependency": "False"
         },
@@ -45,7 +41,7 @@
         {
             "package": "frr",
             "file_name": "frr.txt",
-            "destination_filepath": "/e"
+            "destination_filepath": "/etc"
         },
         {
             "package": "telegraf",
@@ -53,10 +49,28 @@
             "destination_filepath": "/etc"
         },
         {
-            "package": "networkmanager",
-            "file_name": "NetworkManager",
-            "destination_filepath": "/etc"
+            "package": "dispacher.d",
+            "file_name": "chiefnet-custom-route",
+            "destination_filepath": "/etc/NetworkManager/dispatcher.d"
+        },
+        {
+            "package": "NetworkManager_configuration",
+            "file_name": "NetworkManager.conf",
+            "destination_filepath": "/etc/NetworkManager"
+        },
+        {
+            "package": "conf.d",
+            "file_name": "chiefnet-connectivity-check.conf",
+            "destination_filepath": "/etc/NetworkManager/conf.d"
+        },
+        {
+            "package": "rt_table",
+            "file_name": "rt_table",
+            "destination_filepath": "/etc/iproute2"
         }
+
     ],
-    "chiefnet":["True"]
+    "chiefnet": [
+        "True"
+    ]
 }
