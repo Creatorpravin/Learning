@@ -1,11 +1,11 @@
 {
     "dependency_installation": [
         {
-            "package": "frr",
+            "package": "frrr",
             "dependency": "True"
         },
         {
-            "package": "telegraf",
+            "package": "telegraff",
             "dependency": "True"
         },
         {
@@ -40,7 +40,7 @@
     "dependency_update": [
         {
             "package": "frr",
-            "file_name": "frr.txt",
+            "file_name": "frr",
             "destination_filepath": "/etc"
         },
         {
@@ -61,6 +61,11 @@
         {
             "package": "conf.d",
             "file_name": "chiefnet-connectivity-check.conf",
+            "destination_filepath": "/etc/NetworkManager/conf.d"
+        },
+        {
+            "package": "ignore-carrier",
+            "file_name": "chiefnet-ignore-carier.conf",
             "destination_filepath": "/etc/NetworkManager/conf.d"
         },
         {
