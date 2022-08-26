@@ -113,7 +113,6 @@ def add_user():
 
     username_cmd = "whoami"
     username = "chiefnet\n"
-    
 
     user = subprocess.Popen(username_cmd, shell=True, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE, universal_newlines=True)

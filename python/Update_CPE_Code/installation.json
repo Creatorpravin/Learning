@@ -62,7 +62,7 @@
             "package": "conf.d",
             "file_name": "chiefnet-connectivity-check.conf",
             "destination_filepath": "/etc/NetworkManager/conf.d"
-        },
+        },    
         {
             "package": "ignore-carrier",
             "file_name": "chiefnet-ignore-carier.conf",
