@@ -14,6 +14,7 @@
 * sudo vtysh - to check the version  
 * watch -n 1 "command" - command automatically refresh  
 * echo $? - used to get return value in shell if == 0 means success if == other than 0 means fail 
+  
 # **Netplan**
 
 * sudo apt-get install netplan.io - install netplan 
