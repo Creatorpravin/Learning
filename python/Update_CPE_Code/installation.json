@@ -33,6 +33,14 @@
             "dependency": "False"
         },
         {
+            "package": "dnsmasq",
+            "dependency": "False"
+        },
+        {
+            "package": "nbtscan",
+            "dependency": "False"
+        },
+        {
             "package": "update",
             "dependency": "False"
         }
@@ -62,7 +70,7 @@
             "package": "conf.d",
             "file_name": "chiefnet-connectivity-check.conf",
             "destination_filepath": "/etc/NetworkManager/conf.d"
-        },    
+        },
         {
             "package": "ignore-carrier",
             "file_name": "chiefnet-ignore-carier.conf",
@@ -73,7 +81,6 @@
             "file_name": "rt_table",
             "destination_filepath": "/etc/iproute2"
         }
-
     ],
     "chiefnet": [
         "True"
