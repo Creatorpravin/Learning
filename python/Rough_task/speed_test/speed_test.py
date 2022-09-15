@@ -5,6 +5,7 @@ import speedtest
   
   
 st = speedtest.Speedtest()
+
   
 option = int(input('''What speed do you want to test:  
   
