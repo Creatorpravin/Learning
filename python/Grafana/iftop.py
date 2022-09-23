@@ -124,7 +124,6 @@ def size(val):
     else:
         return "0"
 
-
 async def get_iftop(interface, sudo_password=None, debug=0):
 
     """
@@ -132,7 +131,7 @@ async def get_iftop(interface, sudo_password=None, debug=0):
     """
 
     # iftop command for each interface
-    command = f'iftop -bBPp -i {interface} -s 1s -o 10s -L 100 -t'
+    command = f'iftop -bBP -i {interface} -s 1s -o 10s -L 100 -t'
 
     # For inserting password in cmd line
     #cmd1 = subprocess.Popen(['echo',sudo_password], stdout=subprocess.PIPE)
@@ -222,16 +221,19 @@ async def asyn():
         print(actives_interfaces)
         for interface in actives_interfaces:
             # Iftop data for active interfaces.
-            actives_interfaces_list.append(get_iftop(sudo_password=sudo_password,
+            actives_interfaces_list.append(asyncio.create_task(get_iftop(sudo_password=sudo_password,
                                                      interface=interface,
                                                      debug=debug
-                                                     ))
+                                                     )))
             # get_iftop(sudo_password=sudo_password,
             #           interface=interface,
             #           debug=debug
             #           )
-            await asyncio.sleep(0.2)
-            await asyncio.gather(*actives_interfaces_list)
+            #await asyncio.sleep(0.2)
+           
+        for j in actives_interfaces_list:
+            await j
+        #await asyncio.gather(*actives_interfaces_list)
 
     except Exception as e:
         if debug:

@@ -9,10 +9,14 @@ async def main():
     print("Started!")
     list_of_task = []
     for i in range(1, 6):
-        list_of_task.append(kill_time(i))
+        list_of_task.append(asyncio.create_task(kill_time(i)))
     print(list_of_task)
     #await asyncio.sleep(2)
-    await asyncio.gather(*list_of_task)
+    for j in list_of_task:
+        await j
+
+    #await asyncio.gather(*list_of_task)
+
     print('Done')
 
 
