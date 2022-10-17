@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 from logging import exception
 import subprocess
 import json

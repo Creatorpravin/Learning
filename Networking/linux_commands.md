@@ -56,6 +56,9 @@
 * whois 157.240.250.35 | grep NetRange - To get the network range of particuar ip of domain(shows all possible ip from the network)
 * sudo ip route add 157.240.23.35 via 192.168.10.10 dev enp0s8 - (Traffic steering) add route to particular ip 
 * sudo iptables -A INPUT -m mac --mac-source 00:00:00:00:00:00 -j DROP -  Block access to your system from specific MAC address by using:
+* /proc/sys/net/ipv4/ip_forward - change ip forward mode to 1 
+* sysctl -w net.ipv4.ip_forward = 1 - change ip forward
+
 
 
 # Traffic steering
