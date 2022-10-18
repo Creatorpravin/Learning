@@ -8,5 +8,6 @@ if __name__ == "__main__":
     dev_utils = DeviceUtilityManager()
 
     print(dev_utils.get_interface_info())
+    dev_utils.system_information_info()
 
     print("[+] Done")
