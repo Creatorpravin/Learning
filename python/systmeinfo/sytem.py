@@ -2,6 +2,7 @@ import psutil
 import platform
 from datetime import datetime
 
+
 def get_size(bytes, suffix="B"):
     """
     Scale bytes to its proper format
@@ -12,7 +13,7 @@ def get_size(bytes, suffix="B"):
     factor = 1024
     for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes < factor:
-            return f"{bytes:.2f}{unit}{suffix}" #Get last two decimal pointss
+            return f"{bytes:.2f}{unit}{suffix}"  # Get last two decimal pointss
         bytes /= factor
 
 
@@ -29,7 +30,8 @@ print(f"Processor: {uname.processor}")
 print("="*40, "Boot Time", "="*40)
 boot_time_timestamp = psutil.boot_time()
 bt = datetime.fromtimestamp(boot_time_timestamp)
-print(f"Boot Time: {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}")
+print(
+    f"Boot Time: {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}")
 
 # let's print CPU information
 print("="*40, "CPU Info", "="*40)
@@ -109,4 +111,3 @@ for interface_name, interface_addresses in if_addrs.items():
 net_io = psutil.net_io_counters()
 print(f"Total Bytes Sent: {get_size(net_io.bytes_sent)}")
 print(f"Total Bytes Received: {get_size(net_io.bytes_recv)}")
-
