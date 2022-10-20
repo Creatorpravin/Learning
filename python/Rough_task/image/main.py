@@ -12,7 +12,8 @@ def image_to_text(filename):
 
 if __name__ == "__main__":
     #print(type(image_to_text("test.png")))
-    print(image_to_text("test.png"))
+    #print(image_to_text("address.pdf"))
+    print(image_to_text("demo.png"))
     print("="*50)
     print(image_to_text("bankdetails.png"))
 

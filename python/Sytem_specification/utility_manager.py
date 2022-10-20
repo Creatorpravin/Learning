@@ -25,6 +25,7 @@ class DeviceUtilityManager():
         print(f"Version: {uname.version}")
         print(f"Machine: {uname.machine}")
         print(f"Processor: {uname.processor}")
+        return uname
 
     def boot_time_info(self):
         print("="*40, "Boot Time", "="*40)
@@ -32,6 +33,7 @@ class DeviceUtilityManager():
         bt = datetime.fromtimestamp(boot_time_timestamp)
         print(
             f"Boot Time: {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}")
+        return bt
 
     def cpu_info(self):
         # let's print CPU information
@@ -49,6 +51,7 @@ class DeviceUtilityManager():
         for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):
             print(f"Core {i}: {percentage}%")
         print(f"Total CPU Usage: {psutil.cpu_percent()}%")
+        return cpufreq
 
     def memory_info(self):
         # Memory Information
