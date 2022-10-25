@@ -4,7 +4,7 @@ if __name__ == "__main__":
 
     py_dep = PythonDependencyInstaller()
 
-    from utility_manager import DeviceUtilityManager
+    from utility_manager_ import DeviceUtilityManager
     dev_utils = DeviceUtilityManager()
 
     system_information = dev_utils.system_information_info()
@@ -15,9 +15,10 @@ if __name__ == "__main__":
     io_statistics_information = dev_utils.io_statistics_info()
     memory_information = dev_utils.memory_info()
     network_information = dev_utils.network_info()
-
-    #print(dev_utils.get_interface_info())
-    print(system_information.system)
+     
+    # print("*"*40,system_information) 
+    print(dev_utils.get_interface_info())
+    #print(system_information.system)
     # dev_utils.system_information_info()
     # dev_utils.boot_time_info()
     # dev_utils.cpu_info()
