@@ -1,3 +1,5 @@
+from csv import writer
+from operator import index
 import tabula
 from PIL import Image
 import numpy as np
@@ -15,8 +17,11 @@ if __name__ == "__main__":
     #print(image_to_text("address.pdf"))
     print(image_to_text("demo.png"))
     print("="*50)
-    print(image_to_text("bankdetails.png"))
-
+    datafile = image_to_text("bankdetails.png")
+    print(datafile)
+    li=list(datafile.split("\n"))
+    print(li)
+    li.to_excel(writer,'/home/praveen/Learning/python/Rough_task/image/saddress.xlsx',index=False)
 # data_file = tabula.read_pdf("address.pdf", pages=1)
 # #print(type(data_file))
 # print(data_file)
