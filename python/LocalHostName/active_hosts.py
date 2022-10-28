@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from logging import exception
 import subprocess
 import json
 import os
@@ -12,19 +11,14 @@ def get_hostname():
     if len(LAN_INTERFACES):
         try:
             for lan_data in LAN_INTERFACES:
-#                print(lan_data)
                 ip_neigh = "ip -json neigh show dev " + lan_data + " nud reachable"
                 result = subprocess.Popen(ip_neigh, shell=True, stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE, universal_newlines=True)
                 json_out, json_err = result.communicate()
                 if result.returncode == 0:
-#                  print(json_out)
                     ipneig_json = json.loads(json_out)
                     if len(ipneig_json) == 0:
-#                       print(ipneig_json)
-                       # print("active_hosts,interface=" +
-                        #      lan_data+",ip_address=0 "+'host_name=\"-\",status=\"-\"')
-                       pass
+                        pass
                     else:
                         for ipneigh_data in ipneig_json:
                             get_nslookup = nslookup(ipneigh_data['dst'])
@@ -43,17 +37,11 @@ def get_hostname():
                                 print("active_hosts,interface=" +
                                       lan_data+",ip_address="+ipneigh_data['dst']+" host_name="+'"'+get_nslookup.replace(".", "")+'",status="REACHABLE"')
                 else:
-                   # print("active_hosts,interface=" +
-                    #      lan_data+",ip_address=0 "+'host_name=\"-\",status=\"-\"')
                     pass
         except Exception as exception:
             pass
-           # print("active_hosts,interface=-"+",ip_address=0 " +
-            #      'host_name=\"-\",status=\"-\"')
     else:
         pass
-        #print("active_hosts,interface=-"+",ip_address=0 " +
-         #     'host_name=\"-\",status=\"-\"')
 
 
 def lan_interface_list():
@@ -80,7 +68,7 @@ def nbtscan(ip):
         nbtscan_list = nbtscan_out.split()
         if nbtscan_communication.returncode == 0:
             if len(nbtscan_list) > 18:
-                return(nbtscan_list[18])
+                return (nbtscan_list[18])
             else:
                 return False
         else:
