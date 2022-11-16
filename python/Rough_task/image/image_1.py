@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-file = "test_3.jpg"
+file = "bankdetails.png"
 
 im1 = cv2.imread(file,0)
 im = cv2.imread(file)
