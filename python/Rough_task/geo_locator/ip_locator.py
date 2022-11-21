@@ -11,6 +11,7 @@
 #     print(ip.city)
 import subprocess
 import re
+import json 
 
 cmd = "geoiplookup 15.207.189.46"
 
@@ -24,3 +25,8 @@ if ip_add_location.returncode == 0:
     else:
         location_li = re.sub(r'[^\w]', ' ', location).split(" ")
         print("country = ", location_li[4])
+        with open(file="country_code.json", mode="r") as  country_code:
+            country_json = json.load(country_code)
+            for country in country_json:
+                if country['code'] == location_li[4]:
+                    print(country['flag'])
