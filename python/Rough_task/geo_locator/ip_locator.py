@@ -31,3 +31,4 @@ if ip_add_location.returncode == 0:
             for country in country_json:
                 if country['code'] == location_li[4]:
                     print(country['flag'])
+            
