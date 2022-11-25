@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Members
-
+from django.urls import reverse
 def index(request):
   # template = loader.get_template('myfirst.html')
   # return HttpResponse(template.render())
@@ -19,3 +19,15 @@ def index(request):
   }
   
   return HttpResponse(template.render(context, request)) # send the object to html template
+
+
+def add(request):
+  template = loader.get_template('add.html')
+  return HttpResponse(template.render({},request))
+
+def addrecord(request):
+  x = request.POST['first']
+  y = request.POST['last']
+  member = Members(firstname=x,lastname=y)
+  member.save()
+  return HttpResponseRedirect(reverse('index'))
