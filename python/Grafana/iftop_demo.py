@@ -8,6 +8,7 @@ import os
 import json
 import subprocess
 import re
+import multiprocessing
 #import datetime
 
 # In[2]:
@@ -175,13 +176,13 @@ def get_iftop(interface, sudo_password=None, debug=0):
                         if (sent == "0"):
                             # printing values in line protocol format
                             print(
-                                f'iftop_traffic,interface={interface},sender={sender}:{ip_locator(sender)},receiver={receiver}:{ip_locator(receiver)} receiveRate={float(received)}')
+                                f'iftop_traffic,interface={interface},sender={sender}{ip_locator(sender)},receiver={receiver}{ip_locator(receiver)} receiveRate={float(received)}')
                         elif (received == "0"):
                             print(
-                                f'iftop_traffic,interface={interface},sender={sender}:{ip_locator(sender)},receiver={receiver}:{ip_locator(receiver)} sendRate={float(sent)}')
+                                f'iftop_traffic,interface={interface},sender={sender}{ip_locator(sender)},receiver={receiver}{ip_locator(receiver)} sendRate={float(sent)}')
                         else:
                             print(
-                                f'iftop_traffic,interface={interface},sender={sender}:{ip_locator(sender)},receiver={receiver}:{ip_locator(receiver)} sendRate={float(sent)},receiveRate={float(received)}')
+                                f'iftop_traffic,interface={interface},sender={sender}{ip_locator(sender)},receiver={receiver}{ip_locator(receiver)} sendRate={float(sent)},receiveRate={float(received)}')
 
                 else:
                     # Skipping unwanted lines.
@@ -249,13 +250,30 @@ if __name__ == "__main__":
         inactives_interfaces = interfaces - actives_interfaces
 #        print(actives_interfaces)
         # Printing line protocol for interfaces present.
-        for interface in actives_interfaces:
+        # for interface in actives_interfaces:
+        #     # Iftop data for active interfaces.
+        #     get_iftop(sudo_password=sudo_password,
+        #               interface=interface,
+        #               debug=debug
+        #               )
+        process = ["process1","process2","process3","process4"]
+        interface_list=[]
+        
+        for __interface in actives_interfaces:
+            interface_list.append(__interface)
+
+        for __index,interface in enumerate(interface_list):
             # Iftop data for active interfaces.
-            get_iftop(sudo_password=sudo_password,
-                      interface=interface,
-                      debug=debug
-                      )
+            
+            process[__index]=multiprocessing.Process(target=get_iftop,args=(interface,sudo_password,debug, ))
+            process[__index].start()
+            # get_iftop(sudo_password=sudo_password,
+            #           interface=interface,
+            #           debug=debug
+            #           )                      
        # print(datetime.datetime.now())
+        for i in range(len(interface_list)):
+            process[i].join()
 
     except Exception as e:
         if debug:
