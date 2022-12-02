@@ -14,5 +14,5 @@ import time
 
 while True:
     pyautogui.moveTo(50, 100, duration=3)
-    time.sleep(5)
+    time.sleep(2)
     pyautogui.moveTo(100, 50, duration=3)
