@@ -1,0 +1,62 @@
+list-sa event {
+  net-net-2 {
+    uniqueid = 3
+    version = 2
+    state = ESTABLISHED
+    local-host = 192.168.1.180
+    local-port = 4500
+    local-id = C=CH, O=strongswan, CN=Host1.strongswan.org
+    remote-host = 192.168.1.165
+    remote-port = 4500
+    remote-id = C=CH, O=strongswan, CN=Host2.strongswan.org
+    initiator-spi = ad2ceaccc7f3427d
+    responder-spi = 7c6d01f09fea4a8a
+    nat-remote = yes
+    nat-any = yes
+    encr-alg = AES_CBC
+    encr-keysize = 128
+    integ-alg = HMAC_SHA2_256_128
+    prf-alg = PRF_AES128_XCBC
+    dh-group = CURVE_25519
+    established = 26
+    rekey-time = 13298
+    child-sas {
+      net-net-2-1 {
+        name = net-net-2
+        uniqueid = 1
+        reqid = 1
+        state = INSTALLED
+        mode = TUNNEL
+        protocol = ESP
+        encap = yes
+        spi-in = cb79c519
+        spi-out = c9adec22
+        encr-alg = AES_CBC
+        encr-keysize = 128
+        integ-alg = HMAC_SHA2_256_128
+        bytes-in = 219
+        packets-in = 3
+        use-in = 6
+        bytes-out = 2460
+        packets-out = 14
+        use-out = 5
+        rekey-time = 3300
+        life-time = 3934
+        install-time = 26
+        local-ts = [
+          192.18.115.0/24
+          192.168.1.180/32
+          192.168.14.0/24
+          192.168.111.0/24
+        ]
+        remote-ts = [
+          192.168.1.165/32
+          192.168.113.0/24
+          192.168.114.0/24
+        ]
+      }
+    }
+  }
+}
+list-sas reply {
+}
