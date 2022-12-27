@@ -18,4 +18,6 @@ with open(file="ipsec_text.txt",mode="+r") as stas:
     for k in temp_2:
         temp_3.append(k.replace("\n",",").replace("{,","{"))
     for j in temp_3:
-        print(re.findall("\w+",j))
+        print(j)
+            
+        
