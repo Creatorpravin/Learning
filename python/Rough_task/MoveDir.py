@@ -1,6 +1,7 @@
 import shutil
 
-source = "/home/praveen/telegraf/custom_scripts/hii.xml"
-destination = "/home/praveen/telegraf"
+source = "/home/praveen/test/yes"
+destination = "/home/praveen/test/telegraf"
 
-shutil.move( source , destination )
+resu = shutil.move( source , destination )
+print(resu)
