@@ -48,7 +48,7 @@
 * sudo iptables-save>test.txt - get the current iptable
 * sudo iptables-restore<test.txt - set and run the iptable
 * sudo iptables -A INPUT -s 192.168.1.198 -j DROP - to block particular ip
-* iptables -A OUTPUT -p tcp -m string --string "amazon.com" --algo kmp -j REJECT - To block a site
+* iptables -A OUTPUT -p tcp -m string --string "amazon.com" -d-algo kmp -j REJECT - To block a site
 * sudo iptables -F - to delete all iptables (flush)
 * sudo iptables -t "table_name" -L -n -v - view particular table by table name.
 * sudo iptables -L -n -v - check the iptables packs hits
