@@ -15,7 +15,10 @@
 * sudo vtysh - to check the version  
 * watch -n 1 "command" - command automatically refresh  
 * echo $? - used to get return value in shell if == 0 means success if == other than 0 means fail 
-  
+
+# **File permission**
+* chown [OPTION]… [OWNER][:[GROUP]] FILE -  to change the group mode
+
 # **Netplan**
 
 * sudo apt-get install netplan.io - install netplan 
