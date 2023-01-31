@@ -7,4 +7,4 @@ def get_remote_machine_info(remote_host):
         print(remote_host, socket.error)
     
 if __name__ == "__main__":
-    get_remote_machine_info("www.python.com")
+    get_remote_machine_info("dev.chiefnet.yavar.in")
