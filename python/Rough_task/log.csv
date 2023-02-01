@@ -1,0 +1,101 @@
+DateTime,Status,FileName,LineNo,Modules,FunctionName,Message
+"2022-06-16 03:06:34,940 ", INFO , system_preparation_manager.py , 45 , system_preparation_manager , __init__ ," System Prepartion Manager initializer starts
+"
+"2022-06-16 03:06:34,940 ", INFO , system_preparation_manager.py , 86 , system_preparation_manager , __init__ ," /home/chiefnet/ChiefNet/ConfigurationFiles/SystemConfiguration.json file already exist
+"
+"2022-06-16 03:06:34,941 ", INFO , system_preparation_manager.py , 88 , system_preparation_manager , __init__ ," System Prepartion Manager initializer ends
+"
+"2022-06-16 03:06:34,942 ", INFO , system_configuration_manager.py , 16 , system_configuration_manager , __init__ ," SystemConfigurationManager initializer start
+"
+"2022-06-16 03:06:34,943 ", INFO , system_configuration_manager.py , 30 , system_configuration_manager , __init__ ," SystemConfigurationManager initializer end
+"
+"2022-06-16 03:06:34,944 ", INFO , http_communication_manager.py , 22 , http_communication_manager , __init__ ," HttpCommunicationManager initializer starts
+"
+"2022-06-16 03:06:34,945 ", INFO , http_communication_manager.py , 32 , http_communication_manager , __init__ ," HttpCommunicationManager initializer ends
+"
+"2022-06-16 03:06:34,946 ", INFO , provision_manager.py , 29 , provision_manager , __init__ ," ProvisionManager initializer starts
+"
+"2022-06-16 03:06:34,958 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4bd90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:06:34,959 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:06:34,959 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:06:44,959 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:06:44,964 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4bc70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:06:44,965 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:06:44,965 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:06:54,965 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:06:54,972 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4bee0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:06:54,972 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:06:54,972 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:07:04,973 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:07:04,980 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b040>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:07:04,981 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:07:04,982 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:07:14,984 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:07:14,991 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b280>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:07:14,993 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:07:14,993 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:07:24,994 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:07:24,999 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b340>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:07:25,000 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:07:25,000 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:07:35,001 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:07:35,015 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b1f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:07:35,015 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:07:35,016 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:07:45,017 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:07:45,031 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b0a0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:07:45,031 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:07:45,032 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:07:55,033 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:07:55,045 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:07:55,046 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:07:55,046 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:08:05,047 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:08:05,059 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4b370>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:08:05,059 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
+"2022-06-16 03:08:05,060 ", ERROR , provision_manager.py , 136 , provision_manager , __device_provisioning ," Device provisioning failed
+"
+"2022-06-16 03:08:15,060 ", INFO , provision_manager.py , 74 , provision_manager , __init__ ," Retrying device proviosioning
+"
+"2022-06-16 03:08:15,065 ", ERROR , http_communication_manager.py , 109 , http_communication_manager , post_data_with_response ," HTTPSConnectionPool(host='chiefnet-dev-api.yavar.in', port=443): Max retries exceeded with url: /v1/devices/provision (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f47b4baf0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+"
+"2022-06-16 03:08:15,065 ", ERROR , provision_manager.py , 112 , provision_manager , __device_provisioning ," Expecting value: line 1 column 1 (char 0)
+"
