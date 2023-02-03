@@ -4,7 +4,7 @@ from collections import namedtuple
 lines = []
 #start = time.time()
 
-#Title of row
+#Title of rowa
 writer = pd.ExcelWriter('log.xlsx')
 row = 0
 Line = namedtuple('Line','DateTime Status FileName LineNo Modules FunctionName Message')
