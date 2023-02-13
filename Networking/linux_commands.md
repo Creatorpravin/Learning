@@ -63,7 +63,6 @@
 * sysctl -w net.ipv4.ip_forward = 1 - change ip forward
 
 
-
 # Traffic steering
 * sudo iptables -t mangle -A PREROUTING -i enp0s10 -d 8.8.8.8 -j MARK –set-mark 0x00010001 => Set fwmark value for incoming packets from LAN interface in Mangle table.
 * ip rule add fwmark 0x00000001/0x000000ff tables wan_table_5 => Create and add fwmark in ip rule  table
