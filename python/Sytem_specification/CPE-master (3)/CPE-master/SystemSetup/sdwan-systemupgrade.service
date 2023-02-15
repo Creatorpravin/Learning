@@ -1,0 +1,10 @@
+[Unit]
+Description=System upgrade application service
+Before=chiefnet-sdwan.service
+
+[Service]
+Type=idle
+ExecStart=/home/chiefnet/ChiefNet/StartupScripts/systemupgrade-startup-script.sh
+
+[Install]
+WantedBy=multi-user.target 

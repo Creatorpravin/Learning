@@ -1,0 +1,12 @@
+{
+"system_information" : 
+{
+"uuid": "",
+"os_version": "",
+"mac_address": "",
+"model": "",
+"lan_interfaces": ["", ""],
+"wan_interfaces": ["", ""]
+},
+"provisioning_server_uri": "https://chiefnet-dev-api.yavar.in/v1/devices/provision"
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=Telegraf service
+
+[Service]
+ExecStart=/usr/bin/telegraf -config /etc/telegraf/telegraf.conf
+NotifyAccess=main
+#WatchdogSec=10
+Restart=on-failure
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

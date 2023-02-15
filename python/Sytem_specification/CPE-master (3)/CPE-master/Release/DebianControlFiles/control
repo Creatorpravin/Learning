@@ -1,0 +1,5 @@
+Package: sdwan
+Version: 1.1.0
+Architecture: amd64
+Maintainer: Sacra Systems <hariprasad@sacrasys.com>
+Description: A netork utility that is used to configure other network utilities.
