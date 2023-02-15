@@ -17,4 +17,5 @@ contours, hierarchy = cv2.findContours(dilated_value,cv2.RETR_TREE,cv2.CHAIN_APP
 plt.imshow(im)
 cv2.namedWindow('detecttable', cv2.WINDOW_NORMAL)
 cv2.imwrite('detecttable.jpg',im)
+#test
 
