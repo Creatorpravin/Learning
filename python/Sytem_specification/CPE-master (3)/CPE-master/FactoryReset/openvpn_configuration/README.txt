@@ -1,1 +1,0 @@
-Place Factory default configuration for OpenVPN in this folder
