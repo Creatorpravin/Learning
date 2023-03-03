@@ -3,6 +3,8 @@ import socket
 import ujson
 import vici
 import orjson
+import json
+
 try:
     s = vici.Session()
 except socket.error:
@@ -30,9 +32,34 @@ def parse_sa(in_conn):
 
 result = dict()
 # parse connections
-
+dict = {}
+dict2 = {}
 for conns in s.list_conns():
-    for connection_id in conns:
+    print(type(conns))
+    # print("+++++++++++++++++++++++++++")
+    # # output = ujson.loads(ujson.dumps(conns))
+    # # print(output)
+    for key1, val1 in conns.items():
+        #print(key1, val1)        
+        for key2, val2 in val1.items():
+            #print(key2, val2)            
+            dict[str(key2)] = [str(val2)]
+            
+            # if "OrderedDict" in str(val2) :
+            #     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            #     print(val2)
+            #     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            #     for key3, val3 in val2:
+            #         print(key3, val3)
+        dict2[str(key1)] = dict
+
+            # for key3, val3 in val2.items():
+            #      print(key3,val3)
+print(dict2)
+
+
+
+for connection_id in conns:
         result[connection_id] = parse_sa(conns[connection_id])
         result[connection_id]['routed'] = True
         result[connection_id]['local-class'] = []
@@ -58,5 +85,5 @@ for sas in s.list_sas():
             result[sa]['routed'] = False
         result[sa]['sas'].append(sas[sa])
 
-print (ujson.dumps(result, reject_bytes=False))
-print(orjson.dumps(result), "utf-8")#, orjson.loads)
+#print (ujson.dumps,(result, reject_bytes=False))
+#print(orjson.dumps(result), "utf-8")#, orjson.loads)
