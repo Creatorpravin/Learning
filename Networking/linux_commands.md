@@ -15,9 +15,10 @@
 * sudo vtysh - to check the version  
 * watch -n 1 "command" - command automatically refresh  
 * echo $? - used to get return value in shell if == 0 means success if == other than 0 means fail 
-
+* nc -vz 192.168.1.180 40674 - To check particular port is open or not it send TCP packets
 # **File permission**
 * chown [OPTION]… [OWNER][:[GROUP]] FILE -  to change the group mode
+* df -h /boot - Check the system spaces
 
 # **Netplan**
 
@@ -31,6 +32,7 @@
 * scp hostname@ip:remote_filePath origin_filePath - download the file through secure copy
 * sudo traceroute 8.8.8.8 - Trace the route of packets 
 * sudo tcpdump -i eno1 - Check the data packets flow
+* sudo tcpdump -i eno1 -w file_name - Dump the raw packets
 
 # **File permission**
 * ls -lh - Check the file permission
