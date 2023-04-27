@@ -1,0 +1,10 @@
+#!/bin/bash
+touch sample.txt #create the file
+echo "First argument is $1" #getting argument one by one
+echo "Second argument is $2"
+echo "Second argument is $3"
+ip a s eno1>>sample.txt #Append the status of eno1 interface to txt file
+echo "ip a $1 $ip">>sample.txt
+cat sample.txt #open the file
+
+

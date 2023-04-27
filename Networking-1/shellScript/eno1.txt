@@ -1,0 +1,29 @@
+
+
+
+
+	Link detected: yes
+	Link detected: yes
+	Link detected: yes
+	Link detected: no
+	Link detected: no
+	Link detected: no 2: eno1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel master br0 state DOWN group default qlen 1000
+    link/ether 34:e6:d7:2e:98:21 brd ff:ff:ff:ff:ff:ff
+    altname enp0s25
+	Link detected: no/n 2: eno1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel master br0 state DOWN group default qlen 1000
+    link/ether 34:e6:d7:2e:98:21 brd ff:ff:ff:ff:ff:ff
+    altname enp0s25
+	Link detected: yes 6: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether d8:fc:93:19:32:73 brd ff:ff:ff:ff:ff:ff
+    inet 172.20.10.3/28 brd 172.20.10.15 scope global dynamic noprefixroute wlp2s0
+       valid_lft 86174sec preferred_lft 86174sec
+    inet6 2402:3a80:402:5455:e10f:5c72:7ed:28a0/64 scope global temporary dynamic 
+       valid_lft 604793sec preferred_lft 86194sec
+    inet6 2402:3a80:402:5455:cc2a:4e34:6865:745a/64 scope global mngtmpaddr noprefixroute 
+       valid_lft forever preferred_lft forever
+    inet6 2402:3a80:41f:9399:5980:2842:5fbd:4681/64 scope global temporary deprecated dynamic 
+       valid_lft 7193sec preferred_lft 0sec
+    inet6 2402:3a80:41f:9399:792d:1117:1fd4:13b3/64 scope global deprecated dynamic mngtmpaddr noprefixroute 
+       valid_lft 7193sec preferred_lft 0sec
+    inet6 fe80::49ac:2753:a9b7:42f/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever

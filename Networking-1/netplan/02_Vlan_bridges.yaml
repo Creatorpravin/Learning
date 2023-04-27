@@ -1,0 +1,29 @@
+#vlan creation in our pc
+network:
+  version: 2
+  renderer: networkd
+  vlans: #create virtual LAN
+      vlan.45: #vlan name
+        id: 45 #vlan id
+        link: eno1 #link the Physical LAN interface
+        dhcp4: no #disable DHCP
+        addresses: [ 192.168.69.13/24 ] #Set the address for the VLAN
+        nameservers: #Set nameservers
+          search: [ google.com ]
+          addresses: [ 8.8.8.8 ] 
+      vlan.110:
+        id: 110
+        link: eno1
+        dhcp4: no
+        addresses: [ 192.168.68.10/24 ]
+        nameservers:
+          search: [ google.com ]
+          addresses: [ 8.8.8.8 ]
+  bridges: #bridge configuration
+          br0: #bridge name
+              dhcp4: no 
+              addresses: [192.168.100.10/24] #bridge address
+              interfaces: [eno1, vlan.45, vlan.110] #LAN to be merged
+              
+
+
