@@ -13,7 +13,7 @@ def ping_destination(destination, interface, packet_count=10):
         for _ in range(packet_count):
             # Craft ICMP Echo Request packet
             packet = IP(dst=destination) / ICMP()
-
+            
             # Send and receive packets
             response = socket.sr1(packet, timeout=2, verbose=False)
             if response:
@@ -52,7 +52,7 @@ def ping_destination(destination, interface, packet_count=10):
 def main():
     destinations = ["8.8.8.8"]  # Add more destinations if needed
     # interfaces = ["eth0","eth1"]  # Specify the interfaces to use
-    ping_destination = "8.8.8.8"
+    destination = "8.8.8.8"
     results = []
     tun_interfaces = ["tun0", "tun1", "tun2", "tun3", "tun4", "tap0", "tap1", "tap2", "tap3", "tap4"]
     systemconfiguration_json = {}
@@ -63,7 +63,7 @@ def main():
     
     for interface in systemconfiguration_json["system_information"]["wan_interfaces"]:
         if interface not in tun_interfaces:
-                  result = ping_destination(ping_destination, interface, packet_count=10)
+                  result = ping_destination(destination, interface, packet_count=10)
                   results.append(result)
      
 
