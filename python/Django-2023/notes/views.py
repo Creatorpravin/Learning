@@ -7,7 +7,7 @@ from .models import Notes
 class NoteListView(ListView): #end point create
     model = Notes
     context_object_name = 'notes'
-    template_name = "notes/notes_list.html" #don't need if we follow the proper name for the class
+    template_name = "notes/notes_list.html" # don't need if we follow the proper name for the class
 
 class NoteDetailView(DetailView):
     model = Notes
