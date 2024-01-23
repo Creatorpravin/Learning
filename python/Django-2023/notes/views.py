@@ -1,15 +1,21 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.views.generic import DetailView,ListView
-from .models import Notes
-# Create your views here.
+from django.views.generic import CreateView,DetailView,ListView
 
-class NoteListView(ListView): #end point create
+from .models import Notes
+
+
+class NotesCreateView(CreateView):
+    model = Notes
+    fields = ['tittle', 'text']
+    success_url = '/smart/notes'
+     
+class NotesListView(ListView): #end point create
     model = Notes
     context_object_name = 'notes'
     template_name = "notes/notes_list.html" # don't need if we follow the proper name for the class
 
-class NoteDetailView(DetailView):
+class NotesDetailView(DetailView):
     model = Notes
     context_object_name = 'note' # it default handle the exception
     template_name = "notes/notes_details.html"
