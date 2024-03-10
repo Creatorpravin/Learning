@@ -1,0 +1,14 @@
+body{
+    background-color: blueviolet;
+}
+h1 {
+    color: rgba(207, 236, 211, 0.8);
+    text-align: center;
+}
+p {
+    color: burlywood;
+    border: 2px solid powderblue;
+    background-color: black;
+    margin: 50px;
+    padding: 20px;
+}

@@ -1,4 +1,5 @@
-{
+# Your list of dictionaries
+rules ={
                 "order": 1,
                 "id": "56-1699965292853",
                 "name": "Instagram-1",
@@ -1706,3 +1707,21 @@
                 "backup_wan_interface_jitter": 100,
                 "backup_wan_interface_packet_loss": 100
             }
+
+# Function to generate unique IDs
+def generate_unique_ids(rules):
+    if not rules:
+        return
+    last_id = rules[-1]["id"]
+    last_id_numeric_part = int(last_id.split("-")[-1])
+    for i, rule in enumerate(rules):
+        new_id_numeric_part = last_id_numeric_part + i + 1
+        new_id = f"{last_id.split('-')[0]}-{new_id_numeric_part}"
+        rule["id"] = new_id
+
+# Generate unique IDs for the rules
+generate_unique_ids(rules)
+
+# Print the updated list of dictionaries
+for rule in rules:
+    print(rule)
