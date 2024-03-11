@@ -80,7 +80,7 @@ def main():
         print(f"RSI is {rsi:.2f}. No clear indication.")
 
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     main()
 
 import numpy as np
@@ -139,7 +139,7 @@ def main():
     else:
         print("No overbought or oversold condition detected.")
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     PERIOD = 10
     OVERBOUGHT = 70
     OVERSOLD = 30
