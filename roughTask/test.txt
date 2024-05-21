@@ -1,0 +1,135 @@
+{
+                "order": 2,
+                "id": "73-1715862222039",
+                "name": "Whatsapp",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    9
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Whatsapp"
+                ]
+            },
+            {
+                "id": "73-1715862254742",
+                "name": "Youtube-1",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    5
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Youtube 1"
+                ],
+                "order": 3
+            },
+            {
+                "id": "73-1715862290481",
+                "name": "Youtube-2",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    6
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Youtube 2"
+                ],
+                "order": 4
+            },
+            {
+                "id": "73-1715862315515",
+                "name": "Youtube-3",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    7
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Youtube 3"
+                ],
+                "order": 5
+            },
+            {
+                "id": "73-1715862336165",
+                "name": "Youtube-4",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    8
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Youtube 4"
+                ],
+                "order": 6
+            },
+            {
+                "id": "73-1715862358695",
+                "name": "Telegram",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    10
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Telegram"
+                ],
+                "order": 7
+            },
+            {
+                "id": "73-1715862377412",
+                "name": "We Transfer",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    11
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "WeTransfer"
+                ],
+                "order": 8
+            },
+            {
+                "id": "73-1715862403731",
+                "name": "Google workspace",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    12
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Google WorkSpace"
+                ],
+                "order": 9
+            },
+            {
+                "id": "73-1715862420562",
+                "name": "Gmail",
+                "input_interface": "hw-77-enp3s0-1713270957669",
+                "protocol": "all",
+                "action": "Drop",
+                "destination_domains": [
+                    13
+                ],
+                "drop_unreachable_traffic": false,
+                "destination_domain_names": [
+                    "Gmail"
+                ],
+                "order": 10
+            }
